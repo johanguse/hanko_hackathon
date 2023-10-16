@@ -21,7 +21,7 @@ export const BurguerMenu: FC<BurguerMenuProps> = ({ siteConfig }) => {
     <>
       <BurguerMenuButton onClick={toggleNav} isOpen={navOpen} />
       <div
-        className={`fixed left-0 top-0 z-40 h-screen w-full overflow-y-auto bg-white p-6 dark:bg-black lg:flex lg:hidden ${
+        className={`fixed left-0 top-0 z-40 h-screen w-full overflow-y-auto bg-white p-6 dark:bg-black lg:hidden ${
           navOpen ? '' : 'hidden'
         }`}
       >
