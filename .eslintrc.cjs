@@ -1,36 +1,38 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: true,
   },
-  plugins: ["@typescript-eslint", "tailwindcss"],
+  plugins: ['@typescript-eslint', 'tailwindcss'],
   extends: [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "prettier",
-    "plugin:tailwindcss/recommended",
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'prettier',
+    'plugin:tailwindcss/recommended',
   ],
   rules: {
-    "@typescript-eslint/consistent-type-imports": [
-      "warn",
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
       {
-        prefer: "type-imports",
-        fixStyle: "inline-type-imports",
+        prefer: 'type-imports',
+        fixStyle: 'inline-type-imports',
       },
     ],
-    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   settings: {
     tailwindcss: {
-      callees: ["cn"],
-      config: "./tailwind.config.ts",
+      callees: ['cn'],
+      config: './tailwind.config.ts',
     },
     next: {
-      rootDir: ["./"],
+      rootDir: ['./'],
     },
   },
-  ignorePatterns: ["node_modules", ".next", "out"],
+  ignorePatterns: ['node_modules', '.next', 'out'],
 }
 
 module.exports = config
