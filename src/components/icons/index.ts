@@ -1,3 +1,4 @@
+export * from './Logo'
 export * from './CSS'
 export * from './ChevronDown'
 export * from './Close'

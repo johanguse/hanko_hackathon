@@ -5,7 +5,7 @@ import Link from 'next/link'
 import type { MenuNavItem } from '@/types'
 
 import { cn } from '@/lib/utils'
-import { IconHTML } from '@/components/icons/Html'
+import { LogoSVG } from '@/components/icons/Logo'
 import { ChangeLanguage } from '@/components/layouts/components/ChangeLanguage'
 import { ThemeToggle } from '@/components/layouts/components/ThemeToggle'
 
@@ -44,16 +44,16 @@ export const Header: FC<HeaderProps> = ({
       ref={headerRef}
       className={cn(
         `
-          top-0 z-40 w-full border-gray-200 bg-white dark:border-gray-800 dark:bg-black
-          lg:pl-12 lg:pr-12
+          top-0 z-40 w-full border-gray-200 bg-white py-6 dark:border-gray-800
+          dark:bg-background
         `,
         { sticky: !noSticky },
         className
       )}
     >
-      <div className="container flex items-center justify-between p-6">
+      <div className="container flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <IconHTML className="h-8" />
+          <LogoSVG className="h-8" />
         </Link>
         <nav className="hidden lg:flex">
           <ul className="flex items-center">

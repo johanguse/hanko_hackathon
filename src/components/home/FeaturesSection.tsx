@@ -91,7 +91,7 @@ export const FeaturesSection = async () => {
       </section>
       <section
         id="features"
-        className="mx-auto mb-24 mt-40 grid scroll-mt-48 grid-cols-1 gap-4 px-4 md:scroll-mt-28 md:grid-cols-2 lg:max-w-6xl lg:grid-cols-2 lg:px-0"
+        className="mx-auto mb-2 mt-40 grid scroll-mt-48 grid-cols-1 gap-4 px-4 md:scroll-mt-28 md:grid-cols-2 lg:max-w-6xl lg:grid-cols-2 lg:px-0"
       >
         {features.map((feature) => (
           <FeatureBox key={feature.titleToken} {...{ feature }} />

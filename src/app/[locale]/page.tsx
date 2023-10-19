@@ -11,8 +11,10 @@ export default async function Page() {
     <>
       <Header siteConfig={{ mainNav, name }} />
       <main className="w-full">
-        <GradientHero />
-        <FeaturesSection />
+        <div className="container">
+          <GradientHero />
+          <FeaturesSection />
+        </div>
       </main>
       <Footer />
     </>

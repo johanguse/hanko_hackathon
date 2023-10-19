@@ -3,6 +3,8 @@
 import { FC, useState } from 'react'
 import type { MenuNavItem } from '@/types'
 
+import { LogoSVG } from '@/components/icons'
+
 import { BurguerMenuButton } from './BurguerMenuButton'
 import { HeaderLink } from './HeaderLink'
 
@@ -25,8 +27,9 @@ export const BurguerMenu: FC<BurguerMenuProps> = ({ siteConfig }) => {
           navOpen ? '' : 'hidden'
         }`}
       >
+        <LogoSVG className="h-8 items-center p-1" />
         <nav>
-          <ul className="flex flex-col items-center">
+          <ul className="mt-5 flex flex-col items-center">
             {siteConfig?.mainNav.map((item) => (
               <li key={item.title}>
                 <HeaderLink href={item.href} labelToken={item.title} />

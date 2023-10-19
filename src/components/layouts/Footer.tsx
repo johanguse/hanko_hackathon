@@ -7,10 +7,18 @@ export default async function Footer() {
   const { links } = await getSiteConfig()
   const scopeFooterT = await getScopedI18n('footer')
   return (
-    <footer className="mb-3 mt-5 h-16 w-full border-t border-gray-500 px-3 pt-4  sm:mb-0 sm:h-20 sm:flex-row sm:pt-2">
-      <div className="container flex flex-row items-center justify-between space-y-3 text-center">
+    <footer className="mb-3 mt-5 h-16 w-full border-t border-gray-200 px-3 pt-4 dark:border-gray-800">
+      <div className="container flex flex-col items-center justify-between space-y-3 py-6 text-center md:flex-row md:space-y-0">
         <div className="text-gray-500">
           Powered by{' '}
+          <a
+            href="https://www.hanko.io/"
+            target="_blank"
+            rel="noreferrer"
+            className="font-bold underline-offset-2 transition hover:text-gray-300 hover:underline"
+          >
+            Hanko,{' '}
+          </a>
           <a
             href="https://replicate.com/"
             target="_blank"
@@ -18,14 +26,6 @@ export default async function Footer() {
             className="font-bold underline-offset-2 transition hover:text-gray-300 hover:underline"
           >
             Replicate,{' '}
-          </a>
-          <a
-            href="https://www.bytescale.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="font-bold underline-offset-2 transition hover:text-gray-300 hover:underline"
-          >
-            Bytescale,{' '}
           </a>
           and{' '}
           <a
@@ -43,7 +43,7 @@ export default async function Footer() {
               <Link
                 href={links.github}
                 target="_blank"
-                className="line-clamp-1 font-bold text-gray-500 hover:underline"
+                className="line-clamp-1 font-bold text-gray-500 hover:text-gray-300 hover:underline"
                 aria-label="Github"
                 rel="noopener noreferrer"
               >
@@ -54,9 +54,9 @@ export default async function Footer() {
         </p>
         <div className="flex space-x-4 pb-4 sm:pb-0">
           <Link
-            href="https://twitter.com/nutlope"
+            href={links.twitter}
             className="group"
-            aria-label="TaxPal on Twitter"
+            aria-label="Johan on Twitter"
           >
             <svg
               aria-hidden="true"
@@ -66,9 +66,9 @@ export default async function Footer() {
             </svg>
           </Link>
           <Link
-            href="https://github.com/Nutlope/roomGPT"
+            href={links.github}
             className="group"
-            aria-label="TaxPal on GitHub"
+            aria-label="Johan on GitHub"
           >
             <svg
               aria-hidden="true"

@@ -81,7 +81,7 @@ export default async function Root({ children, params }: RootProps) {
       >
         <I18nProvider locale={params.locale}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="flex flex-col gap-20">{children}</div>
+            <div className="flex flex-col gap-10">{children}</div>
           </ThemeProvider>
         </I18nProvider>
       </body>
