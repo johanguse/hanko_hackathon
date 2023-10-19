@@ -51,7 +51,7 @@ export const Header: FC<HeaderProps> = ({
         className
       )}
     >
-      <div className="flex items-center justify-between p-6">
+      <div className="container flex items-center justify-between p-6">
         <Link href="/" className="flex items-center">
           <IconHTML className="h-8" />
         </Link>

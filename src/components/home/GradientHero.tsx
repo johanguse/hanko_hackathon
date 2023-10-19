@@ -16,7 +16,7 @@ export const GradientHero = async () => {
         bold
       />
       <Text
-        as="h3"
+        as="p"
         className="mx-auto mt-12 max-w-2xl"
         labelToken={t('subtitle')}
         size="xl"
