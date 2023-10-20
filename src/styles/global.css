@@ -102,7 +102,12 @@ hanko-auth::part(divider-text) {
 
 .dark hanko-auth::part(paragraph),
 .dark hanko-profile::part(paragraph) {
-  color: var(--paragraph);
+  @apply text-white;
+}
+
+.dark hanko-auth::part(link),
+.dark hanko-profile::part(link) {
+  @apply text-white underline;
 }
 
 .dark hanko-auth::part(container),
@@ -131,7 +136,8 @@ hanko-auth::part(divider-text) {
   @apply border-none bg-white font-bold text-black hover:bg-gray-400;
 }
 
-.dark hanko-auth::part(secondary-button) {
+.dark hanko-auth::part(secondary-button),
+.dark hanko-profile::part(secondary-button) {
   @apply m-0 border-none bg-white font-bold text-black hover:bg-gray-400;
 }
 

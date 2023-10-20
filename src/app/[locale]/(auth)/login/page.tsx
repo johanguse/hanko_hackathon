@@ -11,7 +11,7 @@ const HankoAuth = dynamic(() => import('@/components/auth/HankoAuth'), {
 })
 
 export default async function RegisterPage() {
-  const t = await getScopedI18n('commons')
+  const t = await getScopedI18n('commons.auth')
   const { mainNav, name } = await getSiteConfig()
 
   return (
@@ -22,13 +22,13 @@ export default async function RegisterPage() {
           <div className="container items-center text-center">
             <div className="text-center">
               <Text
-                labelToken={t('auth.loginTitle')}
+                labelToken={t('loginTitle')}
                 className="text-4xl"
                 as="h1"
                 bold
               />
               <Text
-                labelToken={t('auth.loginSubtitle')}
+                labelToken={t('loginSubtitle')}
                 className="mt-4"
                 as="p"
                 medium
@@ -36,7 +36,7 @@ export default async function RegisterPage() {
             </div>
             <HankoAuth />
             <div className="font-xs mx-0 mt-8 w-full text-center text-primary">
-              <Text as="p" size="sm" labelToken={t('auth.loginFooterText')} />
+              <Text as="p" size="sm" labelToken={t('loginFooterText')} />
             </div>
           </div>
         </main>
