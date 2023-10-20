@@ -1,6 +1,4 @@
 import { getSiteConfig } from '@/config/siteConfig'
-import { Text } from '@/components/common'
-import { MainNav } from '@/components/dashboard/MainNav'
 import { FeaturesSection } from '@/components/home/FeaturesSection'
 import { GradientHero } from '@/components/home/GradientHero'
 import Footer from '@/components/layouts/Footer'

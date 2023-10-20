@@ -5,7 +5,7 @@ import { I18nProvider, ThemeProvider } from '@/components/provider'
 
 import '@/styles/global.css'
 
-import { Metadata } from 'next/types'
+import type { Metadata } from 'next/types'
 
 export const metadata: Metadata = {
   ...baseMetadata,
@@ -15,7 +15,7 @@ interface RootProps {
   children: React.ReactNode
   params: { locale: string }
 }
-export default async function Root({ children, params }: RootProps) {
+export default function Root({ children, params }: RootProps) {
   return (
     <html lang={params.locale} suppressHydrationWarning>
       <body
