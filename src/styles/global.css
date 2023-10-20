@@ -100,10 +100,16 @@ hanko-auth::part(divider-text) {
   color: var(--paragraph);
 }
 
+.dark hanko-auth::part(paragraph),
+.dark hanko-profile::part(paragraph) {
+  color: var(--paragraph);
+}
+
 .dark hanko-auth::part(container),
 .dark hanko-profile::part(container) {
   margin: 0 auto;
   background-color: var(--background);
+  color: var(--paragraph-foreground);
 }
 
 .dark hanko-auth::part(headline1) {
