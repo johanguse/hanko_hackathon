@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   ...staticMetadata.dashboard,
 }
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
   const token = cookies().get('hanko')?.value
   const payload = jose.decodeJwt(token ?? '')
 
@@ -21,8 +21,8 @@ export default async function DashboardPage() {
   }
   return (
     <>
-      <Text labelToken={`user-id: ${payload}`} medium />
-      <div>{JSON.stringify(payload, null, 2)}</div>
+      <Text labelToken={`user-id: ${userID}`} medium />
+      <div>{JSON.stringify(payload)}</div>
     </>
   )
 }

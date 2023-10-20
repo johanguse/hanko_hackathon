@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { useCurrentLocale } from '@/locale/client'
 import { hankoEsTranslations } from '@/locale/hanko.es'
 import { Hanko, register, Translation } from '@teamhanko/hanko-elements'
@@ -22,29 +22,35 @@ export default function HankoAuth() {
   const isDarkTheme = true
 
   useEffect(() => {
-    import('@teamhanko/hanko-elements').then(({ Hanko }) =>
-      setHanko(new Hanko(hankoApi, { translations: { ...all, hankoEs } }))
-    )
+    import('@teamhanko/hanko-elements')
+      .then(({ Hanko }) =>
+        setHanko(new Hanko(hankoApi, { translations: { ...all, hankoEs } }))
+      )
+      .catch((error) =>
+        console.error('Failed to import @teamhanko/hanko-elements.', error)
+      )
   }, [])
 
-  const redirectAfterLogin = useCallback(() => {
+  const redirectAfterLogin = useCallback(async () => {
     // successfully logged in, redirect to a page in your application
-    router.replace('/dashboard')
+    try {
+      await router.replace('/dashboard')
+    } catch (error) {
+      console.error('Failed to redirect.', error)
+    }
   }, [router])
 
-  useEffect(
-    () =>
-      hanko?.onAuthFlowCompleted(() => {
-        redirectAfterLogin()
-      }),
-    [hanko, redirectAfterLogin]
-  )
+  useEffect(() => {
+    if (hanko) {
+      hanko.onAuthFlowCompleted(redirectAfterLogin)
+    }
+  }, [hanko, redirectAfterLogin])
 
   useEffect(() => {
-    register(hankoApi, { translations: { ...all, hankoEs } }).catch((error) => {
-      console.error(error)
-    })
-  }, [])
+    register(hankoApi, { translations: { ...all, hankoEs } }).catch((error) =>
+      console.error('Failed to register translations.', error)
+    )
+  }, [hankoApi])
 
   return (
     <hanko-auth
