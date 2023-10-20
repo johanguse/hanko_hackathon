@@ -20,7 +20,7 @@ export function MainNav({
       className={cn('flex items-center space-x-4 lg:space-x-6', className)}
       {...props}
     >
-      <nav className="container flex items-center space-x-4 lg:space-x-6">
+      <nav className="container items-center justify-center space-x-4 lg:space-x-6">
         <Link
           href="/dashboard"
           className={
@@ -30,12 +30,12 @@ export function MainNav({
           Overview
         </Link>
         <Link
-          href="/customers"
+          href="/dashboard/billing"
           className={
-            currentRoute === '/customers' ? activeLinkClass : inactiveLinkClass
+            currentRoute === '/billing' ? activeLinkClass : inactiveLinkClass
           }
         >
-          Customers
+          Billing
         </Link>
         <Link
           href="/products"

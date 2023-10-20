@@ -1,18 +1,28 @@
+import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import * as jose from 'jose'
+
 import { staticMetadata } from '@/config/siteMeta'
 import { Text } from '@/components/common'
-
-import '@/styles/global.css'
-
-import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   ...staticMetadata.dashboard,
 }
 
-export default function Page() {
+export default async function DashboardPage() {
+  const token = cookies().get('hanko')?.value
+  const payload = jose.decodeJwt(token ?? '')
+
+  const userID = payload.sub
+
+  if (!userID || token === undefined) {
+    redirect('/login')
+  }
   return (
     <>
-      <Text labelToken="dashboard" medium />
+      <Text labelToken={`user-id: ${payload}`} medium />
+      <div>{JSON.stringify(payload, null, 2)}</div>
     </>
   )
 }

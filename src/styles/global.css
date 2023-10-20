@@ -22,6 +22,19 @@
     --muted-foreground: 216 6% 15%;
 
     --radius: 0.5rem;
+
+    --color: #111827;
+    --color-shade-1: #d1d5db;
+    --brand-color: #111827;
+    --background-color: #ffffff;
+    --headline1-font-size: 29px;
+    --headline2-font-size: 16px;
+    --headline1-margin: 10px 40px;
+    --border-radius: 6px;
+    --font-size: 14px;
+    --item-height: 36px;
+    --link-color: #1c73e8;
+    --divider-padding: 0 15px;
   }
 
   .dark {
@@ -63,4 +76,46 @@
   ::-webkit-scrollbar {
     display: none;
   }
+}
+
+hanko-auth {
+  --container-max-width: 640px;
+  --container-padding: 40px;
+}
+
+hanko-profile {
+  --container-max-width: 550px;
+  --container-padding: 30px;
+}
+
+hanko-auth::part(container),
+hanko-profile::part(container) {
+  border: solid 1px #d8dee3;
+  border-radius: 6px;
+  width: 560px;
+  margin: 0 auto;
+}
+
+hanko-auth::part(headline1),
+hanko-profile::part(headline1) {
+  color: #1f2328;
+  text-align: center;
+}
+
+hanko-auth::part(input),
+hanko-profile::part(input) {
+  background-color: #ffffff;
+}
+
+hanko-auth::part(secondary-button) {
+  border: none;
+  margin: 0 0 0 20px;
+}
+
+hanko-auth::part(divider-text) {
+  color: #1f2328;
+}
+
+.hanko_loadingSpinnerWrapperIcon {
+  justify-content: center !important;
 }
