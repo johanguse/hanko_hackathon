@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
+import { getScopedI18n } from '@/locale/server'
 
 import { getSiteConfig } from '@/config/siteConfig'
 import { Text } from '@/components/common'
@@ -11,29 +11,32 @@ const HankoAuth = dynamic(() => import('@/components/auth/HankoAuth'), {
 })
 
 export default async function RegisterPage() {
+  const t = await getScopedI18n('commons')
   const { mainNav, name } = await getSiteConfig()
 
   return (
     <>
-      <div className="flex flex-col gap-[200px]">
+      <div className="flex flex-col gap-20">
         <Header siteConfig={{ mainNav, name }} />
         <main className="w-full">
           <div className="container items-center text-center">
             <div className="text-center">
-              <Text labelToken="Login" className="text-4xl" as="h1" bold />
               <Text
-                labelToken="Enter your email below to receive an account access."
+                labelToken={t('auth.loginTitle')}
+                className="text-4xl"
+                as="h1"
+                bold
+              />
+              <Text
+                labelToken={t('auth.loginSubtitle')}
                 className="mt-4"
                 as="p"
                 medium
               />
             </div>
             <HankoAuth />
-            <div className="font-xs mx-0 mt-10 w-full text-center text-primary">
-              <Text
-                as="p"
-                labelToken="If you don't have an account, we'll whip one up for ya."
-              />
+            <div className="font-xs mx-0 mt-8 w-full text-center text-primary">
+              <Text as="p" labelToken={t('auth.loginFooterText')} />
             </div>
           </div>
         </main>

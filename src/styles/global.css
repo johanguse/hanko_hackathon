@@ -65,12 +65,6 @@
   }
 }
 
-hanko-auth,
-hanko-profile {
-  --container-max-width: 430px;
-  --container-padding: 40px;
-}
-
 hanko-auth::part(container),
 hanko-profile::part(container) {
   margin: 0 auto;
@@ -104,12 +98,6 @@ hanko-auth::part(secondary-button) {
 hanko-auth::part(divider-text) {
   background-color: transparent;
   color: var(--paragraph);
-}
-
-.dark hanko-auth,
-.dark hanko-profile {
-  --container-max-width: 430px;
-  --container-padding: 40px;
 }
 
 .dark hanko-auth::part(container),

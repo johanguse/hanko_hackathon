@@ -15,7 +15,7 @@ export default async function RegisterPage() {
 
   return (
     <>
-      <div className="flex flex-col gap-[200px]">
+      <div className="flex flex-col gap-20">
         <Header siteConfig={{ mainNav, name }} />
         <main className="w-full">
           <div className="container items-center text-center">
@@ -29,7 +29,7 @@ export default async function RegisterPage() {
               />
             </div>
             <HankoAuth />
-            <div className="font-xs mx-0 mt-10 w-full text-center text-primary">
+            <div className="font-xs mx-0 mt-8 w-full text-center text-primary">
               <Text
                 as="p"
                 labelToken="By creating an account, you agree to our"

@@ -41,5 +41,12 @@ export default {
       dark: 'Oscuro',
       system: 'Sistema',
     },
+    auth: {
+      loginTitle: 'Iniciar sesión',
+      loginSubtitle:
+        'Introduce tu email a continuación para acceder a tu cuenta.',
+      loginButton: 'Iniciar sesión',
+      loginFooterText: 'Si no tienes una cuenta, te crearemos una',
+    },
   },
 } as const

@@ -41,5 +41,12 @@ export default {
       dark: 'Dark',
       system: 'System',
     },
+    auth: {
+      loginTitle: 'Sign in',
+      loginSubtitle: 'Enter your email below to receive an account access.',
+      loginButton: 'Sign in',
+      loginFooterText:
+        "If you don't have an account, we'll whip one up for ya.",
+    },
   },
 } as const
