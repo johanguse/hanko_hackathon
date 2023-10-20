@@ -1,6 +1,6 @@
 import { Text } from '@/components/common'
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <Text labelToken="Settings" medium />
