@@ -15,9 +15,11 @@ export function LogoutBtn() {
   const [hanko, setHanko] = useState<Hanko>()
 
   useEffect(() => {
-    import('@teamhanko/hanko-elements').then(({ Hanko }) =>
-      setHanko(new Hanko(hankoApiUrl ?? ''))
-    )
+    import('@teamhanko/hanko-elements')
+      .then(({ Hanko }) => setHanko(new Hanko(hankoApiUrl)))
+      .catch((error) =>
+        console.error('Failed to import @teamhanko/hanko-elements.', error)
+      )
   }, [])
 
   const logout = async () => {
@@ -25,11 +27,18 @@ export function LogoutBtn() {
       await hanko?.user.logout()
       router.push('/')
       router.refresh()
-      return
     } catch (error) {
       console.error('Error during logout:', error)
     }
   }
 
-  return <button onClick={logout}>Logout</button>
+  return (
+    <button
+      onClick={() => {
+        logout().catch((error) => console.error('Error during logout:', error))
+      }}
+    >
+      Logout
+    </button>
+  )
 }
