@@ -1,15 +1,18 @@
-import { getSiteConfig } from '@/config/siteConfig'
+import { staticMetadata } from '@/config/siteMeta'
 import { Text } from '@/components/common'
-import { Header } from '@/components/common/header/header'
-import { MainNav } from '@/components/dashboard/MainNav'
-import Footer from '@/components/layouts/Footer'
+
+import '@/styles/global.css'
+
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  ...staticMetadata.dashboard,
+}
 
 export default async function Page() {
-  const { mainNav, name } = await getSiteConfig()
-
   return (
     <>
-      <Text labelToken="textesta" medium />
+      <Text labelToken="dashboard" medium />
     </>
   )
 }

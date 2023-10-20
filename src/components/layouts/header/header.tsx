@@ -6,8 +6,8 @@ import type { MenuNavItem } from '@/types'
 
 import { cn } from '@/lib/utils'
 import { LogoSVG } from '@/components/icons/Logo'
-import { ChangeLanguage } from '@/components/layouts/components/ChangeLanguage'
-import { ThemeToggle } from '@/components/layouts/components/ThemeToggle'
+import { ChangeLanguage } from '@/components/layouts/toggle/ChangeLanguage'
+import { ThemeToggle } from '@/components/layouts/toggle/ThemeToggle'
 
 import { BurguerMenu } from './BurgerMenu'
 import { HeaderLink } from './HeaderLink'

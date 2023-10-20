@@ -1,4 +1,3 @@
-import { getSiteConfig } from '@/config/siteConfig'
 import { baseMetadata } from '@/config/siteMeta'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
@@ -17,8 +16,6 @@ interface RootProps {
   params: { locale: string }
 }
 export default async function Root({ children, params }: RootProps) {
-  const { name, mainNav } = await getSiteConfig()
-
   return (
     <html lang={params.locale} suppressHydrationWarning>
       <body
@@ -30,7 +27,7 @@ export default async function Root({ children, params }: RootProps) {
       >
         <I18nProvider locale={params.locale}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="flex flex-col gap-10">{children}</div>
+            {children}
           </ThemeProvider>
         </I18nProvider>
       </body>
