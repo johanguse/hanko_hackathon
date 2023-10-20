@@ -1,21 +1,27 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useCurrentLocale } from '@/locale/client'
 import { hankoEsTranslations } from '@/locale/hanko.es'
 import { Hanko, register, Translation } from '@teamhanko/hanko-elements'
 import { all } from '@teamhanko/hanko-elements/i18n/all'
 
+if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
+  throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
+}
+
+const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
+
+//ts ignore next line
+// @ts-ignore eslint-disable-next-line
 const hankoEs: Translation = {
   ...hankoEsTranslations,
 }
 
-const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL
-
 export default function HankoAuth() {
-  const locale = useCurrentLocale()
   const router = useRouter()
+  const locale = useCurrentLocale()
 
   const [hanko, setHanko] = useState<Hanko>()
 
@@ -23,18 +29,16 @@ export default function HankoAuth() {
 
   useEffect(() => {
     import('@teamhanko/hanko-elements')
-      .then(({ Hanko }) =>
-        setHanko(new Hanko(hankoApi, { translations: { ...all, hankoEs } }))
-      )
+      .then(({ Hanko }) => setHanko(new Hanko(hankoApiUrl)))
       .catch((error) =>
         console.error('Failed to import @teamhanko/hanko-elements.', error)
       )
   }, [])
 
-  const redirectAfterLogin = useCallback(async () => {
+  const redirectAfterLogin = useCallback(() => {
     // successfully logged in, redirect to a page in your application
     try {
-      await router.replace('/dashboard')
+      router.replace('/dashboard')
     } catch (error) {
       console.error('Failed to redirect.', error)
     }
@@ -47,10 +51,10 @@ export default function HankoAuth() {
   }, [hanko, redirectAfterLogin])
 
   useEffect(() => {
-    register(hankoApi, { translations: { ...all, hankoEs } }).catch((error) =>
-      console.error('Failed to register translations.', error)
+    register(hankoApiUrl, { translations: { ...all, hankoEs } }).catch(
+      (error) => console.error('Failed to register translations.', error)
     )
-  }, [hankoApi])
+  }, [hankoApiUrl])
 
   return (
     <hanko-auth

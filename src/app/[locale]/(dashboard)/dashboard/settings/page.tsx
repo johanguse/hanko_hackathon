@@ -6,8 +6,14 @@ import { hankoEsTranslations } from '@/locale/hanko.es'
 import { register, Translation } from '@teamhanko/hanko-elements'
 import { all } from '@teamhanko/hanko-elements/i18n/all'
 
-const hankoApiUrl = process.env.NEXT_PUBLIC_HANKO_API_URL
+if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
+  throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
+}
 
+const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
+
+//ts ignore next line
+// @ts-ignore eslint-disable-next-line
 const hankoEs: Translation = {
   ...hankoEsTranslations,
 }

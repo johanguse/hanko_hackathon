@@ -12,13 +12,29 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   const token = cookies().get('hanko')?.value
-  const payload = jose.decodeJwt(token ?? '')
+
+  // Check for existence of the token before attempting to decode
+  if (!token) {
+    redirect('/login')
+    return // Ensure no further execution in case of redirection
+  }
+
+  let payload
+  try {
+    payload = jose.decodeJwt(token)
+  } catch (error) {
+    console.error(error)
+    redirect('/login')
+    return // Ensure no further execution in case of redirection
+  }
 
   const userID = payload.sub
 
-  if (!userID || token === undefined) {
+  if (!userID) {
     redirect('/login')
+    return // Ensure no further execution in case of redirection
   }
+
   return (
     <>
       <Text labelToken={`user-id: ${userID}`} medium />

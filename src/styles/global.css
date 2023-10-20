@@ -22,19 +22,6 @@
     --muted-foreground: 216 6% 15%;
 
     --radius: 0.5rem;
-
-    --color: #111827;
-    --color-shade-1: #d1d5db;
-    --brand-color: #111827;
-    --background-color: #ffffff;
-    --headline1-font-size: 29px;
-    --headline2-font-size: 16px;
-    --headline1-margin: 10px 40px;
-    --border-radius: 6px;
-    --font-size: 14px;
-    --item-height: 36px;
-    --link-color: #1c73e8;
-    --divider-padding: 0 15px;
   }
 
   .dark {
@@ -78,44 +65,83 @@
   }
 }
 
-hanko-auth {
-  --container-max-width: 640px;
-  --container-padding: 40px;
-}
-
+hanko-auth,
 hanko-profile {
-  --container-max-width: 550px;
-  --container-padding: 30px;
+  --container-max-width: 430px;
+  --container-padding: 40px;
 }
 
 hanko-auth::part(container),
 hanko-profile::part(container) {
-  border: solid 1px #d8dee3;
-  border-radius: 6px;
-  width: 560px;
   margin: 0 auto;
+  background-color: var(--background);
 }
 
-hanko-auth::part(headline1),
+hanko-auth::part(headline1) {
+  display: none;
+}
+
 hanko-profile::part(headline1) {
-  color: #1f2328;
+  color: var(--primary);
   text-align: center;
 }
 
 hanko-auth::part(input),
 hanko-profile::part(input) {
-  background-color: #ffffff;
+  background-color: var(--background);
+  @apply placeholder-black;
+}
+
+hanko-auth::part(primary-button),
+hanko-profile::part(primary-button) {
+  @apply border-none bg-black font-bold text-white hover:bg-gray-400;
 }
 
 hanko-auth::part(secondary-button) {
-  border: none;
-  margin: 0 0 0 20px;
+  @apply m-0 border-none bg-black font-bold text-white hover:bg-gray-400;
 }
 
 hanko-auth::part(divider-text) {
-  color: #1f2328;
+  background-color: transparent;
+  color: var(--paragraph);
 }
 
-.hanko_loadingSpinnerWrapperIcon {
-  justify-content: center !important;
+.dark hanko-auth,
+.dark hanko-profile {
+  --container-max-width: 430px;
+  --container-padding: 40px;
+}
+
+.dark hanko-auth::part(container),
+.dark hanko-profile::part(container) {
+  margin: 0 auto;
+  background-color: var(--background);
+}
+
+.dark hanko-auth::part(headline1) {
+  display: none;
+}
+
+.dark hanko-profile::part(headline1) {
+  @apply text-gray-200;
+}
+
+.dark hanko-auth::part(input),
+.dark hanko-profile::part(input) {
+  background-color: var(--foreground);
+  @apply placeholder-white;
+}
+
+.dark hanko-auth::part(primary-button),
+.dark hanko-profile::part(primary-button) {
+  @apply border-none bg-white font-bold text-black hover:bg-gray-400;
+}
+
+.dark hanko-auth::part(secondary-button) {
+  @apply m-0 border-none bg-white font-bold text-black hover:bg-gray-400;
+}
+
+.dark hanko-auth::part(divider-text) {
+  background: transparent;
+  color: var(--paragraph);
 }
