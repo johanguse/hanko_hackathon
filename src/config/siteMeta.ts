@@ -2,6 +2,23 @@ import type { Metadata } from 'next'
 
 import { siteConfig } from '@/config/siteConfig'
 
+const icons = {
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/images/favicons/icon-light.png',
+        href: '/images/favicons/icon-light.png',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/images/favicons/icon-dark.png',
+        href: '/images/favicons/icon-dark.png',
+      },
+    ],
+  },
+}
+
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -9,19 +26,6 @@ export const baseMetadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    'portafolio',
-    'portfolio',
-    'developer',
-    'desarrollador',
-    'web',
-    'app',
-    'React',
-    'NextJs',
-    'typescript',
-    'javascript',
-    'tailwind',
-  ],
   authors: [
     {
       name: siteConfig.name.split('|')[0].trim(),
@@ -35,7 +39,7 @@ export const baseMetadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    locale: 'es',
+    locale: 'en-US',
     url: new URL(siteConfig.url),
     title: siteConfig.name,
     description: siteConfig.description,
@@ -53,20 +57,7 @@ export const baseMetadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: '@cavargasl',
   },
-  icons: {
-    icon: [
-      {
-        media: '(prefers-color-scheme: light)',
-        url: '/images/favicons/icon-light.png',
-        href: '/images/favicons/icon-light.png',
-      },
-      {
-        media: '(prefers-color-scheme: dark)',
-        url: '/images/favicons/icon-dark.png',
-        href: '/images/favicons/icon-dark.png',
-      },
-    ],
-  },
+  ...icons,
 }
 export const staticMetadata = {
   ...baseMetadata,
