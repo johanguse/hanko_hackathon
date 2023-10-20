@@ -36,7 +36,7 @@ export default async function RegisterPage() {
             </div>
             <HankoAuth />
             <div className="font-xs mx-0 mt-8 w-full text-center text-primary">
-              <Text as="p" labelToken={t('auth.loginFooterText')} />
+              <Text as="p" size="sm" labelToken={t('auth.loginFooterText')} />
             </div>
           </div>
         </main>

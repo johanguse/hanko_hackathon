@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import { getScopedI18n } from '@/locale/server'
 
 import { getSiteConfig } from '@/config/siteConfig'
 import { Text } from '@/components/common'
@@ -11,6 +12,7 @@ const HankoAuth = dynamic(() => import('@/components/auth/HankoAuth'), {
 })
 
 export default async function RegisterPage() {
+  const t = await getScopedI18n('commons')
   const { mainNav, name } = await getSiteConfig()
 
   return (
@@ -20,28 +22,48 @@ export default async function RegisterPage() {
         <main className="w-full">
           <div className="container items-center text-center">
             <div className="text-center">
-              <Text labelToken="Register" className="text-4xl" as="h1" bold />
               <Text
-                labelToken="Enter your email below to create an account."
+                labelToken={t('auth.registerTitle')}
+                className="text-4xl"
+                as="h1"
+                bold
+              />
+              <Text
+                labelToken={t('auth.registerSubtitle')}
                 className="mt-4"
                 as="p"
                 medium
               />
             </div>
             <HankoAuth />
-            <div className="font-xs mx-0 mt-8 w-full text-center text-primary">
+            <div className="font-xs mx-0 w-full text-center text-primary">
               <Text
+                labelToken={t('auth.registerFooterText')}
+                className="mb-10"
                 as="p"
-                labelToken="By creating an account, you agree to our"
+                size="sm"
               />
+              <Text size="xm" as="p" labelToken={t('auth.termsText')} />
               <Link className="underline" href="/">
-                <Text as="p" labelToken="Terms and Conditions" />
+                <Text
+                  size="xm"
+                  as="p"
+                  labelToken={t('auth.termsTermsAndConditions')}
+                />
               </Link>
               <Link className="underline" href="/">
-                <Text as="p" labelToken="Privacy Policy" />
+                <Text
+                  size="xm"
+                  as="p"
+                  labelToken={t('auth.termsPrivacyPolicy')}
+                />
               </Link>
               <Link className="underline" href="/">
-                <Text as="p" labelToken="Cookie Policy" />
+                <Text
+                  size="xm"
+                  as="p"
+                  labelToken={t('auth.termsCookiePolicy')}
+                />
               </Link>
             </div>
           </div>

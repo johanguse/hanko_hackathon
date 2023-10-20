@@ -47,6 +47,15 @@ export default {
         'Introduce tu email a continuación para acceder a tu cuenta.',
       loginButton: 'Iniciar sesión',
       loginFooterText: 'Si no tienes una cuenta, te crearemos una',
+      registerTitle: 'Registrar',
+      registerSubtitle:
+        'Introduce tu email a continuación para crear una cuenta.',
+      registerFooterText:
+        'Si ya tienes una cuenta, ingresa tu email para iniciar sesión.',
+      termsText: 'Al crear una cuenta, usted acepta nuestros',
+      termsTermsAndConditions: 'Términos y condiciones',
+      termsPrivacyPolicy: 'Política de privacidad',
+      termsCookiePolicy: 'Política de cookies',
     },
   },
 } as const

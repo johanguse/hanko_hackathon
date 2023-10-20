@@ -44,9 +44,16 @@ export default {
     auth: {
       loginTitle: 'Sign in',
       loginSubtitle: 'Enter your email below to receive an account access.',
-      loginButton: 'Sign in',
       loginFooterText:
         "If you don't have an account, we'll whip one up for ya.",
+      registerTitle: 'Register',
+      registerSubtitle: 'Enter your email below to create an account.',
+      registerFooterText:
+        'If you already have an account, type in your email above to login.',
+      termsText: 'By creating an account, you agree to our',
+      termsTermsAndConditions: 'Terms and Conditions',
+      termsPrivacyPolicy: 'Privacy Policy',
+      termsCookiePolicy: 'Cookie Policy',
     },
   },
 } as const
