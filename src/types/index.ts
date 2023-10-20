@@ -4,7 +4,7 @@ export type IdsNav =
   | 'experience'
   | 'education'
   | 'skills'
-  | 'contact'
+  | 'dashboard'
 interface NavItem {
   id: IdsNav
   title: string

@@ -49,9 +49,9 @@ export async function getSiteConfig() {
         href: '#education',
       },
       {
-        id: 'contact',
-        title: t('siteConfig.menuNav.contact'),
-        href: '#contact',
+        id: 'dashboard',
+        title: t('siteConfig.menuNav.dashboard'),
+        href: '/dashboard',
       },
     ] satisfies MenuNavItem[],
   }

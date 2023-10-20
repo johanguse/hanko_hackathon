@@ -18,7 +18,7 @@ export default {
       experience: 'Experience',
       education: 'Education',
       skills: 'Skills',
-      contact: 'Contact',
+      dashboard: 'Dashboard',
     },
     socialLinks: {
       github: 'go to Github',

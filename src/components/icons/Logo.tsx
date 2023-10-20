@@ -15,10 +15,10 @@ export function LogoSVG(props: React.SVGProps<SVGSVGElement>) {
       <text
         transform="translate(12 23)"
         fill="currentColor"
-        font-size="82"
-        font-family="var(--font-sans)"
-        font-weight="600"
-        text-anchor="middle"
+        fontSize="82"
+        fontFamily="var(--font-sans)"
+        fontWeight="600"
+        textAnchor="middle"
       >
         <tspan x="350" y="88">
           AI Magic

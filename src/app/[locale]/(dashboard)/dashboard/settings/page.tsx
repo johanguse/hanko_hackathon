@@ -9,7 +9,7 @@ export default async function Page() {
 
   return (
     <>
-      <Text labelToken="textesta" medium />
+      <Text labelToken="settings" medium />
     </>
   )
 }

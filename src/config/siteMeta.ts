@@ -1,13 +1,8 @@
-import { getSiteConfig, siteConfig } from '@/config/siteConfig'
-import { fontMono, fontSans } from '@/lib/fonts'
-import { cn } from '@/lib/utils'
-import { I18nProvider, ThemeProvider } from '@/components/provider'
-
-import '@/styles/global.css'
-
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
+import { siteConfig } from '@/config/siteConfig'
+
+export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
@@ -59,32 +54,24 @@ export const metadata: Metadata = {
     creator: '@cavargasl',
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/images/favicons/icon-light.png',
+        href: '/images/favicons/icon-light.png',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/images/favicons/icon-dark.png',
+        href: '/images/favicons/icon-dark.png',
+      },
+    ],
   },
 }
-
-interface RootProps {
-  children: React.ReactNode
-  params: { locale: string }
-}
-export default async function Root({ children, params }: RootProps) {
-  const { name, mainNav } = await getSiteConfig()
-
-  return (
-    <html lang={params.locale} suppressHydrationWarning>
-      <body
-        className={cn(
-          'scroll-smooth font-sans antialiased',
-          fontMono.variable,
-          fontSans.variable
-        )}
-      >
-        <I18nProvider locale={params.locale}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="flex flex-col gap-10">{children}</div>
-          </ThemeProvider>
-        </I18nProvider>
-      </body>
-    </html>
-  )
+export const staticMetadata = {
+  ...baseMetadata,
+  dashboard: {
+    title: 'Dashboard - ' + siteConfig.name,
+    description: siteConfig.description,
+  } satisfies Metadata,
 }
