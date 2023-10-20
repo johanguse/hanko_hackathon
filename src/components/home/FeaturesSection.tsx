@@ -73,7 +73,7 @@ const scrollToFeatures = () => {
   }
 }
 
-export const FeaturesSection = async () => {
+export const FeaturesSection = () => {
   const t = useScopedI18n('home')
   return (
     <>
