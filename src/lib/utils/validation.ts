@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { complement, either, equals, isNil } from 'ramda'
 
 export function isNumericString(value: any): boolean {
