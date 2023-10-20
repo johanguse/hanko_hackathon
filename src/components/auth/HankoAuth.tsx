@@ -13,8 +13,8 @@ if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
 
 const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
 
-//ts ignore next line
-// @ts-ignore eslint-disable-next-line
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const hankoEs: Translation = {
   ...hankoEsTranslations,
 }
