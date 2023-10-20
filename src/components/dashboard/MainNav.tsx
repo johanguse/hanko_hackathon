@@ -17,13 +17,10 @@ export function MainNav({
 
   return (
     <div
-      className={cn(
-        'container flex items-center space-x-4 lg:space-x-6',
-        className
-      )}
+      className={cn('flex items-center space-x-4 lg:space-x-6', className)}
       {...props}
     >
-      <nav className="flex items-center space-x-4 lg:space-x-6">
+      <nav className="container flex items-center space-x-4 lg:space-x-6">
         <Link
           href="/dashboard"
           className={
