@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   ...staticMetadata.dashboard,
 }
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <Text labelToken="dashboard" medium />
