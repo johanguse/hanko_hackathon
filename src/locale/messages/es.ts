@@ -41,6 +41,14 @@ export default {
       dark: 'Oscuro',
       system: 'Sistema',
     },
+    dashboard: {
+      overview: 'Resumen',
+      billing: 'Facturación',
+      products: 'Productos',
+      settings: 'Configuración',
+      account: 'Cuenta',
+      logout: 'Cerrar sesión',
+    },
     auth: {
       loginTitle: 'Iniciar sesión',
       loginSubtitle:

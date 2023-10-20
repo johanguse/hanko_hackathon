@@ -41,6 +41,14 @@ export default {
       dark: 'Dark',
       system: 'System',
     },
+    dashboard: {
+      overview: 'Overview',
+      billing: 'Billing',
+      products: 'Products',
+      settings: 'Settings',
+      account: 'Account',
+      logout: 'Logout',
+    },
     auth: {
       loginTitle: 'Sign in',
       loginSubtitle: 'Enter your email below to receive an account access.',
