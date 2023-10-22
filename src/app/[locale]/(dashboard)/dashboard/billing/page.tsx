@@ -8,11 +8,12 @@ export const metadata: Metadata = {
   ...staticMetadata.dashboard,
 }
 
-export default function DashboardPage() {
+export default function BillingPage() {
   const userID = validateJwtAndFetchUserId()
+
   return (
     <>
-      <Text labelToken="dashboard" medium />
+      <Text labelToken="Billing" medium />
     </>
   )
 }

@@ -2,13 +2,16 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useScopedI18n } from '@/locale/client'
 
 import { cn } from '@/lib/utils'
+import { LogoutBtn } from '@/components/auth/ButtonLogout'
 
 export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
+  const t = useScopedI18n('commons.dashboard')
   const currentRoute = usePathname()
 
   const commonLinkClass = 'text-sm font-medium hover:text-primary'
@@ -20,22 +23,24 @@ export function MainNav({
       className={cn('flex items-center space-x-4 lg:space-x-6', className)}
       {...props}
     >
-      <nav className="container flex items-center space-x-4 lg:space-x-6">
+      <nav className="container items-center justify-center space-x-4 lg:space-x-6">
         <Link
           href="/dashboard"
           className={
             currentRoute === '/dashboard' ? activeLinkClass : inactiveLinkClass
           }
         >
-          Overview
+          {t('overview')}
         </Link>
         <Link
-          href="/customers"
+          href="/dashboard/billing"
           className={
-            currentRoute === '/customers' ? activeLinkClass : inactiveLinkClass
+            currentRoute === '/dashboard/billing'
+              ? activeLinkClass
+              : inactiveLinkClass
           }
         >
-          Customers
+          {t('billing')}
         </Link>
         <Link
           href="/products"
@@ -43,7 +48,7 @@ export function MainNav({
             currentRoute === '/products' ? activeLinkClass : inactiveLinkClass
           }
         >
-          Products
+          {t('products')}
         </Link>
         <Link
           href="/dashboard/settings"
@@ -53,8 +58,9 @@ export function MainNav({
               : inactiveLinkClass
           }
         >
-          Settings
+          {t('settings')}
         </Link>
+        <LogoutBtn />
       </nav>
     </div>
   )

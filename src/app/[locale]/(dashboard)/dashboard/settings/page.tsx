@@ -1,9 +1,9 @@
-import { Text } from '@/components/common'
+'use client'
 
-export default function Page() {
-  return (
-    <>
-      <Text labelToken="Settings" medium />
-    </>
-  )
+import HankoProfile from '@/components/auth/HankoProfile'
+
+export const dynamic = 'force-dynamic'
+
+export default function AccountProfile() {
+  return <HankoProfile />
 }

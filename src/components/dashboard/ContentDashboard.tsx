@@ -19,8 +19,8 @@ export async function DashboardContent({
       <div className={cn('flex flex-col gap-10', className)} {...props}>
         <Header siteConfig={{ mainNav, name }} />
         <main className="w-full">
-          <MainNav className="bg-gray-100 py-4 dark:bg-gray-800" />
-          <div className="container">{children}</div>
+          <MainNav className="bg-gray-100 py-4 text-center dark:bg-gray-800" />
+          <div className="container py-12">{children}</div>
         </main>
       </div>
       <Footer />

@@ -64,3 +64,84 @@
     display: none;
   }
 }
+
+hanko-auth::part(container),
+hanko-profile::part(container) {
+  margin: 0 auto;
+  background-color: var(--background);
+}
+
+hanko-auth::part(headline1) {
+  display: none;
+}
+
+hanko-profile::part(headline1) {
+  color: var(--primary);
+  text-align: center;
+}
+
+hanko-auth::part(input),
+hanko-profile::part(input) {
+  background-color: var(--background);
+  @apply placeholder-black;
+}
+
+hanko-auth::part(primary-button),
+hanko-profile::part(primary-button) {
+  @apply border-none bg-black font-bold text-white hover:bg-gray-400;
+}
+
+hanko-auth::part(secondary-button) {
+  @apply m-0 border-none bg-black font-bold text-white hover:bg-gray-400;
+}
+
+hanko-auth::part(divider-text) {
+  background-color: transparent;
+  color: var(--paragraph);
+}
+
+.dark hanko-auth::part(paragraph),
+.dark hanko-profile::part(paragraph) {
+  @apply text-white;
+}
+
+.dark hanko-auth::part(link),
+.dark hanko-profile::part(link) {
+  @apply text-white underline;
+}
+
+.dark hanko-auth::part(container),
+.dark hanko-profile::part(container) {
+  margin: 0 auto;
+  background-color: var(--background);
+  color: var(--paragraph-foreground);
+}
+
+.dark hanko-auth::part(headline1) {
+  display: none;
+}
+
+.dark hanko-profile::part(headline1) {
+  @apply text-gray-200;
+}
+
+.dark hanko-auth::part(input),
+.dark hanko-profile::part(input) {
+  background-color: var(--foreground);
+  @apply placeholder-white;
+}
+
+.dark hanko-auth::part(primary-button),
+.dark hanko-profile::part(primary-button) {
+  @apply border-none bg-white font-bold text-black hover:bg-gray-400;
+}
+
+.dark hanko-auth::part(secondary-button),
+.dark hanko-profile::part(secondary-button) {
+  @apply m-0 border-none bg-white font-bold text-black hover:bg-gray-400;
+}
+
+.dark hanko-auth::part(divider-text) {
+  background: transparent;
+  color: var(--paragraph);
+}
