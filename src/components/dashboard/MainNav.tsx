@@ -35,7 +35,9 @@ export function MainNav({
         <Link
           href="/dashboard/billing"
           className={
-            currentRoute === '/billing' ? activeLinkClass : inactiveLinkClass
+            currentRoute === '/dashboard/billing'
+              ? activeLinkClass
+              : inactiveLinkClass
           }
         >
           {t('billing')}

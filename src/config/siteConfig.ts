@@ -26,22 +26,22 @@ export async function getSiteConfig() {
       {
         id: 'aboutMe',
         title: t('siteConfig.menuNav.aboutMe'),
-        href: '/login',
+        href: '/dashboard',
       },
       {
         id: 'skills',
         title: t('siteConfig.menuNav.skills'),
-        href: '/register',
+        href: '/dashboard/billing',
       },
       {
         id: 'experience',
         title: t('siteConfig.menuNav.experience'),
-        href: '#experience',
+        href: '/dashboard/settings',
       },
       {
         id: 'projects',
         title: t('siteConfig.menuNav.projects'),
-        href: '#projects',
+        href: '/login',
       },
       {
         id: 'education',
