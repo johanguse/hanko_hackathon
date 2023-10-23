@@ -24,10 +24,7 @@ export async function validateJwtAndFetchUserId() {
   try {
     const verifiedJWT = await jose.jwtVerify(token, JWKS)
     payload = verifiedJWT.payload
-  } catch (err) {
-    if (err instanceof jose.JWTInvalid) {
-      return redirect('/invalid-token')
-    }
+  } catch {
     return redirect('/login')
   }
 
