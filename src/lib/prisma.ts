@@ -1,10 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
+/* eslint-disable no-use-before-define */
 
 import { PrismaClient } from '@prisma/client'
 
 declare global {
-  var prisma: PrismaClient | undefined
+  var prisma: PrismaClient | undefined //eslint-disable-line no-var
 }
 
 const prisma = global.prisma || new PrismaClient()
