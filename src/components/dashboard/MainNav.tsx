@@ -60,7 +60,6 @@ export function MainNav({
         >
           {t('settings')}
         </Link>
-        <LogoutBtn />
       </nav>
     </div>
   )

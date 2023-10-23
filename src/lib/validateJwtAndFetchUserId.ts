@@ -6,19 +6,28 @@ if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
   throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
 }
 
-export function validateJwtAndFetchUserId() {
+const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
+
+export async function validateJwtAndFetchUserId() {
   const token = cookies().get('hanko')?.value
 
   if (!token) {
     return redirect('/login')
   }
 
+  const JWKS = jose.createRemoteJWKSet(
+    new URL(`${hankoApiUrl}/.well-known/jwks.json`)
+  )
+
   let payload
 
   try {
-    payload = jose.decodeJwt(token)
+    const verifiedJWT = await jose.jwtVerify(token, JWKS)
+    payload = verifiedJWT.payload
   } catch (err) {
-    console.error(err)
+    if (err instanceof jose.JWTInvalid) {
+      return redirect('/invalid-token')
+    }
     return redirect('/login')
   }
 

@@ -1,8 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { Hanko } from '@teamhanko/hanko-elements'
+
+import { Button as ButtonUI } from '@/components/ui/Button'
 
 if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
   throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
@@ -13,6 +16,10 @@ const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
 export function LogoutBtn() {
   const router = useRouter()
   const [hanko, setHanko] = useState<Hanko>()
+
+  const pathname = usePathname()
+
+  const isDashboardPage = pathname.startsWith('/dashboard')
 
   useEffect(() => {
     import('@teamhanko/hanko-elements')
@@ -33,12 +40,24 @@ export function LogoutBtn() {
   }
 
   return (
-    <button
-      onClick={() => {
-        logout().catch((error) => console.error('Error during logout:', error))
-      }}
-    >
-      Logout
-    </button>
+    <>
+      {isDashboardPage ? (
+        <ButtonUI
+          variant="default"
+          size="sm"
+          onClick={() => {
+            logout().catch((error) =>
+              console.error('Error during logout:', error)
+            )
+          }}
+        >
+          Logout
+        </ButtonUI>
+      ) : (
+        <ButtonUI variant="default" size="sm" asChild>
+          <Link href="/register">Sign-in / Sign-up</Link>
+        </ButtonUI>
+      )}
+    </>
   )
 }
