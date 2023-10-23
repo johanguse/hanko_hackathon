@@ -41,12 +41,12 @@ export async function getSiteConfig() {
       {
         id: 'projects',
         title: t('siteConfig.menuNav.projects'),
-        href: '/login',
+        href: '/dashboard/generate',
       },
       {
         id: 'education',
         title: t('siteConfig.menuNav.education'),
-        href: '#education',
+        href: '/login',
       },
       {
         id: 'dashboard',

@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import * as jose from 'jose'
 
-export async function GET(request: NextApiRequest, response: NextApiResponse) {
+export function GET(request: NextApiRequest, response: NextApiResponse) {
   const token = cookies().get('hanko')?.value
 
   if (!token) {
