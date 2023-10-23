@@ -2,6 +2,10 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import * as jose from 'jose'
 
+if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
+  throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
+}
+
 export function validateJwtAndFetchUserId() {
   const token = cookies().get('hanko')?.value
 

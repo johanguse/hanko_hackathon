@@ -4,7 +4,7 @@ if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
   throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
 }
 
-const hankoApi: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
-const hanko: Hanko = new Hanko(hankoApi)
+const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
+const hanko: Hanko = new Hanko(hankoApiUrl)
 
 export default hanko
