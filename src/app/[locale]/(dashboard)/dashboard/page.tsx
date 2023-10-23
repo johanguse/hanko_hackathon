@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import * as jose from 'jose'
 
 import { staticMetadata } from '@/config/siteMeta'
-import { validateJwtAndFetchUserId } from '@/lib/validateJwtAndFetchUserId'
 import { Text } from '@/components/common'
 
 export const metadata: Metadata = {
@@ -9,10 +11,21 @@ export const metadata: Metadata = {
 }
 
 export default function DashboardPage() {
-  const userID = validateJwtAndFetchUserId()
+  const token = cookies().get('hanko')?.value
+  const payload = jose.decodeJwt(token ?? '')
+
+  const userID = payload.sub
+
+  if (!userID || token === undefined) {
+    redirect('/login')
+  }
   return (
     <>
-      <Text labelToken="dashboard" medium />
+      {userID && token !== undefined ? (
+        <Text labelToken={`user-id: ${userID}`} medium />
+      ) : (
+        <Text labelToken="No name" medium />
+      )}
     </>
   )
 }

@@ -54,7 +54,7 @@ const getButtonColorClasses = cond<ButtonVariant[], string>([
         disabled:bg-gray-200 disabled:text-gray-900 disabled:cursor-not-allowed
           dark:disabled:bg-gray-900 dark:disabled:text-white dark:disabled:border-white
         focus:ring focus:ring-purple-200 focus:ring-opacity-50 
-          dark:focus:ring-purple-600
+          dark:focus:ring-purple-600 text-sm font-medium
       `
     ),
   ],
@@ -66,7 +66,7 @@ const getButtonColorClasses = cond<ButtonVariant[], string>([
         hover:text-gray-900 hover:border-gray-900
           dark:hover:text-white dark:hover:border-white
         active:bg-gray-200 
-          dark:active:bg-gray-700
+          dark:active:bg-gray-700 text-sm font-medium
       `
     ),
   ],
@@ -74,7 +74,7 @@ const getButtonColorClasses = cond<ButtonVariant[], string>([
     equals<ButtonVariant>('tertiary'),
     always(`
     text-purple-700 dark:text-purple-300 px-3 py-1
-      hover:bg-gray-100  dark:hover:bg-gray-800
+      hover:bg-gray-100  dark:hover:bg-gray-800 text-sm font-medium
   `),
   ],
   [
@@ -85,7 +85,7 @@ const getButtonColorClasses = cond<ButtonVariant[], string>([
           dark:hover:bg-gray-900/25 dark:hover:text-rose-600
         active:bg-rose-50 
         disabled:bg-gray-200 disabled:text-gray-900 disabled:cursor-not-allowed
-          dark:disabled:bg-gray-900 dark:disabled:text-white dark:disabled:border-white
+          dark:disabled:bg-gray-900 dark:disabled:text-white dark:disabled:border-white text-sm font-medium
         
   `
     ),
@@ -95,7 +95,7 @@ const getButtonColorClasses = cond<ButtonVariant[], string>([
 export const getButtonStyles = (variant: ButtonVariant, className?: string) =>
   removeSimilarTWClasses(
     cn(
-      'relative group cursor-pointer rounded-md flex px-4 py-3 font-medium items-center',
+      'relative group cursor-pointer rounded-md flex px-4 py-3 items-center',
       getButtonColorClasses(variant),
       className
     )
