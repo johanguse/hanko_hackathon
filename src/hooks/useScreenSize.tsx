@@ -6,9 +6,9 @@ interface ScreenSize {
   LG: boolean
 }
 const breakpoints = {
-  SM: 640, // Valor del breakpoint "sm" en Tailwind (640px)
-  MD: 768, // Valor del breakpoint "md" en Tailwind (768px)
-  LG: 1024, // Valor del breakpoint "lg" en Tailwind (1024px)
+  SM: 640, // breakpoint "sm" Tailwind (640px)
+  MD: 768, // breakpoint "md" Tailwind (768px)
+  LG: 1024, // breakpoint "lg" Tailwind (1024px)
 }
 const breakpointsTaller = {
   SM: 464,

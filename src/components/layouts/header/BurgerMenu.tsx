@@ -39,9 +39,7 @@ export const BurguerMenu: FC<BurguerMenuProps> = ({ siteConfig }) => {
             ))}
           </ul>
         </nav>
-        <div className="mt-12 flex justify-center">
-          <LogoutBtn />
-        </div>
+        <LogoutBtn />
       </div>
     </>
   )
