@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("SUPABASE_DATABASE_URL")
+  directUrl = env("SUPABASE_DIRECT_URL")
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  userId     String       @unique @map(name: "user_id")
+  name       String?
+  image      String?
+  credits    Int          @default(3)
+  Generation Generation[]
+  Purchase   Purchase[]
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id") @db.VarChar
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id") @db.VarChar
+  stripePriceId          String?   @map(name: "stripe_price_id") @db.VarChar
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+
+  @@map(name: "users")
+}
+
+model Generation {
+  id                String              @id @default(cuid())
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  userId            Int                 @unique @map(name: "user_id")
+  modelId           String
+  inferenceId       String
+  prompt            String              @db.Text
+  outputImages      OutputImage[]
+  image             String?
+  mask              String?
+  structure         String?
+  numInferenceSteps Int                 @default(50)
+  pixelSize         Int                 @default(8)
+  modality          String?
+  seed              String?
+  strength          Float?
+  negativePrompt    String?
+  guidance          Float?              @default(7.5)
+  numSamples        Int                 @default(4)
+  width             Int?                @default(512)
+  height            Int?                @default(512)
+  type              String?             @default("txt2img")
+  favorites         Int                 @default(0)
+  status            GENERATIONSTATUS    @default(PROCESSING)
+  webhookToken      String?
+  feedback          GenerationFeedback?
+
+  colorPaletteEnabled Boolean @default(false)
+  colors              Json?
+
+  platform String @default("SCENARIO")
+  User     User   @relation(fields: [userId], references: [id])
+
+  @@unique([inferenceId, modelId], name: "uniqueGeneration")
+  @@index([inferenceId, webhookToken])
+  @@index([platform])
+  @@index([userId])
+  @@index([modelId])
+  @@map(name: "generations")
+}
+
+model GenerationFeedback {
+  id           String                 @id @default(cuid())
+  createdAt    DateTime               @default(now()) @map(name: "created_at")
+  updatedAt    DateTime               @updatedAt @map(name: "updated_at")
+  satisfaction GENERATIONSATISFCATION @default(NOOPINION)
+  comment      String                 @db.Text
+
+  generationId String     @unique
+  generation   Generation @relation(fields: [generationId], references: [id], onDelete: Cascade)
+
+  @@map(name: "generations_feedback")
+}
+
+enum GENERATIONSTATUS {
+  PROCESSING
+  COMPLETE
+  FAILED
+  TIMEOUT
+}
+
+enum GENERATIONSATISFCATION {
+  NOOPINION
+  SATISFIED
+  UNSATISFIED
+}
+
+enum PLATFORM {
+  SCENARIO
+  REPLICATE
+}
+
+model OutputImage {
+  id              String     @id @default(cuid())
+  scenarioImageId String?
+  createdAt       DateTime   @default(now()) @map(name: "created_at")
+  updatedAt       DateTime   @updatedAt @map(name: "updated_at")
+  image           String?    @db.Text
+  pixelatedImage  String     @db.Text
+  upscaledImage   String?    @db.Text
+  seed            String?    @db.Text
+  generationId    String
+  generation      Generation @relation(fields: [generationId], references: [id], onDelete: Cascade)
+
+  @@index([generationId])
+  @@map(name: "output_image")
+}
+
+model Purchase {
+  id                     String    @id @default(cuid())
+  userId                 Int       @unique @map(name: "user_id")
+  creditAmount           Int       @map(name: "credit_amount")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+  createdAt              DateTime  @default(now()) @map(name: "created_at")
+  updatedAt              DateTime  @updatedAt @map(name: "updated_at")
+  User                   User      @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map(name: "purchases")
+}

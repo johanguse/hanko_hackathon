@@ -5,7 +5,7 @@ import Link from 'next/link'
 import type { MenuNavItem } from '@/types'
 
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/common'
+import { LogoutBtn } from '@/components/auth/ButtonLogout'
 import { LogoSVG } from '@/components/icons/Logo'
 import { ChangeLanguage } from '@/components/layouts/toggle/ChangeLanguage'
 import { ThemeToggle } from '@/components/layouts/toggle/ThemeToggle'
@@ -65,9 +65,9 @@ export const Header: FC<HeaderProps> = ({
             ))}
           </ul>
         </nav>
-        <Button href={'/login'} variant="primary" className="hidden lg:flex">
-          Sign-in / Sign-up
-        </Button>
+        <div className="hidden justify-end lg:flex">
+          <LogoutBtn />
+        </div>
         <div className="hidden justify-end lg:flex">
           <ThemeToggle />
           <ChangeLanguage />

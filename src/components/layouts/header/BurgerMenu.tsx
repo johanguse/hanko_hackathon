@@ -3,6 +3,7 @@
 import { FC, useState } from 'react'
 import type { MenuNavItem } from '@/types'
 
+import { LogoutBtn } from '@/components/auth/ButtonLogout'
 import { Button } from '@/components/common'
 import { LogoSVG } from '@/components/icons'
 
@@ -38,10 +39,8 @@ export const BurguerMenu: FC<BurguerMenuProps> = ({ siteConfig }) => {
             ))}
           </ul>
         </nav>
-        <div className="mt-12 flex">
-          <Button href={'/login'} variant="primary">
-            Sign-in / Sign-up
-          </Button>
+        <div className="mt-12 flex justify-center">
+          <LogoutBtn />
         </div>
       </div>
     </>

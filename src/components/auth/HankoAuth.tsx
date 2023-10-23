@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCurrentLocale } from '@/locale/client'
 import { hankoEsTranslations } from '@/locale/hanko.es'
@@ -35,20 +35,35 @@ export default function HankoAuth() {
       )
   }, [])
 
-  const redirectAfterLogin = useCallback(() => {
-    // successfully logged in, redirect to a page in your application
-    try {
-      router.replace('/dashboard')
-    } catch (error) {
-      console.error('Failed to redirect.', error)
-    }
-  }, [router])
+  useEffect(
+    () =>
+      hanko?.onAuthFlowCompleted(async () => {
+        const user = await hanko.user.getCurrent()
 
-  useEffect(() => {
-    if (hanko) {
-      hanko.onAuthFlowCompleted(redirectAfterLogin)
-    }
-  }, [hanko, redirectAfterLogin])
+        const fetchData = async () => {
+          if (!user) {
+            console.log('No user data')
+            return
+          }
+          try {
+            const response = await fetch('/api/create-user', {
+              method: 'POST',
+              body: JSON.stringify(user),
+            })
+
+            if (!response.ok)
+              throw new Error(`HTTP error! status: ${response.status}`)
+            const data = await response.json()
+            console.log('Create user data: ', data)
+          } catch (error) {
+            console.log('Fetch Error: ', error)
+          }
+        }
+        await fetchData()
+        router.replace('/dashboard')
+      }),
+    [hanko, router]
+  )
 
   useEffect(() => {
     register(hankoApiUrl, { translations: { ...all, hankoEs } }).catch(
