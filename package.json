@@ -11,7 +11,7 @@
     "lint:format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" --plugin-search-dir --ignore-path .gitignore",
     "lint": "pnpm lint:fix && pnpm lint:format",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe --latest",
-    "postinstall": "prisma:generate",
+    "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
