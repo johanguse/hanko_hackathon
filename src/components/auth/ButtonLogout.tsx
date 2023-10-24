@@ -54,9 +54,19 @@ export function LogoutBtn() {
           Logout
         </ButtonUI>
       ) : (
-        <ButtonUI variant="default" size="sm" asChild>
-          <Link href="/register">Sign-in / Sign-up</Link>
-        </ButtonUI>
+        <div className="mx-auto flex w-fit flex-col justify-center pt-10 text-center lg:flex-row lg:pt-0">
+          <ButtonUI
+            variant="link"
+            size="sm"
+            className="mb-4 mr-0 block lg:mb-0 lg:mr-4"
+            asChild
+          >
+            <Link href="/login">Login</Link>
+          </ButtonUI>
+          <ButtonUI variant="default" size="sm" className="text-center" asChild>
+            <Link href="/register">Sign-up</Link>
+          </ButtonUI>
+        </div>
       )}
     </>
   )
