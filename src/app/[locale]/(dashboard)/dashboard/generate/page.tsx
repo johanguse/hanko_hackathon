@@ -62,9 +62,10 @@ export default function GeneratePage() {
         method: 'POST',
         body: data,
       })
-      if (!res.ok) throw new Error(await res.text())
-    } catch (e: any) {
-      console.error(e)
+      const json = await res.json()
+      router.push(`/dashboard/result/${json.eventId}`)
+    } catch (err) {
+      console.error({ err })
     }
   }
 
