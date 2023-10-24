@@ -33,20 +33,20 @@ dependencies:
     specifier: ^0.9.0
     version: 0.9.0
   '@trigger.dev/nextjs':
-    specifier: ^2.2.0
-    version: 2.2.0(@trigger.dev/sdk@2.2.0)(next@13.5.6)
+    specifier: ^2.2.2
+    version: 2.2.2(@trigger.dev/sdk@2.2.2)(next@13.5.6)
   '@trigger.dev/react':
-    specifier: ^2.2.0
-    version: 2.2.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^2.2.2
+    version: 2.2.2(react-dom@18.2.0)(react@18.2.0)
   '@trigger.dev/replicate':
-    specifier: ^2.2.0
-    version: 2.2.0
+    specifier: ^2.2.2
+    version: 2.2.2
   '@trigger.dev/resend':
-    specifier: ^2.2.0
-    version: 2.2.0
+    specifier: ^2.2.2
+    version: 2.2.2
   '@trigger.dev/sdk':
-    specifier: ^2.2.0
-    version: 2.2.0
+    specifier: ^2.2.2
+    version: 2.2.2
   '@types/formidable':
     specifier: ^3.4.4
     version: 3.4.4
@@ -1353,8 +1353,8 @@ packages:
       preact: 10.18.1
     dev: false
 
-  /@trigger.dev/core@2.2.0:
-    resolution: {integrity: sha512-BtPnNt5rd4i92jthM6CVRgZ31qWyyzXAaicrvs6Xmk0MRasrbyvSU9g4FmUTcM+9ne1UiZ3Mh38y0hLMGfrCGQ==}
+  /@trigger.dev/core@2.2.2:
+    resolution: {integrity: sha512-T+lZcbFj6q/ueFbJH7iLZWmvWNaAFoplzGK0s8AWBZCwGc6CuVRkrxtpP4vK8oayj5Q+skiMSaKPDq5xoMBZDA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       ulid: 2.3.0
@@ -1362,34 +1362,34 @@ packages:
       zod-error: 1.5.0
     dev: false
 
-  /@trigger.dev/integration-kit@2.2.0:
-    resolution: {integrity: sha512-wFFcBkTq0wKHO8uIYM6bEjynoJpwH7jyoORQNhYJ8ptFG6AHX0THOfpl16wVVfvC+7D95jmb7wRh0a3wISXQfw==}
+  /@trigger.dev/integration-kit@2.2.2:
+    resolution: {integrity: sha512-YcWK4H80oW2s2A2gvV+AMo5SaK3eohfvFoHVkvJjATz1SbSLgibbiA/+lIQxnP9CkGkUflA2cYvxZhN4iiQfDA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       uuid: 9.0.1
     dev: false
 
-  /@trigger.dev/nextjs@2.2.0(@trigger.dev/sdk@2.2.0)(next@13.5.6):
-    resolution: {integrity: sha512-2djyu03AyF/XT8e3MHegA4DiUxWoEocGht9hcGTON0DxsCJegrQwjPcQ79sZ1uxP53I7m88raD6vLQjJKZ8PQw==}
+  /@trigger.dev/nextjs@2.2.2(@trigger.dev/sdk@2.2.2)(next@13.5.6):
+    resolution: {integrity: sha512-Oa/rUKQsCuuFe/GvzZ45+10w46NTqq9bIgwe080AYx9f+iGM8/ZH/SNNqcQt1nJnP9OxNW15reCNoalejTYPhw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@trigger.dev/sdk': ^2.2.0
+      '@trigger.dev/sdk': ^2.2.2
       next: '>=12.0.0 <14.0.0'
     dependencies:
-      '@trigger.dev/sdk': 2.2.0
+      '@trigger.dev/sdk': 2.2.2
       debug: 4.3.4
       next: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@trigger.dev/react@2.2.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-sp2p+PYM5DRmzFOla0sYUoptxVu1X7qpN0nqUU2VcumWHtf2JjA4rhkHIxmgP7vs84itruiTX+SOR2SmtHWODQ==}
+  /@trigger.dev/react@2.2.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+DaIrRQb1U9wfW5NJwasLS2hRgTCI1gam5qsmD6kR0Smk1zmR2C5NJTe0qEQ4LeBOcSAULJq4T10DsP5/Af4HQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18
     dependencies:
       '@tanstack/react-query': 5.0.0-beta.2(react-dom@18.2.0)(react@18.2.0)
-      '@trigger.dev/core': 2.2.0
+      '@trigger.dev/core': 2.2.2
       debug: 4.3.4
       react: 18.2.0
       zod: 3.22.3
@@ -1399,12 +1399,12 @@ packages:
       - supports-color
     dev: false
 
-  /@trigger.dev/replicate@2.2.0:
-    resolution: {integrity: sha512-zB18jUfOFzdrLK6tFxmaPdFYbmL1Ex3E670mjSKdjhc+XQWYKlkMcaKrkZjjEtqMTmHjmYEVQGp+M0uOWP4ZoA==}
+  /@trigger.dev/replicate@2.2.2:
+    resolution: {integrity: sha512-P/gDSD03pyN3+lQtG56dhfAN3fCd2//6Zg7vI+hatKs/uz+6Dl8VsxPpF8HFFqWdq8/GgVZPTPr5BmlDWJybGQ==}
     engines: {node: '>=16.8.0'}
     dependencies:
-      '@trigger.dev/integration-kit': 2.2.0
-      '@trigger.dev/sdk': 2.2.0
+      '@trigger.dev/integration-kit': 2.2.2
+      '@trigger.dev/sdk': 2.2.2
       replicate: 0.18.1
       zod: 3.22.3
     transitivePeerDependencies:
@@ -1413,12 +1413,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@trigger.dev/resend@2.2.0:
-    resolution: {integrity: sha512-vLhfz1CxKq0MUrhdsDlec7dXPZF1LWKcOe+NHxP727bD2KaXt3xEc0oljZG318QPkJihYSZxFRdjLk4cuRR+wQ==}
+  /@trigger.dev/resend@2.2.2:
+    resolution: {integrity: sha512-KD2zeaNbcn5syldEbEl2gf7kP/QI6fXlDdzkYJdIfHjfVBlMfL81D5liHSlrr76654gko5MKzGtYb408pNFU2g==}
     engines: {node: '>=16.8.0'}
     dependencies:
-      '@trigger.dev/integration-kit': 2.2.0
-      '@trigger.dev/sdk': 2.2.0
+      '@trigger.dev/integration-kit': 2.2.2
+      '@trigger.dev/sdk': 2.2.2
       resend: 1.1.0
     transitivePeerDependencies:
       - bufferutil
@@ -1426,11 +1426,11 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@trigger.dev/sdk@2.2.0:
-    resolution: {integrity: sha512-gyRly4mGVMwdH3lrVBXDxTFf1b3GKj7BOGg/xUQh/hV7iFJLCo4Vf0K+2CL/R8YUA3kFZCsFJfVUOqwaYwX0Eg==}
+  /@trigger.dev/sdk@2.2.2:
+    resolution: {integrity: sha512-sUU27aUJa/d9+04ZcQFfTqfwH37+EvGP2bTJuXV0WrrMFxxPfijmFunUp7V2JSan/Ncz1iUqrPEvrXwBzm4bmg==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@trigger.dev/core': 2.2.0
+      '@trigger.dev/core': 2.2.2
       chalk: 5.3.0
       cronstrue: 2.41.0
       debug: 4.3.4

@@ -47,14 +47,25 @@ export default function GeneratePage() {
     }
   }
 
-  async function action(data: FormData) {
-    const result = await fetch('/api/generate', {
-      method: 'POST',
-      body: data,
-    })
-    const json = await result.json()
-    console.log({ json })
-    router.push(`/dashboard/result/${json.eventId}`)
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!selectedFile) return
+
+    try {
+      const data = new FormData()
+      data.set('file', selectedFile)
+      data.set('gender', gender)
+      data.set('email', email)
+      data.set('userPrompt', userPrompt)
+
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        body: data,
+      })
+      if (!res.ok) throw new Error(await res.text())
+    } catch (e: any) {
+      console.error(e)
+    }
   }
 
   return (
@@ -70,7 +81,7 @@ export default function GeneratePage() {
           className="mt-10 flex flex-col space-y-4"
           onSubmit={(e) => {
             e.preventDefault()
-            handleFileUpload(e).catch((err) => console.error({ err }))
+            onSubmit(e).catch((err) => console.error({ err }))
           }}
         >
           <label htmlFor="email" className="text-left">
