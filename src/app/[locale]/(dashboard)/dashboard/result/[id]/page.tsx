@@ -1,14 +1,19 @@
 'use client'
 
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 import { useEventRunStatuses } from '@trigger.dev/react'
 
 import { Text } from '@/components/common'
 
 export default function Result() {
   const params = useParams()
-  const uid = params.uid
+  let uid: string | undefined = ''
+  if (Array.isArray(params?.id)) {
+    uid = params.id.length > 0 ? params.id[0] : undefined
+  } else {
+    uid = params?.id
+  }
 
   const { fetchStatus, error, statuses, run } = useEventRunStatuses(uid)
 
@@ -54,11 +59,10 @@ export default function Result() {
       </div>
 
       <p className="mb-4 text-center">
-        Your image will be delivered to your email, once it is ready! 💫
+        Your image will be delivered to your email, once it is ready!
       </p>
-      <p>{uid}</p>
       <Link
-        href="/"
+        href="/dashboard/generate"
         className="rounded bg-blue-500 px-4 py-3 text-white hover:bg-blue-600"
       >
         Generate another
