@@ -5,7 +5,16 @@ import { cn } from '@/lib/utils'
 
 import { getTextSizeClass, TextSize } from './utils'
 
-type TextTags = 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'label' | 'div' | 'option'
+type TextTags =
+  | 'span'
+  | 'small'
+  | 'p'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'label'
+  | 'div'
+  | 'option'
 
 type TextCustomProps<TTag extends TextTags> = {
   as?: TTag

@@ -43,9 +43,11 @@ export function MainNav({
           {t('billing')}
         </Link>
         <Link
-          href="/products"
+          href="/dashboard/generate"
           className={
-            currentRoute === '/products' ? activeLinkClass : inactiveLinkClass
+            currentRoute === '/dashboard/generate'
+              ? activeLinkClass
+              : inactiveLinkClass
           }
         >
           {t('products')}

@@ -24,7 +24,7 @@ export default function DashboardPage() {
       {userID && token !== undefined ? (
         <Text labelToken={`user-id: ${userID}`} medium />
       ) : (
-        <Text labelToken="No name" medium />
+        <Text labelToken="No ID" medium />
       )}
     </>
   )
