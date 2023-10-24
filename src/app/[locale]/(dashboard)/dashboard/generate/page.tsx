@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -12,23 +12,23 @@ export default function GeneratePage() {
   const [email, setEmail] = useState<string>('')
   const [gender, setGender] = useState<string>('')
   const router = useRouter()
-  const handleFileUpload = async (e: FormEvent<HTMLFormElement>) => {
-    console.log({ selectedFile, userPrompt, email, gender })
-    e.preventDefault()
-    try {
-      console.log({ selectedFile, userPrompt, email, gender })
-      if (!selectedFile) return
-      const formData = new FormData()
-      formData.append('image', selectedFile)
-      formData.append('gender', gender)
-      formData.append('email', email)
-      formData.append('userPrompt', userPrompt)
-      const result = await fetch('/api/generate', {
-        method: 'POST',
-        body: formData,
-      })
 
-      const json = await result.json()
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!selectedFile) return
+
+    try {
+      const data = new FormData()
+      data.set('file', selectedFile)
+      data.set('gender', gender)
+      data.set('email', email)
+      data.set('userPrompt', userPrompt)
+
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        body: data,
+      })
+      const json = await res.json()
       router.push(`/dashboard/result/${json.eventId}`)
     } catch (err) {
       console.error({ err })
@@ -48,7 +48,7 @@ export default function GeneratePage() {
           className="mt-10 flex flex-col space-y-4"
           onSubmit={(e) => {
             e.preventDefault()
-            handleFileUpload(e).catch((err) => console.error({ err }))
+            onSubmit(e).catch((err) => console.error({ err }))
           }}
         >
           <label htmlFor="email" className="text-left">
