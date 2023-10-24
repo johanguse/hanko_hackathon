@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useEventRunStatuses } from '@trigger.dev/react'
 
 import { Text } from '@/components/common'
@@ -28,7 +28,7 @@ export default function Result() {
           <p>{error.message}</p>
         ) : (
           statuses.map((status) => (
-            <div key={status.key} className="flex flex-col gap-1">
+            <div key={status.key} className="flex flex-col items-center gap-1">
               <div className="flex items-center gap-2">
                 {status.state === 'failure' ? (
                   <Text labelToken="Generation failed" as="p" />
@@ -44,7 +44,7 @@ export default function Result() {
                 </div>
               </div>
               {status.data && typeof status.data.url === 'string' && (
-                <img className="w-1/2" src={status.data.url} />
+                <img className="w-full lg:w-1/2" src={status.data.url} />
               )}
             </div>
           ))
