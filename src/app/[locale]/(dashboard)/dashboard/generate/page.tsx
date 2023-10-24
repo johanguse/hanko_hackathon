@@ -4,13 +4,9 @@ import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import { staticMetadata } from '@/config/siteMeta'
-import { validateJwtAndFetchUserId } from '@/lib/validateJwtAndFetchUserId'
 import { Text } from '@/components/common'
 
 export default function GeneratePage() {
-  //const userID = validateJwtAndFetchUserId()
-
   const [selectedFile, setSelectedFile] = useState<File>()
   const [userPrompt, setUserPrompt] = useState<string>('')
   const [email, setEmail] = useState<string>('')
@@ -49,7 +45,10 @@ export default function GeneratePage() {
         <form
           method="POST"
           className="mt-10 flex flex-col space-y-4"
-          onSubmit={(e) => handleFileUpload(e)}
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleFileUpload(e).catch((err) => console.error({ err }))
+          }}
         >
           <label htmlFor="email" className="text-left">
             Email Address

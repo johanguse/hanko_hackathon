@@ -23,7 +23,6 @@ const fileConsumer = (acc: any) => {
 }
 
 const readFile = (req: NextApiRequest, saveLocally?: boolean) => {
-  // @ts-ignore
   const chunks: any[] = []
   const form = formidable({
     keepExtensions: true,
@@ -36,15 +35,18 @@ const readFile = (req: NextApiRequest, saveLocally?: boolean) => {
     gender: string
     userPrompt: string
   }>((resolve, reject) => {
-    form.parse(req, async (err, fields: any, files: any) => {
-      const image = Buffer.concat(chunks).toString('base64')
-      if (err) reject(err)
-      resolve({
-        image,
-        email: fields.email[0],
-        gender: fields.gender[0],
-        userPrompt: fields.userPrompt[0],
-      })
+    form.parse(req, (err, fields: any, files: any) => {
+      if (err) {
+        reject(err)
+      } else {
+        const image = Buffer.concat(chunks).toString('base64')
+        resolve({
+          image,
+          email: fields.email[0],
+          gender: fields.gender[0],
+          userPrompt: fields.userPrompt[0],
+        })
+      }
     })
   })
 }
