@@ -12,27 +12,49 @@ export default function GeneratePage() {
   const [email, setEmail] = useState<string>('')
   const [gender, setGender] = useState<string>('')
   const router = useRouter()
+
   const handleFileUpload = async (e: FormEvent<HTMLFormElement>) => {
-    console.log({ selectedFile, userPrompt, email, gender })
     e.preventDefault()
     try {
-      console.log({ selectedFile, userPrompt, email, gender })
       if (!selectedFile) return
       const formData = new FormData()
       formData.append('image', selectedFile)
       formData.append('gender', gender)
       formData.append('email', email)
       formData.append('userPrompt', userPrompt)
+
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
+
+      // create a array from formData.entries()
+      const formDataArray = Array.from(formData.entries())
+      console.log(formDataArray)
+
       const result = await fetch('/api/generate', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: formData,
       })
 
       const json = await result.json()
+
       router.push(`/dashboard/result/${json.eventId}`)
     } catch (err) {
       console.error({ err })
     }
+  }
+
+  async function action(data: FormData) {
+    const result = await fetch('/api/generate', {
+      method: 'POST',
+      body: data,
+    })
+    const json = await result.json()
+    console.log({ json })
+    router.push(`/dashboard/result/${json.eventId}`)
   }
 
   return (

@@ -1,3 +1,5 @@
+import { TriggerProvider } from '@trigger.dev/react'
+
 import { baseMetadata } from '@/config/siteMeta'
 import { fontMono, fontSans } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
@@ -27,7 +29,12 @@ export default function Root({ children, params }: RootProps) {
       >
         <I18nProvider locale={params.locale}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+            <TriggerProvider
+              publicApiKey={process.env.NEXT_PUBLIC_TRIGGER_PUBLIC_API_KEY!}
+              apiUrl={process.env.NEXT_PUBLIC_TRIGGER_API_URL}
+            >
+              {children}
+            </TriggerProvider>
           </ThemeProvider>
         </I18nProvider>
       </body>

@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['@trigger.dev/react'],
+  reactStrictMode: true,
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

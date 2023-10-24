@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEventRunDetails, useEventRunStatuses } from '@trigger.dev/react'
+import { useEventRunStatuses } from '@trigger.dev/react'
 
 import { Text } from '@/components/common'
 
@@ -57,6 +57,7 @@ export default function Result() {
       <p className="mb-4 text-center">
         Your image will be delivered to your email, once it is ready! 💫
       </p>
+      <p>{eventId}</p>
       <Link
         href="/"
         className="rounded bg-blue-500 px-4 py-3 text-white hover:bg-blue-600"

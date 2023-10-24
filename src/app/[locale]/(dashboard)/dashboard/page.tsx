@@ -12,20 +12,25 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   const token = cookies().get('hanko')?.value
-  const payload = jose.decodeJwt(token ?? '')
 
-  const userID = payload.sub
+  try {
+    const payload = jose.decodeJwt(token ?? '')
+    const userID = payload.sub
 
-  if (!userID || token === undefined) {
+    if (!userID || token === undefined) {
+      redirect('/login')
+    }
+
+    return (
+      <>
+        {userID && token !== undefined ? (
+          <Text labelToken={`user-id: ${userID}`} medium />
+        ) : (
+          <Text labelToken="No ID" medium />
+        )}
+      </>
+    )
+  } catch (error) {
     redirect('/login')
   }
-  return (
-    <>
-      {userID && token !== undefined ? (
-        <Text labelToken={`user-id: ${userID}`} medium />
-      ) : (
-        <Text labelToken="No ID" medium />
-      )}
-    </>
-  )
 }
