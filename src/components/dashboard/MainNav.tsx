@@ -23,46 +23,53 @@ export function MainNav({
       className={cn('flex items-center space-x-4 lg:space-x-6', className)}
       {...props}
     >
-      <nav className="container items-center justify-center space-x-4 lg:space-x-6">
-        <Link
-          href="/dashboard"
-          className={
-            currentRoute === '/dashboard' ? activeLinkClass : inactiveLinkClass
-          }
-        >
-          {t('overview')}
-        </Link>
-        <Link
-          href="/dashboard/billing"
-          className={
-            currentRoute === '/dashboard/billing'
-              ? activeLinkClass
-              : inactiveLinkClass
-          }
-        >
-          {t('billing')}
-        </Link>
-        <Link
-          href="/dashboard/generate"
-          className={
-            currentRoute === '/dashboard/generate'
-              ? activeLinkClass
-              : inactiveLinkClass
-          }
-        >
-          {t('products')}
-        </Link>
-        <Link
-          href="/dashboard/settings"
-          className={
-            currentRoute === '/dashboard/settings'
-              ? activeLinkClass
-              : inactiveLinkClass
-          }
-        >
-          {t('settings')}
-        </Link>
-      </nav>
+      <div className="container flex flex-row items-center justify-center">
+        <nav className="justify-center space-x-4 lg:space-x-6">
+          <Link
+            href="/dashboard"
+            className={
+              currentRoute === '/dashboard'
+                ? activeLinkClass
+                : inactiveLinkClass
+            }
+          >
+            {t('overview')}
+          </Link>
+          <Link
+            href="/dashboard/billing"
+            className={
+              currentRoute === '/dashboard/billing'
+                ? activeLinkClass
+                : inactiveLinkClass
+            }
+          >
+            {t('billing')}
+          </Link>
+          <Link
+            href="/dashboard/generate"
+            className={
+              currentRoute === '/dashboard/generate'
+                ? activeLinkClass
+                : inactiveLinkClass
+            }
+          >
+            {t('products')}
+          </Link>
+          <Link
+            href="/dashboard/settings"
+            className={
+              currentRoute === '/dashboard/settings'
+                ? activeLinkClass
+                : inactiveLinkClass
+            }
+          >
+            {t('settings')}
+          </Link>
+        </nav>
+        <div className="color-primary dark:color-white ml-10 block rounded bg-gray-300 px-4 py-2 text-center font-bold dark:bg-gray-700">
+          Remain 3 Credits
+        </div>
+      </div>
     </div>
   )
 }

@@ -13,6 +13,7 @@ export default function GeneratePage() {
   const [gender, setGender] = useState<string>('')
   const router = useRouter()
   const handleFileUpload = async (e: FormEvent<HTMLFormElement>) => {
+    console.log({ selectedFile, userPrompt, email, gender })
     e.preventDefault()
     try {
       console.log({ selectedFile, userPrompt, email, gender })
