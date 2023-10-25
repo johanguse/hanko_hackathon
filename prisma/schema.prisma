@@ -11,6 +11,7 @@ datasource db {
 model User {
   id         Int          @id @default(autoincrement())
   userId     String       @unique @map(name: "user_id")
+  email      String?
   name       String?
   image      String?
   credits    Int          @default(3)

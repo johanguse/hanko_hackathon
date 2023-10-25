@@ -4,10 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import { Text } from '@/components/common'
+import { Button, Text } from '@/components/common'
 
 export default function GeneratePage() {
   const [selectedFile, setSelectedFile] = useState<File>()
+  const [loading, setLoading] = useState<boolean>(false)
+
   const [userPrompt, setUserPrompt] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [gender, setGender] = useState<string>('')
@@ -18,6 +20,7 @@ export default function GeneratePage() {
     if (!selectedFile) return
 
     try {
+      setLoading(true)
       const data = new FormData()
       data.set('file', selectedFile)
       data.set('gender', gender)
@@ -31,6 +34,7 @@ export default function GeneratePage() {
       const json = await res.json()
       router.push(`/dashboard/result/${json.eventId}`)
     } catch (err) {
+      setLoading(false)
       console.error({ err })
     }
   }
@@ -45,7 +49,7 @@ export default function GeneratePage() {
         />
         <form
           method="POST"
-          className="mt-10 flex flex-col space-y-4"
+          className="mx-auto mt-10 flex w-1/2 flex-col space-y-4"
           onSubmit={(e) => {
             e.preventDefault()
             onSubmit(e).catch((err) => console.error({ err }))
@@ -124,12 +128,14 @@ export default function GeneratePage() {
             placeholder="Copy image prompts from https://lexica.art"
             onChange={(e) => setUserPrompt(e.target.value)}
           />
-          <button
+          <Button
+            loading={loading}
             type="submit"
-            className="mt-5 rounded bg-blue-500 px-6 py-4 text-lg text-white hover:bg-blue-700"
+            className="w-full justify-center"
+            variant="primary"
           >
             Generate Avatar
-          </button>
+          </Button>
         </form>
       </div>
     </>

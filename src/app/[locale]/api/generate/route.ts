@@ -7,8 +7,6 @@ export async function POST(request: NextRequest) {
   const data = await request.formData()
   const file: File | null = data.get('file') as unknown as File
 
-  console.log(data)
-
   if (!file) {
     return NextResponse.json({ success: false })
   }
@@ -16,7 +14,6 @@ export async function POST(request: NextRequest) {
   const bytes = await file.arrayBuffer()
   const buffer = Buffer.from(bytes)
 
-  // create new arrary from data and const image = Buffer.concat(chunks).toString("base64");
   const image = Buffer.from(buffer).toString('base64')
 
   const new_data = {
@@ -26,11 +23,8 @@ export async function POST(request: NextRequest) {
     userPrompt: data.get('userPrompt') as string,
   }
 
-  // With the file data in the buffer, you can do whatever you want with it.
-  // For this, we'll just write it to the filesystem in a new location
   const path = `/tmp/${file.name}`
   await writeFile(path, buffer)
-  console.log(`open ${path} to see the uploaded file`)
 
   const event = await client.sendEvent({
     name: 'generate.avatar',

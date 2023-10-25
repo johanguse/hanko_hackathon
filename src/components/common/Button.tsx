@@ -13,12 +13,10 @@ import {
   useMemo,
 } from 'react'
 import Link, { LinkProps } from 'next/link'
-import { LucideProps } from 'lucide-react'
+import { Loader2, LucideProps } from 'lucide-react'
 import { always, cond, equals } from 'ramda'
 
 import { cn, removeSimilarTWClasses } from '@/lib/utils'
-
-import { LoadingDots } from './LoadingDots'
 
 type HTMLButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -150,7 +148,7 @@ export const Button: FC<ButtonProps<HTMLButtonProps | LinkProps>> = ({
       </span>
       {loading && variant !== 'tertiary' && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <LoadingDots size="sm" />
+          <Loader2 className="h-8 w-8 animate-spin" />
         </div>
       )}
     </>

@@ -42,7 +42,7 @@ export default function HankoAuth() {
 
         const fetchData = async () => {
           if (!user) {
-            console.log('No user data')
+            console.error('No user data')
             return
           }
           try {
@@ -53,10 +53,8 @@ export default function HankoAuth() {
 
             if (!response.ok)
               throw new Error(`HTTP error! status: ${response.status}`)
-            const data = await response.json()
-            console.log('Create user data: ', data)
           } catch (error) {
-            console.log('Fetch Error: ', error)
+            console.error('Fetch Error: ', error)
           }
         }
         await fetchData()
