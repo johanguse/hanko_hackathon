@@ -1,22 +1,46 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useScopedI18n } from '@/locale/client'
 
 import { cn } from '@/lib/utils'
-import { LogoutBtn } from '@/components/auth/ButtonLogout'
+
+async function getUserCreditsFromAPI(): Promise<any> {
+  const response = await fetch('/api/get-user-credits', {
+    method: 'GET',
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch user credits')
+  }
+
+  return await response.json()
+}
 
 export function MainNav({
   className,
   ...props
-}: React.HTMLAttributes<HTMLElement>) {
+}: React.HTMLAttributes<HTMLElement>): JSX.Element {
   const t = useScopedI18n('commons.dashboard')
   const currentRoute = usePathname()
 
   const commonLinkClass = 'text-sm font-medium hover:text-primary'
   const activeLinkClass = `${commonLinkClass} text-gray-500 dark:text-gray-400`
   const inactiveLinkClass = `${commonLinkClass} text-muted-foreground transition-colors`
+
+  const [userCredits, setUserCredits] = useState<number>(0)
+
+  useEffect(() => {
+    getUserCreditsFromAPI()
+      .then((data) => {
+        setUserCredits(data.credits)
+      })
+      .catch((error) => {
+        console.error('Failed to get user credits from API: ', error.message)
+      })
+  }, [])
 
   return (
     <div
@@ -67,7 +91,7 @@ export function MainNav({
           </Link>
         </nav>
         <div className="color-primary dark:color-white ml-10 block rounded bg-gray-300 px-4 py-2 text-center font-bold dark:bg-gray-700">
-          Remain 3 Credits
+          Remain {userCredits} Credits
         </div>
       </div>
     </div>

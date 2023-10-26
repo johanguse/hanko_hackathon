@@ -5,6 +5,7 @@ import { staticMetadata } from '@/config/siteMeta'
 import prisma from '@/lib/prisma'
 import getTransformedImages from '@/lib/utils/getTransformedImages'
 import { validateJwtAndFetchUserId } from '@/lib/utils/validateJwtAndFetchUserId'
+import { Text } from '@/components/common'
 
 export const metadata: Metadata = {
   ...staticMetadata.dashboard,
@@ -30,14 +31,14 @@ export default async function DashboardPage() {
   const data_images = await getData()
   const data = await getTransformedImages(data_images)
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <ul>
+    <div className="container mx-auto flex flex-col justify-center text-center">
+      <Text labelToken="Generated Avatars" as="h1" medium />
+      <Text labelToken="A list of generated avatars." as="p" />
+      <ul className="mt-10 grid grid-cols-3 gap-2">
         {data.map((image) => (
           <li key={image.id}>
-            <p>Model ID: {image.imageSwapped}</p>
             <img
-              className="w-1/2"
+              className="w-full"
               src={image.imageUrl.publicUrl}
               alt={`Swapped Image for model ${image.modelId}`}
             />
