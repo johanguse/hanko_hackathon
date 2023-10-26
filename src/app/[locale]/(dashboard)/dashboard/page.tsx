@@ -1,16 +1,10 @@
 import React from 'react'
-import type { GetServerSideProps, Metadata } from 'next'
-import { createClient } from '@supabase/supabase-js'
+import type { Metadata } from 'next'
 
 import { staticMetadata } from '@/config/siteMeta'
 import prisma from '@/lib/prisma'
 import getTransformedImages from '@/lib/utils/getTransformedImages'
 import { validateJwtAndFetchUserId } from '@/lib/utils/validateJwtAndFetchUserId'
-
-const supabase = createClient(
-  process.env.SUPABASE_PROJECT_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
 
 export const metadata: Metadata = {
   ...staticMetadata.dashboard,

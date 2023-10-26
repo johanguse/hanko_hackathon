@@ -1,9 +1,4 @@
-import supabase from '@/lib/supabase'
-
-const BUCKET_NAME = process.env.SUPABASE_BUCKET!
-if (!BUCKET_NAME) {
-  throw new Error('Missing SUPABASE_BUCKET environment variable')
-}
+import { BUCKET_NAME, supabase } from '@/lib/supabase'
 
 async function getImageUrl(pathToImage: string) {
   try {
