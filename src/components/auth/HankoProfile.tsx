@@ -8,7 +8,7 @@ import { all } from '@teamhanko/hanko-elements/i18n/all'
 
 import { getHankoApiUrl } from '@/lib/utils'
 
-const hankoApiUrl: string = c()
+const hankoApiUrl: string = getHankoApiUrl()
 
 export default function HankoProfile() {
   const locale = useCurrentLocale()
