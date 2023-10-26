@@ -231,7 +231,7 @@ client.defineJob({
         })
 
         if (error) console.error(error)
-        else console.log(data)
+        else console.error(data)
       })
 
       await io.supabase.runTask('user-credit', async (db) => {
@@ -243,7 +243,7 @@ client.defineJob({
         )
 
         if (error) console.error(error)
-        else console.log(data)
+        else console.error(data)
       })
     } catch (error) {
       console.error('Error:', error)

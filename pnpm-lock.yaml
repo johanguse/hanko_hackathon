@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@prisma/client':
     specifier: 5.4.2
-    version: 5.4.2(prisma@5.4.2)
+    version: 5.4.2(prisma@5.5.2)
   '@radix-ui/react-aspect-ratio':
     specifier: ^1.0.3
     version: 1.0.3(@types/react-dom@18.2.14)(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
@@ -28,28 +28,28 @@ dependencies:
     version: 1.0.2(@types/react@18.2.31)(react@18.2.0)
   '@supabase/supabase-js':
     specifier: ^2.38.2
-    version: 2.38.2
+    version: 2.38.4
   '@teamhanko/hanko-elements':
     specifier: ^0.9.0
     version: 0.9.0
   '@trigger.dev/nextjs':
     specifier: ^2.2.2
-    version: 2.2.2(@trigger.dev/sdk@2.2.2)(next@13.5.6)
+    version: 2.2.3(@trigger.dev/sdk@2.2.3)(next@13.5.6)
   '@trigger.dev/react':
     specifier: ^2.2.2
-    version: 2.2.2(react-dom@18.2.0)(react@18.2.0)
+    version: 2.2.3(react-dom@18.2.0)(react@18.2.0)
   '@trigger.dev/replicate':
     specifier: ^2.2.2
-    version: 2.2.2
+    version: 2.2.3
   '@trigger.dev/resend':
     specifier: ^2.2.2
-    version: 2.2.2
+    version: 2.2.3
   '@trigger.dev/sdk':
     specifier: ^2.2.2
-    version: 2.2.2
+    version: 2.2.3
   '@trigger.dev/supabase':
     specifier: ^2.2.2
-    version: 2.2.2
+    version: 2.2.3
   '@types/formidable':
     specifier: ^3.4.4
     version: 3.4.4
@@ -153,7 +153,7 @@ devDependencies:
     version: 0.5.6(@ianvs/prettier-plugin-sort-imports@4.1.1)(prettier@3.0.3)
   prisma:
     specifier: ^5.4.2
-    version: 5.4.2
+    version: 5.5.2
   tailwindcss:
     specifier: 3.3.3
     version: 3.3.3(ts-node@10.9.1)
@@ -380,8 +380,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@eslint-community/regexpp@4.9.1:
-    resolution: {integrity: sha512-Y27x+MBLjXa+0JWDhykM3+JE+il3kHKAEqabfEWq3SDhZjLYb6/BHL/JKFnH3fe207JaXkyDo685Oc2Glt6ifA==}
+  /@eslint-community/regexpp@4.10.0:
+    resolution: {integrity: sha512-Cu96Sd2By9mCNTx2iyKOmq10v22jUVQv0lQnlGNy16oE9589yE+QADPbrMGCkA51cKZSg3Pu/aTJVTGfL/qjUA==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
     dev: true
 
@@ -622,7 +622,7 @@ packages:
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
     dev: false
 
-  /@prisma/client@5.4.2(prisma@5.4.2):
+  /@prisma/client@5.4.2(prisma@5.5.2):
     resolution: {integrity: sha512-2xsPaz4EaMKj1WS9iW6MlPhmbqtBsXAOeVttSePp8vTFTtvzh2hZbDgswwBdSCgPzmmwF+tLB259QzggvCmJqA==}
     engines: {node: '>=16.13'}
     requiresBuild: true
@@ -633,15 +633,15 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574
-      prisma: 5.4.2
+      prisma: 5.5.2
     dev: false
 
   /@prisma/engines-version@5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574:
     resolution: {integrity: sha512-wvupDL4AA1vf4TQNANg7kR7y98ITqPsk6aacfBxZKtrJKRIsWjURHkZCGcQliHdqCiW/hGreO6d6ZuSv9MhdAA==}
     dev: false
 
-  /@prisma/engines@5.4.2:
-    resolution: {integrity: sha512-fqeucJ3LH0e1eyFdT0zRx+oETLancu5+n4lhiYECyEz6H2RDskPJHJYHkVc0LhkU4Uv7fuEnppKU3nVKNzMh8g==}
+  /@prisma/engines@5.5.2:
+    resolution: {integrity: sha512-Be5hoNF8k+lkB3uEMiCHbhbfF6aj1GnrTBnn5iYFT7GEr3TsOEp1soviEcBR0tYCgHbxjcIxJMhdbvxALJhAqg==}
     requiresBuild: true
 
   /@radix-ui/number@1.0.1:
@@ -1289,8 +1289,8 @@ packages:
       '@supabase/node-fetch': 2.6.14
     dev: false
 
-  /@supabase/realtime-js@2.8.1:
-    resolution: {integrity: sha512-bka5U4OeoKMdorGMPjdF30cl8n8nbhn+I9H4iySKzbN45W6AGxi7xoODnxdq/QwaDGtVyTMVbU+GVWre0QCdtw==}
+  /@supabase/realtime-js@2.8.4:
+    resolution: {integrity: sha512-5C9slLTGikHnYmAnIBOaPogAgbcNY68vnIyE6GpqIKjHElVb6LIi4clwNcjHSj4z6szuvvzj8T/+ePEgGEGekw==}
     dependencies:
       '@supabase/node-fetch': 2.6.14
       '@types/phoenix': 1.6.3
@@ -1306,14 +1306,14 @@ packages:
       '@supabase/node-fetch': 2.6.14
     dev: false
 
-  /@supabase/supabase-js@2.38.2:
-    resolution: {integrity: sha512-yOCi94oO5WVUBhQ890BvtT7J3p8spP47PMhn22YldIcDLEQWE6N6X2JzfWCLHktXw+oCYUJfQBuqYhyLHAKb0w==}
+  /@supabase/supabase-js@2.38.4:
+    resolution: {integrity: sha512-bYwxm/GosvRqOMIv6YP7qUTZWi/trgHtDWUEZDEmyRHW24d0JYIb1GOt6RaO2hsWlecn88DAJIpjoNbprocgRA==}
     dependencies:
       '@supabase/functions-js': 2.1.5
       '@supabase/gotrue-js': 2.57.0
       '@supabase/node-fetch': 2.6.14
       '@supabase/postgrest-js': 1.8.5
-      '@supabase/realtime-js': 2.8.1
+      '@supabase/realtime-js': 2.8.4
       '@supabase/storage-js': 2.5.4
     transitivePeerDependencies:
       - supports-color
@@ -1371,8 +1371,8 @@ packages:
       preact: 10.18.1
     dev: false
 
-  /@trigger.dev/core@2.2.2:
-    resolution: {integrity: sha512-T+lZcbFj6q/ueFbJH7iLZWmvWNaAFoplzGK0s8AWBZCwGc6CuVRkrxtpP4vK8oayj5Q+skiMSaKPDq5xoMBZDA==}
+  /@trigger.dev/core@2.2.3:
+    resolution: {integrity: sha512-9VTPIcA/FNrkJ0N+BDUqlxcg7WAcBgnsbK84sFVAMe/NyKFUCAaAr3ZzwlNe8Och3U+9uCJrBc1vJiczGkIVyw==}
     engines: {node: '>=18.0.0'}
     dependencies:
       ulid: 2.3.0
@@ -1380,34 +1380,34 @@ packages:
       zod-error: 1.5.0
     dev: false
 
-  /@trigger.dev/integration-kit@2.2.2:
-    resolution: {integrity: sha512-YcWK4H80oW2s2A2gvV+AMo5SaK3eohfvFoHVkvJjATz1SbSLgibbiA/+lIQxnP9CkGkUflA2cYvxZhN4iiQfDA==}
+  /@trigger.dev/integration-kit@2.2.3:
+    resolution: {integrity: sha512-VCmKXeuoohcnGe98BEvh1sp8Fwv/0DBiTGbXRbri9ZX3SOS1GTflf3ZbUXTWVriwShog7AanaNQ8zH8SR1bbLA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       uuid: 9.0.1
     dev: false
 
-  /@trigger.dev/nextjs@2.2.2(@trigger.dev/sdk@2.2.2)(next@13.5.6):
-    resolution: {integrity: sha512-Oa/rUKQsCuuFe/GvzZ45+10w46NTqq9bIgwe080AYx9f+iGM8/ZH/SNNqcQt1nJnP9OxNW15reCNoalejTYPhw==}
+  /@trigger.dev/nextjs@2.2.3(@trigger.dev/sdk@2.2.3)(next@13.5.6):
+    resolution: {integrity: sha512-bbv+2Mx+EHAJqI1djjbz7XzXeuHAu5bUwLZ+AGz43MEs8ga5l9gdkG7GxJ5oN9/YY6rJxyw0/anFrSHJ03aHyw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@trigger.dev/sdk': ^2.2.2
-      next: '>=12.0.0 <14.0.0'
+      '@trigger.dev/sdk': ^2.2.3
+      next: '>=12.0.0'
     dependencies:
-      '@trigger.dev/sdk': 2.2.2
+      '@trigger.dev/sdk': 2.2.3
       debug: 4.3.4
       next: 13.5.6(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@trigger.dev/react@2.2.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-+DaIrRQb1U9wfW5NJwasLS2hRgTCI1gam5qsmD6kR0Smk1zmR2C5NJTe0qEQ4LeBOcSAULJq4T10DsP5/Af4HQ==}
+  /@trigger.dev/react@2.2.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-J0VPd1RHQs3VWDCrJhBmt1498HjPbpHw/1trLPH5OarHT8Bz6L8MGIZZsL13xzLcE48GoVd/K5fnNHEavq+Ztw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18
     dependencies:
       '@tanstack/react-query': 5.0.0-beta.2(react-dom@18.2.0)(react@18.2.0)
-      '@trigger.dev/core': 2.2.2
+      '@trigger.dev/core': 2.2.3
       debug: 4.3.4
       react: 18.2.0
       zod: 3.22.3
@@ -1417,12 +1417,12 @@ packages:
       - supports-color
     dev: false
 
-  /@trigger.dev/replicate@2.2.2:
-    resolution: {integrity: sha512-P/gDSD03pyN3+lQtG56dhfAN3fCd2//6Zg7vI+hatKs/uz+6Dl8VsxPpF8HFFqWdq8/GgVZPTPr5BmlDWJybGQ==}
+  /@trigger.dev/replicate@2.2.3:
+    resolution: {integrity: sha512-bVOool0HPIJCaKeH9dWf2z809OKyNxoRqVK+nRBcKqBiHnQPZssZs9Chgb2NcJhZ77e3Wqs8O8VTYxMlmFg1Qw==}
     engines: {node: '>=16.8.0'}
     dependencies:
-      '@trigger.dev/integration-kit': 2.2.2
-      '@trigger.dev/sdk': 2.2.2
+      '@trigger.dev/integration-kit': 2.2.3
+      '@trigger.dev/sdk': 2.2.3
       replicate: 0.18.1
       zod: 3.22.3
     transitivePeerDependencies:
@@ -1431,12 +1431,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@trigger.dev/resend@2.2.2:
-    resolution: {integrity: sha512-KD2zeaNbcn5syldEbEl2gf7kP/QI6fXlDdzkYJdIfHjfVBlMfL81D5liHSlrr76654gko5MKzGtYb408pNFU2g==}
+  /@trigger.dev/resend@2.2.3:
+    resolution: {integrity: sha512-jv56Hf8a/3T9tZPpPJFiLl6WmUtqhjR8J7abc3cn1a3P6gWFss+R4fzfSuLqiIKKxtQV2irRKU40L3qV2AR7HA==}
     engines: {node: '>=16.8.0'}
     dependencies:
-      '@trigger.dev/integration-kit': 2.2.2
-      '@trigger.dev/sdk': 2.2.2
+      '@trigger.dev/integration-kit': 2.2.3
+      '@trigger.dev/sdk': 2.2.3
       resend: 1.1.0
     transitivePeerDependencies:
       - bufferutil
@@ -1444,11 +1444,11 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@trigger.dev/sdk@2.2.2:
-    resolution: {integrity: sha512-sUU27aUJa/d9+04ZcQFfTqfwH37+EvGP2bTJuXV0WrrMFxxPfijmFunUp7V2JSan/Ncz1iUqrPEvrXwBzm4bmg==}
+  /@trigger.dev/sdk@2.2.3:
+    resolution: {integrity: sha512-fjqLbBd5577ATYUFhUBx8XmwlOvOs82fseQA42jo1cWxRS+dDvU/3gKzha3VLiC7UNSXkHvdxkl39Wv004RmVw==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@trigger.dev/core': 2.2.2
+      '@trigger.dev/core': 2.2.3
       chalk: 5.3.0
       cronstrue: 2.41.0
       debug: 4.3.4
@@ -1468,13 +1468,13 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@trigger.dev/supabase@2.2.2:
-    resolution: {integrity: sha512-4K3lmwmL5iudw4Zmhp11YFcuF54c9T392sh8DS/J21PUJkUqnyw7clqU18SsLY88cjf6MIN1sZF30yPQjSN4yA==}
+  /@trigger.dev/supabase@2.2.3:
+    resolution: {integrity: sha512-KCBJI+rRSO/KbNbYh+NHPfUbZ/gjlY3anf+itcpUNJpTAKoMomHtJHjda8vFN7UwittuDbOkthp0ucZUBq/3IQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@supabase/supabase-js': 2.38.2
-      '@trigger.dev/integration-kit': 2.2.2
-      '@trigger.dev/sdk': 2.2.2
+      '@supabase/supabase-js': 2.38.4
+      '@trigger.dev/integration-kit': 2.2.3
+      '@trigger.dev/sdk': 2.2.3
       supabase-management-js: 0.1.6
       zod: 3.22.3
     transitivePeerDependencies:
@@ -1582,7 +1582,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@eslint-community/regexpp': 4.9.1
+      '@eslint-community/regexpp': 4.10.0
       '@typescript-eslint/parser': 6.9.0(eslint@8.51.0)(typescript@5.2.2)
       '@typescript-eslint/scope-manager': 6.9.0
       '@typescript-eslint/type-utils': 6.9.0(eslint@8.51.0)(typescript@5.2.2)
@@ -1712,20 +1712,20 @@ packages:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
     dev: false
 
-  /acorn-jsx@5.3.2(acorn@8.10.0):
+  /acorn-jsx@5.3.2(acorn@8.11.1):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.11.1
     dev: true
 
-  /acorn-walk@8.2.0:
-    resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
+  /acorn-walk@8.3.0:
+    resolution: {integrity: sha512-FS7hV565M5l1R08MXqo8odwMTB02C2UqzB17RVgu9EyuYFBqJZ3/ZY97sQD5FewVu1UyDFc1yztUDrAwT0EypA==}
     engines: {node: '>=0.4.0'}
 
-  /acorn@8.10.0:
-    resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
+  /acorn@8.11.1:
+    resolution: {integrity: sha512-IJTNCJMRHfRfb8un89z1QtS0x890C2QUrUxFMK8zy+RizcId6mfnqOf68Bu9YkDgpLYuvCm6aYbwDatXVZPjMQ==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -1898,7 +1898,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.22.1
-      caniuse-lite: 1.0.30001553
+      caniuse-lite: 1.0.30001554
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1955,8 +1955,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001553
-      electron-to-chromium: 1.4.565
+      caniuse-lite: 1.0.30001554
+      electron-to-chromium: 1.4.567
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
 
@@ -1993,8 +1993,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /caniuse-lite@1.0.30001553:
-    resolution: {integrity: sha512-N0ttd6TrFfuqKNi+pMgWJTb9qrdJu4JSpgPFLe/lrD19ugC6fZgF0pUewRowDwzdDnb9V41mFcdlYgl/PyKf4A==}
+  /caniuse-lite@1.0.30001554:
+    resolution: {integrity: sha512-A2E3U//MBwbJVzebddm1YfNp7Nud5Ip+IPn4BozBmn4KqVX7AvluoIDFWjsv5OkGnKUXQVmMSoMKLa3ScCblcQ==}
 
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -2287,8 +2287,8 @@ packages:
       semver: 7.5.4
     dev: false
 
-  /electron-to-chromium@1.4.565:
-    resolution: {integrity: sha512-XbMoT6yIvg2xzcbs5hCADi0dXBh4//En3oFXmtPX+jiyyiCTiM9DGFT2SLottjpEs9Z8Mh8SqahbR96MaHfuSg==}
+  /electron-to-chromium@1.4.567:
+    resolution: {integrity: sha512-8KR114CAYQ4/r5EIEsOmOMqQ9j0MRbJZR3aXD/KFA8RuKzyoUB4XrUCg+l8RUGqTVQgKNIgTpjaG8YHRPAbX2w==}
 
   /emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
@@ -2654,7 +2654,7 @@ packages:
     hasBin: true
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.51.0)
-      '@eslint-community/regexpp': 4.9.1
+      '@eslint-community/regexpp': 4.10.0
       '@eslint/eslintrc': 2.1.2
       '@eslint/js': 8.51.0
       '@humanwhocodes/config-array': 0.11.13
@@ -2698,8 +2698,8 @@ packages:
     resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.10.0
-      acorn-jsx: 5.3.2(acorn@8.10.0)
+      acorn: 8.11.1
+      acorn-jsx: 5.3.2(acorn@8.11.1)
       eslint-visitor-keys: 3.4.3
     dev: true
 
@@ -3601,7 +3601,7 @@ packages:
       '@next/env': 13.5.6
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001553
+      caniuse-lite: 1.0.30001554
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -3965,13 +3965,13 @@ packages:
       js-beautify: 1.14.9
     dev: false
 
-  /prisma@5.4.2:
-    resolution: {integrity: sha512-GDMZwZy7mysB2oXU+angQqJ90iaPFdD0rHaZNkn+dio5NRkGLmMqmXs31//tg/qXT3iB0cTQwnGGQNuirhSTZg==}
+  /prisma@5.5.2:
+    resolution: {integrity: sha512-WQtG6fevOL053yoPl6dbHV+IWgKo25IRN4/pwAGqcWmg7CrtoCzvbDbN9fXUc7QS2KK0LimHIqLsaCOX/vHl8w==}
     engines: {node: '>=16.13'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 5.4.2
+      '@prisma/engines': 5.5.2
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
@@ -4507,8 +4507,8 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
       '@types/node': 20.8.7
-      acorn: 8.10.0
-      acorn-walk: 8.2.0
+      acorn: 8.11.1
+      acorn-walk: 8.3.0
       arg: 4.1.3
       create-require: 1.1.1
       diff: 4.0.2

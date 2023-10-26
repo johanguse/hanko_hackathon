@@ -19,6 +19,7 @@ export async function POST() {
           id: true,
           modelId: true,
           userId: true,
+          imageSwapped: true,
         },
         where: {
           userId: userID,
