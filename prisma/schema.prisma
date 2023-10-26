@@ -13,28 +13,28 @@ model User {
   userId  String  @unique @map(name: "user_id")
   email   String?
   name    String?
-  image   String?
+  avatar  String?
   credits Int     @default(3)
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  GenerationImage GenerationImage[]
+  generationImages GenerationImage[]
 
   @@map(name: "users")
 }
 
 model GenerationImage {
-  id           String   @id @default(cuid())
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  userId       Int      @unique @map(name: "user_id")
-  modelId      String   @map(name: "model_id")
-  prompt       String?  @db.Text
-  imageAi      String   @map(name: "image_ai")
-  imageSwapped String   @map(name: "image_swapped")
+  id           Int     @id @default(autoincrement())
+  userId       String  @map(name: "user_id")
+  owner        User    @relation(fields: [userId], references: [userId])
+  modelId      String  @map(name: "model_id")
+  prompt       String?
+  imageAi      String  @map(name: "image_ai")
+  imageSwapped String  @map(name: "image_swapped")
 
-  User User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
 
   @@index([userId])
   @@map(name: "generations_images")
