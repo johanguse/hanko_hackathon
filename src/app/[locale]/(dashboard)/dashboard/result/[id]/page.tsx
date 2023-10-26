@@ -1,10 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useEventRunStatuses } from '@trigger.dev/react'
+import { CheckCheck, ClockIcon, ReplaceIcon, XCircle } from 'lucide-react'
 
 import { Text } from '@/components/common'
+import { Button } from '@/components/common/Button'
 
 export default function Result() {
   const params = useParams()
@@ -31,13 +32,13 @@ export default function Result() {
             <div key={status.key} className="flex flex-col items-center gap-1">
               <div className="flex items-center gap-2">
                 {status.state === 'failure' ? (
-                  <Text labelToken="Generation failed" as="p" />
+                  <XCircle className="h-8 w-8 text-red-500" />
                 ) : status.state === 'success' ? (
-                  <Text labelToken="Generation success" as="p" />
+                  <CheckCheck className="h-8 w-8 text-green-500" />
                 ) : status.state === 'loading' ? (
-                  <Text labelToken="Generation loading" as="p" />
+                  <ReplaceIcon className="h-8 w-8 text-blue-500" />
                 ) : (
-                  <Text labelToken="Generation pending" as="p" />
+                  <ClockIcon className="h-8 w-8 text-slate-500" />
                 )}
                 <div className="flex items-center gap-1.5">
                   <h4 className="text-base">{status.label}</h4>
@@ -52,21 +53,38 @@ export default function Result() {
         {run?.status === 'FAILURE' &&
           run.output &&
           typeof run.output.message === 'string' && (
-            <p className="my-4 rounded border border-red-300 bg-red-200 p-2 text-red-600">
-              Generation failed: {run.output.message}
-            </p>
+            <>
+              <div className="flex w-1/2 flex-row items-center justify-center rounded border border-red-300 p-2 py-4 text-black">
+                <XCircle className="mr-2 h-8 w-8 text-red-500" />
+                <Text
+                  className="text-red my-8"
+                  labelToken="Generation failed:"
+                  as="p"
+                  medium
+                />
+                <Text
+                  className="text-red my-8"
+                  labelToken={run.output.message}
+                  as="p"
+                />
+              </div>
+            </>
           )}
       </div>
 
-      <p className="mb-4 text-center">
-        Your image will be delivered to your email, once it is ready!
-      </p>
-      <Link
+      <Text
+        className="my-8"
+        labelToken="Your image will be delivered to your email, once it is ready!"
+        as="p"
+        medium
+      />
+      <Button
         href="/dashboard/generate"
-        className="rounded bg-blue-500 px-4 py-3 text-white hover:bg-blue-600"
+        className="px-8 py-4 font-bold"
+        variant="secondary"
       >
         Generate another
-      </Link>
+      </Button>
     </div>
   )
 }

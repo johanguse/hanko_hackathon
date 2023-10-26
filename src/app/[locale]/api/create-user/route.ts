@@ -2,11 +2,6 @@ import { NextResponse } from 'next/server'
 
 import prisma from '@/lib/prisma'
 
-interface User {
-  name: string
-  userId: string
-}
-
 export async function POST(req: Request, res: Response) {
   try {
     const user = await req.json()
@@ -27,6 +22,7 @@ export async function POST(req: Request, res: Response) {
         supauser = await prisma.user.create({
           data: {
             userId: user.id,
+            email: user.email,
           },
         })
       }
@@ -41,7 +37,7 @@ export async function POST(req: Request, res: Response) {
 
     return new NextResponse(JSON.stringify(user_data), { status: 200 })
   } catch (error) {
-    console.log('[CREATEUSER_ERROR]', error)
+    console.error('[CREATEUSER_ERROR]', error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

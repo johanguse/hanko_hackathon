@@ -1,6 +1,7 @@
 import { Replicate } from '@trigger.dev/replicate'
 import { Resend } from '@trigger.dev/resend'
 import { eventTrigger } from '@trigger.dev/sdk'
+import { Supabase } from '@trigger.dev/supabase'
 import { z } from 'zod'
 
 import { client } from '@/lib/trigger'
@@ -13,6 +14,12 @@ const replicate = new Replicate({
 const resend = new Resend({
   id: 'resend',
   apiKey: process.env.RESEND_API_KEY!,
+})
+
+const supabase = new Supabase({
+  id: 'supabase',
+  supabaseUrl: process.env.SUPABASE_PROJECT_URL!,
+  supabaseKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
 })
 
 const urlToBase64 = async (image: string) => {
@@ -28,7 +35,7 @@ const urlToBase64 = async (image: string) => {
 client.defineJob({
   id: 'generate-avatar',
   name: 'Generate Avatar',
-  integrations: { resend, replicate },
+  integrations: { resend, replicate, supabase },
   version: '0.0.2',
   trigger: eventTrigger({
     name: 'generate.avatar',
@@ -37,10 +44,11 @@ client.defineJob({
       email: z.string(),
       gender: z.string(),
       userPrompt: z.string().nullable(),
+      userID: z.string(),
     }),
   }),
   run: async (payload, io, ctx) => {
-    const { email, image, gender, userPrompt } = payload
+    const { email, image, gender, userPrompt, userID } = payload
 
     //a status allows you to easily show the Job's progress in your UI
     const generatingCharacterStatus = await io.createStatus(
@@ -52,6 +60,9 @@ client.defineJob({
     )
     const swappingFaceStatus = await io.createStatus('swapping-face', {
       label: 'Swapping face',
+    })
+    const supabaseSaveImageStatus = await io.createStatus('save-image', {
+      label: 'Saving image',
     })
     const sendingEmailStatus = await io.createStatus('sending-email', {
       label: 'Sending email',
@@ -119,6 +130,127 @@ client.defineJob({
 
     await swappingFaceStatus.update('swapping-face-success', {
       label: 'Face swapped',
+      state: 'success',
+      data: {
+        url: swappedImage.output,
+      },
+    })
+
+    await supabaseSaveImageStatus.update('save-image-loading', {
+      state: 'loading',
+    })
+
+    const BUCKET_NAME = 'hanko_hackathon'
+
+    interface ImageSaveResponse {
+      responseSaveAiImage: string
+      responseSaveSwappedImage: string
+      image_ai_name: string
+      image_swapped_name: string
+    }
+
+    // Create a function to get the image name
+    const getImageName = (userID: string, suffix: string) =>
+      `${userID}/${userID}_${suffix}_${Math.floor(Date.now() / 1000)}.png`
+
+    const uploadImageToStorage = async (image: string, imageName: string) => {
+      const uploadOptions = { contentType: 'image/png', upsert: true }
+
+      if (image.includes('base64')) {
+        image = image.split(',')[1]
+      }
+
+      try {
+        const result = await io.supabase.client.storage
+          .from(BUCKET_NAME)
+          .upload(imageName, Buffer.from(image, 'base64'), uploadOptions)
+
+        if (!result.error) {
+          const publicUrlResponse = io.supabase.client.storage
+            .from(BUCKET_NAME)
+            .getPublicUrl(imageName)
+
+          if (publicUrlResponse.data && publicUrlResponse.data.publicUrl) {
+            return publicUrlResponse.data.publicUrl
+          } else {
+            await io.logger.info('Failed to retrieve public URL from Supabase.')
+            throw new Error('Failed to retrieve public URL from Supabase.')
+          }
+        } else {
+          await io.logger.info(
+            `Failed to retrieve public URL from Supabase: ${result.error.message}`
+          )
+          throw new Error(
+            `Error while saving image to Supabase: ${result.error.message}`
+          )
+        }
+      } catch (error) {
+        console.error('Error while saving image to Supabase:', error)
+        throw error
+      }
+    }
+
+    const saveImageToSupabase = async (): Promise<ImageSaveResponse> => {
+      const image_ai_name = getImageName(userID, 'ai')
+      const image_swapped_name = getImageName(userID, 'swapped')
+
+      const [imageAi, imageSwapped] = await Promise.all([
+        urlToBase64(imageGenerated.output),
+        urlToBase64(swappedImage.output),
+      ])
+
+      const uploadPromises = [
+        uploadImageToStorage(imageAi, image_ai_name),
+        uploadImageToStorage(imageSwapped, image_swapped_name),
+      ]
+
+      const [responseSaveAiImage, responseSaveSwappedImage] =
+        await Promise.all(uploadPromises)
+
+      // Return responses as well as image name
+      return {
+        responseSaveAiImage,
+        responseSaveSwappedImage,
+        image_ai_name,
+        image_swapped_name,
+      }
+    }
+
+    // Usage
+    try {
+      const { image_ai_name, image_swapped_name } = await saveImageToSupabase()
+
+      await io.supabase.runTask('save-images', async () => {
+        const { data, error } = await io.supabase.client.rpc('save_images_db', {
+          user_id: userID,
+          model_id:
+            'stability-ai/sdxl:c221b2b8ef527988fb59bf24a8b97c4561f1c671f73bd389f866bfb27c061316',
+          prompt: userPrompt,
+          image_ai: image_ai_name,
+          image_swapped: image_swapped_name,
+        })
+
+        if (error) console.error(error)
+        else console.log(data)
+      })
+
+      await io.supabase.runTask('user-credit', async (db) => {
+        const { data, error } = await io.supabase.client.rpc(
+          'decrease_credit',
+          {
+            user_id: userID,
+          }
+        )
+
+        if (error) console.error(error)
+        else console.log(data)
+      })
+    } catch (error) {
+      console.error('Error:', error)
+    }
+
+    await supabaseSaveImageStatus.update('save-image-success', {
+      label: 'Image Saved!',
       state: 'success',
       data: {
         url: swappedImage.output,

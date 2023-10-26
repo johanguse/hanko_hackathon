@@ -22,6 +22,9 @@
     "prisma:push": "prisma push",
     "prisma:generate-init": "npx prisma migrate dev --name init"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "5.4.2",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -37,6 +40,7 @@
     "@trigger.dev/replicate": "^2.2.2",
     "@trigger.dev/resend": "^2.2.2",
     "@trigger.dev/sdk": "^2.2.2",
+    "@trigger.dev/supabase": "^2.2.2",
     "@types/formidable": "^3.4.4",
     "@vercel/analytics": "^1.1.1",
     "class-variance-authority": "^0.7.0",
@@ -51,6 +55,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwind-merge": "^1.14.0",
+    "ts-node": "^10.9.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
