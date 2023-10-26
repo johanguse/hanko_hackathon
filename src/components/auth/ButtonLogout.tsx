@@ -5,13 +5,10 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Hanko } from '@teamhanko/hanko-elements'
 
+import { getHankoApiUrl } from '@/lib/utils'
 import { Button as ButtonUI } from '@/components/ui/Button'
 
-if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
-  throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
-}
-
-const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
+const hankoApiUrl: string = getHankoApiUrl()
 
 export function LogoutBtn() {
   const router = useRouter()

@@ -6,11 +6,9 @@ import { hankoEsTranslations } from '@/locale/hanko.es'
 import { register, Translation } from '@teamhanko/hanko-elements'
 import { all } from '@teamhanko/hanko-elements/i18n/all'
 
-if (!process.env.NEXT_PUBLIC_HANKO_API_URL) {
-  throw new Error('Missing NEXT_PUBLIC_HANKO_API_URL environment variable')
-}
+import { getHankoApiUrl } from '@/lib/utils'
 
-const hankoApiUrl: string = process.env.NEXT_PUBLIC_HANKO_API_URL!
+const hankoApiUrl: string = c()
 
 export default function HankoProfile() {
   const locale = useCurrentLocale()
