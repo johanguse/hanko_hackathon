@@ -1,8 +1,11 @@
 import { Replicate } from '@trigger.dev/replicate'
 import { Resend } from '@trigger.dev/resend'
 import { eventTrigger } from '@trigger.dev/sdk'
+import { Supabase } from '@trigger.dev/supabase'
+import { decode } from 'base64-arraybuffer'
 import { z } from 'zod'
 
+import prisma from '@/lib/prisma'
 import { client } from '@/lib/trigger'
 
 const replicate = new Replicate({
@@ -13,6 +16,12 @@ const replicate = new Replicate({
 const resend = new Resend({
   id: 'resend',
   apiKey: process.env.RESEND_API_KEY!,
+})
+
+const supabase = new Supabase({
+  id: 'supabase',
+  supabaseUrl: process.env.SUPABASE_PROJECT_URL!,
+  supabaseKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
 })
 
 const urlToBase64 = async (image: string) => {
@@ -28,7 +37,7 @@ const urlToBase64 = async (image: string) => {
 client.defineJob({
   id: 'generate-avatar',
   name: 'Generate Avatar',
-  integrations: { resend, replicate },
+  integrations: { resend, replicate, supabase },
   version: '0.0.2',
   trigger: eventTrigger({
     name: 'generate.avatar',
@@ -37,10 +46,11 @@ client.defineJob({
       email: z.string(),
       gender: z.string(),
       userPrompt: z.string().nullable(),
+      userID: z.string(),
     }),
   }),
   run: async (payload, io, ctx) => {
-    const { email, image, gender, userPrompt } = payload
+    const { email, image, gender, userPrompt, userID } = payload
 
     //a status allows you to easily show the Job's progress in your UI
     const generatingCharacterStatus = await io.createStatus(
@@ -52,6 +62,9 @@ client.defineJob({
     )
     const swappingFaceStatus = await io.createStatus('swapping-face', {
       label: 'Swapping face',
+    })
+    const supabaseSaveImageStatus = await io.createStatus('save-image', {
+      label: 'Saving image',
     })
     const sendingEmailStatus = await io.createStatus('sending-email', {
       label: 'Sending email',
@@ -119,6 +132,98 @@ client.defineJob({
 
     await swappingFaceStatus.update('swapping-face-success', {
       label: 'Face swapped',
+      state: 'success',
+      data: {
+        url: swappedImage.output,
+      },
+    })
+
+    await supabaseSaveImageStatus.update('save-image-loading', {
+      state: 'loading',
+    })
+
+    async function saveImageToSupabase() {
+      const seconds = Math.floor(Date.now() / 1000)
+
+      const image_ai_name = `${userID}/${userID}_ai_${seconds}.png`
+      const image_swapped_name = `${userID}/${userID}_swapped_${seconds}.png`
+
+      // Use Promise.all to convert images to base64 concurrently
+      const [imageAi, imageSwapped] = await Promise.all([
+        urlToBase64(imageGenerated.output),
+        urlToBase64(swappedImage.output),
+      ])
+
+      try {
+        // Create an array of Promises
+        const uploadPromises = [
+          uploadImageToStorage(image_ai_name, imageAi),
+          uploadImageToStorage(image_swapped_name, imageSwapped),
+        ]
+
+        // Wait for all Promises to complete
+        const [responseSaveAiImage, responseSaveSwapeedImage] =
+          await Promise.all(uploadPromises)
+
+        return { responseSaveAiImage, responseSaveSwapeedImage }
+      } catch (error) {
+        console.error('Error while saving image to Supabase', error)
+        throw error
+      }
+    }
+
+    const uploadImageToStorage = async (imageName: string, image: string) => {
+      const uploadOptions = {
+        contentType: 'image/png',
+        upsert: true,
+      }
+
+      // Check if image string contains 'base64'
+      if (image.indexOf('base64') > -1) {
+        image = image.split(',')[1]
+      }
+
+      return io.supabase.client.storage
+        .from('hanko_hackathon')
+        .upload(imageName, Buffer.from(image, 'base64'), uploadOptions)
+    }
+
+    // Usage example
+    try {
+      const imageSaved = await saveImageToSupabase()
+
+      if (imageSaved.responseSaveAiImage.error !== null) {
+        throw new Error(JSON.stringify(imageSaved.responseSaveAiImage.error))
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+
+    await io.supabase.runTask('user-credit', async (db) => {
+      const { data, error } = await io.supabase.client.rpc('decrease_credit', {
+        userid: userID,
+      })
+
+      if (error) console.error(error)
+      else console.log(data)
+    })
+    /*
+    await io.supabase.runTask('user-credit', async () => {
+
+      await prisma.user.update({
+        where: {
+          userId: userID,
+        },
+        data: {
+          credits: {
+            increment: 1,
+          },
+        },
+      })
+    })
+*/
+    await supabaseSaveImageStatus.update('save-image-success', {
+      label: 'Image Saved!',
       state: 'success',
       data: {
         url: swappedImage.output,
