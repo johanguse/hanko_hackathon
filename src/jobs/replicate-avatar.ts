@@ -13,13 +13,13 @@ const replicate = new Replicate({
 
 const resend = new Resend({
   id: 'resend',
-  apiKey: process.env.NEXT_PUBLIC_RESEND_API_KEY!,
+  apiKey: process.env.RESEND_API_KEY!,
 })
 
 const supabase = new Supabase({
   id: 'supabase',
-  supabaseUrl: process.env.SUPABASE_PROJECT_URL!,
-  supabaseKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
+  supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!,
 })
 
 const urlToBase64 = async (image: string) => {

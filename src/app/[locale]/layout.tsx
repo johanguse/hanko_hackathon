@@ -30,8 +30,8 @@ export default function Root({ children, params }: RootProps) {
         <I18nProvider locale={params.locale}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <TriggerProvider
-              publicApiKey={process.env.NEXT_PUBLIC_TRIGGER_PUBLIC_API_KEY!}
-              apiUrl={process.env.NEXT_PUBLIC_TRIGGER_API_URL}
+              publicApiKey={process.env.TRIGGER_PUBLIC_API_KEY!}
+              apiUrl={process.env.TRIGGER_API_URL}
             >
               {children}
             </TriggerProvider>
