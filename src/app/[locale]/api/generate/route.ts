@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     gender: data.get('gender') as string,
     email: data.get('email') as string,
     userPrompt: data.get('userPrompt') as string,
-    userID: userID as string,
+    userID: userID,
   }
 
   const path = `/tmp/${file.name}`

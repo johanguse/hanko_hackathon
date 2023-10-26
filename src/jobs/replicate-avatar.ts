@@ -173,11 +173,11 @@ client.defineJob({
           if (publicUrlResponse.data && publicUrlResponse.data.publicUrl) {
             return publicUrlResponse.data.publicUrl
           } else {
-            io.logger.info('Failed to retrieve public URL from Supabase.')
+            await io.logger.info('Failed to retrieve public URL from Supabase.')
             throw new Error('Failed to retrieve public URL from Supabase.')
           }
         } else {
-          io.logger.info(
+          await io.logger.info(
             `Failed to retrieve public URL from Supabase: ${result.error.message}`
           )
           throw new Error(
