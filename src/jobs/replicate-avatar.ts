@@ -4,7 +4,6 @@ import { eventTrigger } from '@trigger.dev/sdk'
 import { Supabase } from '@trigger.dev/supabase'
 import { z } from 'zod'
 
-import prisma from '@/lib/prisma'
 import { client } from '@/lib/trigger'
 
 const replicate = new Replicate({
@@ -141,6 +140,15 @@ client.defineJob({
       state: 'loading',
     })
 
+    const BUCKET_NAME = 'hanko_hackathon'
+
+    interface ImageSaveResponse {
+      responseSaveAiImage: string
+      responseSaveSwappedImage: string
+      image_ai_name: string
+      image_swapped_name: string
+    }
+
     // Create a function to get the image name
     const getImageName = (userID: string, suffix: string) =>
       `${userID}/${userID}_${suffix}_${Math.floor(Date.now() / 1000)}.png`
@@ -154,20 +162,24 @@ client.defineJob({
 
       try {
         const result = await io.supabase.client.storage
-          .from('hanko_hackathon')
+          .from(BUCKET_NAME)
           .upload(imageName, Buffer.from(image, 'base64'), uploadOptions)
 
         if (!result.error) {
           const publicUrlResponse = io.supabase.client.storage
-            .from('hanko_hackathon')
+            .from(BUCKET_NAME)
             .getPublicUrl(imageName)
 
           if (publicUrlResponse.data && publicUrlResponse.data.publicUrl) {
             return publicUrlResponse.data.publicUrl
           } else {
+            io.logger.info('Failed to retrieve public URL from Supabase.')
             throw new Error('Failed to retrieve public URL from Supabase.')
           }
         } else {
+          io.logger.info(
+            `Failed to retrieve public URL from Supabase: ${result.error.message}`
+          )
           throw new Error(
             `Error while saving image to Supabase: ${result.error.message}`
           )
@@ -178,33 +190,7 @@ client.defineJob({
       }
     }
 
-    const saveImageToDatabase = async (
-      imageNameAI: string,
-      imageNameSwapped: string
-    ) => {
-      try {
-        return await io.supabase.client.from('generations_images').insert([
-          {
-            user_id: userID,
-            model_id:
-              'stability-ai/sdxl:c221b2b8ef527988fb59bf24a8b97c4561f1c671f73bd389f866bfb27c061316',
-            prompt: userPrompt,
-            image_ai: 'imageNameAI',
-            image_swapped: 'imageNameSwapped',
-          },
-        ])
-      } catch (error) {
-        console.error('Error while saving image to Supabase:', error)
-        throw error
-      }
-    }
-
-    const saveImageToSupabase = async (): Promise<{
-      responseSaveAiImage: any
-      responseSaveSwappedImage: any
-      image_ai_name: any
-      image_swapped_name: any
-    }> => {
+    const saveImageToSupabase = async (): Promise<ImageSaveResponse> => {
       const image_ai_name = getImageName(userID, 'ai')
       const image_swapped_name = getImageName(userID, 'swapped')
 
@@ -230,17 +216,9 @@ client.defineJob({
       }
     }
 
-    // Usage example
+    // Usage
     try {
-      const {
-        responseSaveAiImage,
-        responseSaveSwappedImage,
-        image_ai_name,
-        image_swapped_name,
-      } = await saveImageToSupabase()
-
-      await io.logger.info('image ' + image_ai_name + ' saved')
-      await io.logger.info('image ' + image_swapped_name + ' saved')
+      const { image_ai_name, image_swapped_name } = await saveImageToSupabase()
 
       await io.supabase.runTask('save-images', async () => {
         const { data, error } = await io.supabase.client.rpc('save_images_db', {
@@ -256,7 +234,6 @@ client.defineJob({
         else console.log(data)
       })
 
-      // Save image paths to the database
       await io.supabase.runTask('user-credit', async (db) => {
         const { data, error } = await io.supabase.client.rpc(
           'decrease_credit',
@@ -271,16 +248,7 @@ client.defineJob({
     } catch (error) {
       console.error('Error:', error)
     }
-    /*
-    await io.supabase.runTask('user-credit', async (db) => {
-      const { data, error } = await io.supabase.client.rpc('decrease_credit', {
-        user_id: userID,
-      })
 
-      if (error) console.error(error)
-      else console.log(data)
-    })
-*/
     await supabaseSaveImageStatus.update('save-image-success', {
       label: 'Image Saved!',
       state: 'success',
