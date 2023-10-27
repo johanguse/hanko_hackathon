@@ -3,10 +3,12 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useScopedI18n } from '@/locale/client'
 
 import { Button, Text } from '@/components/common'
 
 export default function GeneratePage() {
+  const t = useScopedI18n('commons.dashboard.generatePage')
   const [selectedFile, setSelectedFile] = useState<File>()
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -42,11 +44,8 @@ export default function GeneratePage() {
   return (
     <>
       <div className="container mx-auto flex flex-col justify-center text-center">
-        <Text labelToken="Generate your Avatar" as="h1" medium />
-        <Text
-          labelToken="Receive in your email the avatar you just generated."
-          as="p"
-        />
+        <Text labelToken={t('title')} as="h1" medium />
+        <Text labelToken={t('subtitle')} as="p" />
         <form
           method="POST"
           className="mx-auto mt-10 flex w-1/2 flex-col space-y-4"
@@ -56,7 +55,7 @@ export default function GeneratePage() {
           }}
         >
           <label htmlFor="email" className="text-left">
-            Email Address
+            {t('email')}
           </label>
           <input
             type="email"
@@ -66,7 +65,7 @@ export default function GeneratePage() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <label htmlFor="gender" className="text-left">
-            Gender
+            {t('gender')}
           </label>
           <select
             className="mb-4 rounded border-[1px] px-4 py-3"
@@ -76,13 +75,13 @@ export default function GeneratePage() {
             onChange={(e) => setGender(e.target.value)}
             required
           >
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="">{t('genderPlaceholder')}</option>
+            <option value="male">{t('male')}</option>
+            <option value="female">{t('female')}</option>
           </select>
 
           <label htmlFor="image" className="text-left">
-            Upload your picture
+            {t('file')}
           </label>
           <input
             name="image"
@@ -98,12 +97,12 @@ export default function GeneratePage() {
             }}
           />
           <label htmlFor="prompt" className="text-left">
-            Add custom prompt for your avatar
-            <span className="opacity-60">(optional)</span>
+            {t('userPrompt')}
+            <span className="opacity-60"> {t('userPromptOptional')}</span>
           </label>
           <div className="font-xs mx-0 w-full text-left text-primary">
             <Text
-              labelToken="Copy image prompts from "
+              labelToken={t('userPromptHelper')}
               as="small"
               className="text-left"
             />
@@ -125,7 +124,7 @@ export default function GeneratePage() {
             name="prompt"
             id="prompt"
             value={userPrompt}
-            placeholder="Copy image prompts from https://lexica.art"
+            placeholder={t('userPromptPlaceholder')}
             onChange={(e) => setUserPrompt(e.target.value)}
           />
           <Button
@@ -134,7 +133,7 @@ export default function GeneratePage() {
             className="w-full justify-center"
             variant="primary"
           >
-            Generate Avatar
+            {t('button')}
           </Button>
         </form>
       </div>

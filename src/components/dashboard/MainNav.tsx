@@ -60,16 +60,6 @@ export function MainNav({
             {t('overview')}
           </Link>
           <Link
-            href="/dashboard/billing"
-            className={
-              currentRoute === '/dashboard/billing'
-                ? activeLinkClass
-                : inactiveLinkClass
-            }
-          >
-            {t('billing')}
-          </Link>
-          <Link
             href="/dashboard/generate"
             className={
               currentRoute === '/dashboard/generate'
@@ -77,7 +67,7 @@ export function MainNav({
                 : inactiveLinkClass
             }
           >
-            {t('products')}
+            {t('generate')}
           </Link>
           <Link
             href="/dashboard/settings"
@@ -91,7 +81,7 @@ export function MainNav({
           </Link>
         </nav>
         <div className="color-primary dark:color-white ml-10 block rounded bg-gray-300 px-4 py-2 text-center font-bold dark:bg-gray-700">
-          Remain {userCredits} Credits
+          {t('remain')} {userCredits} {t('credits')}
         </div>
       </div>
     </div>
