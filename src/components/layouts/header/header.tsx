@@ -11,7 +11,6 @@ import { ChangeLanguage } from '@/components/layouts/toggle/ChangeLanguage'
 import { ThemeToggle } from '@/components/layouts/toggle/ThemeToggle'
 
 import { BurguerMenu } from './BurgerMenu'
-import { HeaderLink } from './HeaderLink'
 
 type HeaderProps = {
   className?: string
@@ -56,15 +55,7 @@ export const Header: FC<HeaderProps> = ({
         <Link href="/" className="flex items-center">
           <LogoSVG className="h-8" />
         </Link>
-        <nav className="hidden lg:flex">
-          <ul className="flex items-center">
-            {siteConfig?.mainNav.map((item) => (
-              <li key={item.title}>
-                <HeaderLink href={item.href} labelToken={item.title} />
-              </li>
-            ))}
-          </ul>
-        </nav>
+
         <div className="hidden justify-end lg:flex">
           <LogoutBtn />
         </div>

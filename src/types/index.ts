@@ -14,3 +14,17 @@ interface NavItem {
 }
 
 export type MenuNavItem = NavItem
+
+export type featureOne = {
+  titleToken: string
+  descriptionToken: string
+  isAnimation?: boolean
+  isSlider?: boolean
+  imgUrls?: {
+    before: string
+    after: string
+  }
+  animationUrl?: string
+  linkText: string
+  link: string
+}

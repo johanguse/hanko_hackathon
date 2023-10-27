@@ -25,41 +25,10 @@ const features: Feature[] = [
       'Improve or restore images by deblurring, removing noise or scratches',
     isSlider: true,
     imgUrls: {
-      before: '/images/old_before.jpg',
-      after: '/images/old_after.jpg',
+      before: '/images/me_4x4.jpg',
+      after: '/images/me_after.png',
     },
-    link: '/restore-photo-image',
-  },
-  {
-    titleToken: 'Image upscaler',
-    descriptionToken:
-      'Upscaling tool that create high-quality images from low-quality images',
-    isSlider: true,
-    imgUrls: {
-      before: '/images/upscaler_before.jpg',
-      after: '/images/upscaler_after.jpg',
-    },
-    link: '/quality-resolution-enhancer',
-  },
-  {
-    titleToken: 'Remove background',
-    descriptionToken: 'A deep learning approach to remove background',
-    isSlider: true,
-    imgUrls: {
-      before: '/images/rembg_before.jpg',
-      after: '/images/rembg_after.png',
-    },
-    link: '/remove-background',
-  },
-  {
-    titleToken: 'Colorize photo',
-    descriptionToken: 'Add colours to old photos or any black and white images',
-    isSlider: true,
-    imgUrls: {
-      before: '/images/colorize_before.jpg',
-      after: '/images/colorize_after.jpg',
-    },
-    link: '/colorize-image',
+    link: '/register',
   },
 ]
 
@@ -91,7 +60,7 @@ export const FeaturesSection = () => {
       </section>
       <section
         id="features"
-        className="mx-auto mb-2 mt-40 grid scroll-mt-48 grid-cols-1 gap-4 px-4 md:scroll-mt-28 md:grid-cols-2 lg:max-w-6xl lg:grid-cols-2 lg:px-0"
+        className="mx-auto mb-2 mt-40 grid scroll-mt-48 grid-cols-1 gap-4 px-4 md:scroll-mt-28 md:grid-cols-1 lg:max-w-2xl lg:grid-cols-1 lg:px-0"
       >
         {features.map((feature) => (
           <FeatureBox key={feature.titleToken} {...{ feature }} />

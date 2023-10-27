@@ -4,6 +4,9 @@ export default {
     subtitle:
       'Discover the power of AI and take your images to the next level with just one click',
     features: 'Explore features',
+    featureTitle: 'AI Avatar',
+    featureSubtitle: 'Take your photos to the next level with AI magic.',
+    featureButton: 'Create one now',
   },
   footer: {
     content: 'Designed & Built by {fullName}',

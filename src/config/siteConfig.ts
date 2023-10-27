@@ -1,5 +1,5 @@
 import { getI18n } from '@/locale/server'
-import type { MenuNavItem } from '@/types'
+import type { featureOne, MenuNavItem } from '@/types'
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://127.0.0.1:3000'
 
@@ -54,5 +54,18 @@ export async function getSiteConfig() {
         href: '/dashboard',
       },
     ] satisfies MenuNavItem[],
+    featureOne: [
+      {
+        titleToken: t('home.featureTitle'),
+        descriptionToken: t('home.featureSubtitle'),
+        isSlider: true,
+        imgUrls: {
+          before: '/images/me_4x4.jpg',
+          after: '/images/me_after.png',
+        },
+        linkText: t('home.featureButton'),
+        link: '/register',
+      },
+    ] satisfies featureOne[],
   }
 }

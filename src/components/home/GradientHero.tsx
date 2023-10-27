@@ -7,7 +7,7 @@ export const GradientHero = async () => {
   const t = await getScopedI18n('home')
 
   return (
-    <section className="mt-10 px-6 text-center lg:mt-40">
+    <section className="mt-10 px-6 text-center lg:mt-20">
       <GradientText
         charRange={[27]}
         as="h1"

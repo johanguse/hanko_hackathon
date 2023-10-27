@@ -4,6 +4,9 @@ export default {
     subtitle:
       'Descubre el poder de la IA y lleva tus imágenes al siguiente nivel con solo un clic',
     features: 'Explorar características',
+    featureTitle: 'Avatar IA',
+    featureSubtitle: 'Lleva tus fotos al siguiente nivel con la magia de AI.',
+    featureButton: 'Crea uno ahora',
   },
   footer: {
     content: 'Diseñado y construido por {fullName}',
