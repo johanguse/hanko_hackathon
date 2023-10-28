@@ -1,3 +1,4 @@
+import prisma from '@/lib/prisma'
 import { validateJwtAndFetchUserId } from '@/lib/utils/validateJwtAndFetchUserId'
 
 async function getuserCredits() {
@@ -5,7 +6,7 @@ async function getuserCredits() {
 
   const credits = await prisma.user.findUnique({
     where: {
-      id: userId,
+      userId: userId,
     },
     select: {
       credits: true,

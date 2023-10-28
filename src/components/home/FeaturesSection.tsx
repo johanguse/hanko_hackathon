@@ -20,9 +20,9 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    titleToken: 'Photo Restoration',
+    titleToken: 'AI Avatar Generator',
     descriptionToken:
-      'Improve or restore images by deblurring, removing noise or scratches',
+      'Create your own avatar with AI and share it with your friends.',
     isSlider: true,
     imgUrls: {
       before: '/images/me_4x4.jpg',
