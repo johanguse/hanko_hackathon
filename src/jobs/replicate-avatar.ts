@@ -261,7 +261,7 @@ client.defineJob({
       state: 'loading',
     })
     await io.resend.sendEmail('send-email', {
-      from: 'Magic AI <welcome@nextsaas.app>',
+      from: 'AI Magic <welcome@nextsaas.app>',
       to: [email],
       subject: 'Your avatar is ready!',
       text: `Hi!\n\nView and download your avatar here:\n\n${swappedImage.output}`,
