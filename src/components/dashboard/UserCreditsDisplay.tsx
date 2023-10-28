@@ -25,9 +25,13 @@ export function UserCreditsDisplay(): JSX.Element {
   const [userCredits, setUserCredits] = useState<number>(0)
 
   useEffect(() => {
-    getUserCreditsFromAPI().then((data) => {
-      setUserCredits(data.credits)
-    })
+    getUserCreditsFromAPI()
+      .then((data) => {
+        setUserCredits(data.credits)
+      })
+      .catch((error) => {
+        console.error('Failed to get user credits: ', error)
+      })
     const channel = supabase
       .channel('users')
       .on(
@@ -40,6 +44,7 @@ export function UserCreditsDisplay(): JSX.Element {
       .subscribe()
 
     return () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       supabase.removeChannel(channel)
     }
   }, [supabase])
