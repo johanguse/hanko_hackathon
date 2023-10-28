@@ -261,10 +261,10 @@ client.defineJob({
       state: 'loading',
     })
     await io.resend.sendEmail('send-email', {
-      from: 'Next SaaS <welcome@nextsaas.app>',
+      from: 'Magic AI <welcome@nextsaas.app>',
       to: [email],
-      subject: 'Your avatar is ready! 🌟🤩',
-      text: `Hi! \n View and download your avatar here - ${swappedImage.output}`,
+      subject: 'Your avatar is ready!',
+      text: `Hi!\n\nView and download your avatar here:\n\n${swappedImage.output}`,
     })
     await sendingEmailStatus.update('sending-email-success', {
       label: 'Email sent',
