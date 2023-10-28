@@ -1,8 +1,10 @@
 'use client'
 
-import HankoProfile from '@/components/auth/HankoProfile'
+import dynamic from 'next/dynamic'
 
-export const dynamic = 'force-dynamic'
+const HankoProfile = dynamic(() => import('@/components/auth/HankoProfile'), {
+  ssr: false,
+})
 
 export default function AccountProfile() {
   return <HankoProfile />
