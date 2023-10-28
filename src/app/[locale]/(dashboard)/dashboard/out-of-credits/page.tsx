@@ -1,12 +1,10 @@
-'use client'
-
-import { useScopedI18n } from '@/locale/client'
+import { getScopedI18n } from '@/locale/server'
 import { RefreshCwOff } from 'lucide-react'
 
 import { Text } from '@/components/common'
 
-export default function GeneratePage() {
-  const t = useScopedI18n('commons.dashboard.outOfCredits')
+export default async function GeneratePage() {
+  const t = await getScopedI18n('commons.dashboard.outOfCredits')
 
   return (
     <>
