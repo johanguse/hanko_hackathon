@@ -6,20 +6,42 @@ import { z } from 'zod'
 
 import { client } from '@/lib/trigger'
 
-const replicate = new Replicate({
-  id: 'replicate',
-  apiKey: process.env.REPLICATE_API_TOKEN!,
-})
+if (!process.env.RESEND_API_KEY) {
+  throw new Error('RESEND_API_KEY is not defined')
+}
+
+if (!process.env.REPLICATE_API_TOKEN) {
+  throw new Error('REPLICATE_API_TOKEN is not defined')
+}
+
+if (!process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL) {
+  throw new Error('NEXT_PUBLIC_SUPABASE_PROJECT_URL is not defined')
+}
+
+if (!process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY) {
+  throw new Error('NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY is not defined')
+}
+
+// set env variables
+const resendApiKey = process.env.RESEND_API_KEY
+const replicateApiKey = process.env.REPLICATE_API_TOKEN
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL
+const supabaseApiKey = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY
 
 const resend = new Resend({
   id: 'resend',
-  apiKey: process.env.RESEND_API_KEY!,
+  apiKey: resendApiKey,
+})
+
+const replicate = new Replicate({
+  id: 'replicate',
+  apiKey: replicateApiKey,
 })
 
 const supabase = new Supabase({
   id: 'supabase',
-  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL!,
-  supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY!,
+  supabaseUrl: supabaseUrl,
+  supabaseKey: supabaseApiKey,
 })
 
 const urlToBase64 = async (image: string) => {
