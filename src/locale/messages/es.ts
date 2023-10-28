@@ -45,13 +45,14 @@ export default {
       system: 'Sistema',
     },
     dashboard: {
+      collection: 'Coleccion',
       overview: 'Resumen',
       generate: 'Generar Avatar',
       settings: 'Configuración',
       account: 'Cuenta',
       logout: 'Cerrar sesión',
       remain: 'Restante',
-      credits: 'Créditos',
+      credits: 'créditos',
       overviewTitle: 'Avatares generados',
       overviewSubtitle: 'Lista de avatares generados.',
       generatePage: {
@@ -69,6 +70,10 @@ export default {
         userPromptPlaceholder:
           'Copia las pautas de imagen de https://lexica.art',
         button: 'Generar avatar',
+      },
+      outOfCredits: {
+        title: 'Fuera de créditos',
+        subtitle: 'Por favor comprueba tu crédito.',
       },
     },
     auth: {

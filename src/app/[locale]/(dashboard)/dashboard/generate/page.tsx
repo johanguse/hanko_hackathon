@@ -21,23 +21,34 @@ export default function GeneratePage() {
     e.preventDefault()
     if (!selectedFile) return
 
-    try {
-      setLoading(true)
-      const data = new FormData()
-      data.set('file', selectedFile)
-      data.set('gender', gender)
-      data.set('email', email)
-      data.set('userPrompt', userPrompt)
+    setLoading(true)
 
+    const data = new FormData()
+    data.set('file', selectedFile)
+    data.set('gender', gender)
+    data.set('email', email)
+    data.set('userPrompt', userPrompt)
+
+    try {
       const res = await fetch('/api/generate', {
         method: 'POST',
         body: data,
       })
+
+      if (!res.ok) throw res
+
       const json = await res.json()
-      router.push(`/dashboard/result/${json.eventId}`)
-    } catch (err) {
+      const eventId = json.eventId
+
+      router.push(`/dashboard/result/${eventId}`)
+    } catch (error: any) {
+      console.error(error)
+
+      if (error?.status === 403) {
+        router.push('/dashboard/out-of-credits')
+      }
+    } finally {
       setLoading(false)
-      console.error({ err })
     }
   }
 

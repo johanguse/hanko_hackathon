@@ -21,7 +21,7 @@ export async function GET() {
 
     return new NextResponse(JSON.stringify(credits), { status: 200 })
   } catch (error) {
-    console.error('[CREATEUSER_ERROR]', error)
+    console.error('[GETUSERCREDITS_ERROR]', error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

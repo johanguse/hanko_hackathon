@@ -12,6 +12,15 @@ const nextConfig = {
   images: {
     domains: ['localhost', 'avviixmncfmrzwojclje.supabase.co'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/dashboard',
+        destination: '/dashboard/collection',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

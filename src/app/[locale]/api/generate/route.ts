@@ -2,6 +2,7 @@ import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { client } from '@/lib/trigger'
+import getUserCredits from '@/lib/utils/getUserCredits'
 import { validateJwtAndFetchUserId } from '@/lib/utils/validateJwtAndFetchUserId'
 
 export async function POST(request: NextRequest) {
@@ -15,6 +16,15 @@ export async function POST(request: NextRequest) {
 
   if (!file) {
     return NextResponse.json({ success: false })
+  }
+
+  const totalCredits = await getUserCredits()
+
+  if (totalCredits !== undefined && totalCredits <= 0) {
+    console.log('totalCredits: ', totalCredits)
+    return NextResponse.json('Out of credits. Please purchase more credits.', {
+      status: 403,
+    })
   }
 
   const bytes = await file.arrayBuffer()

@@ -56,7 +56,7 @@ export default function HankoAuth() {
           }
         }
         await fetchData()
-        router.replace('/dashboard')
+        router.replace('/dashboard/collection')
       }),
     [hanko, router]
   )

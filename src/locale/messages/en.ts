@@ -45,13 +45,14 @@ export default {
       system: 'System',
     },
     dashboard: {
+      collection: 'Collection',
       overview: 'Overview',
       generate: 'Generate Avatar',
       settings: 'Settings',
       account: 'Account',
       logout: 'Logout',
       remain: 'Remain',
-      credits: 'Credits',
+      credits: 'credits',
       overviewTitle: 'Generated Avatars',
       overviewSubtitle: 'A list of generated avatars.',
       generatePage: {
@@ -68,6 +69,10 @@ export default {
         userPromptHelper: 'Copy image prompts from ',
         userPromptPlaceholder: 'Copy image prompts from https://lexica.art',
         button: 'Generate Avatar',
+      },
+      outOfCredits: {
+        title: 'Out of credits',
+        subtitle: 'Please purchase more credits.',
       },
     },
     auth: {

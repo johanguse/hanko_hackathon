@@ -27,14 +27,14 @@ export function MainNav({
       <div className="container flex flex-row items-center justify-center">
         <nav className="justify-center space-x-4 lg:space-x-6">
           <Link
-            href="/dashboard"
+            href="/dashboard/collection"
             className={
-              currentRoute === '/dashboard'
+              currentRoute === '/dashboard/collection'
                 ? activeLinkClass
                 : inactiveLinkClass
             }
           >
-            {t('overview')}
+            {t('collection')}
           </Link>
           <Link
             href="/dashboard/generate"

@@ -252,9 +252,6 @@ client.defineJob({
     await supabaseSaveImageStatus.update('save-image-success', {
       label: 'Image Saved!',
       state: 'success',
-      data: {
-        url: swappedImage.output,
-      },
     })
 
     await sendingEmailStatus.update('sending-email-loading', {
