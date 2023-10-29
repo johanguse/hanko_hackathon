@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { Hanko } from '@teamhanko/hanko-elements'
 
 import { getHankoApiUrl } from '@/lib/utils'
-import { Button as ButtonUI } from '@/components/ui/Button'
+import { Button } from '@/components/common'
 
 const hankoApiUrl: string = getHankoApiUrl()
 
@@ -39,9 +39,8 @@ export function LogoutBtn() {
   return (
     <>
       {isDashboardPage ? (
-        <ButtonUI
-          variant="default"
-          size="sm"
+        <Button
+          variant="primary"
           onClick={() => {
             logout().catch((error) =>
               console.error('Error during logout:', error)
@@ -49,20 +48,18 @@ export function LogoutBtn() {
           }}
         >
           Logout
-        </ButtonUI>
+        </Button>
       ) : (
         <div className="mx-auto flex w-fit flex-col justify-center pt-10 text-center lg:flex-row lg:pt-0">
-          <ButtonUI
-            variant="link"
-            size="sm"
+          <Button
+            variant="tertiary"
             className="mb-4 mr-0 block lg:mb-0 lg:mr-4"
-            asChild
           >
             <Link href="/login">Login</Link>
-          </ButtonUI>
-          <ButtonUI variant="default" size="sm" className="text-center" asChild>
+          </Button>
+          <Button variant="primary" className="text-center">
             <Link href="/register">Sign-up</Link>
-          </ButtonUI>
+          </Button>
         </div>
       )}
     </>

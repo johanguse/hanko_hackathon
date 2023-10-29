@@ -1,11 +1,11 @@
 'use client'
 
 import { FC, MouseEventHandler, useCallback, useRef } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useScopedI18n } from '@/locale/client'
-import { track } from '@vercel/analytics'
 
-import { Button, Img, Text } from '@/components/common'
+import { Img, Text } from '@/components/common'
 import { IconMoveDown } from '@/components/icons/MoveDown'
 
 type Feature = {
@@ -25,46 +25,35 @@ const features: Feature[] = [
       'Create your own avatar with AI and share it with your friends.',
     isSlider: true,
     imgUrls: {
-      before: '/images/me_4x4.jpg',
-      after: '/images/me_after.png',
+      before: '/images/me_before.jpg',
+      after: '/images/me_after.jpg',
     },
     link: '/register',
   },
 ]
 
-const scrollToFeatures = () => {
-  const element = document.getElementById('features')
-
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', inline: 'start' })
-  } else {
-    console.error("Element with ID 'features' not found")
-  }
-}
-
 export const FeaturesSection = () => {
   const t = useScopedI18n('home')
   return (
     <>
-      <section>
-        <Button
-          labelToken={t('features')}
-          Icon={IconMoveDown}
-          iconPlacement="right"
-          className="mx-auto mt-32"
-          onClick={() => {
-            track('Scroll Explore features', { location: 'home' })
-            scrollToFeatures()
-          }}
-        />
-      </section>
-      <section
-        id="features"
-        className="mx-auto mb-2 mt-40 grid scroll-mt-48 grid-cols-1 gap-4 px-4 md:scroll-mt-28 md:grid-cols-1 lg:max-w-2xl lg:grid-cols-1 lg:px-0"
-      >
-        {features.map((feature) => (
-          <FeatureBox key={feature.titleToken} {...{ feature }} />
-        ))}
+      <section id="features" className="mx-auto mb-2">
+        <div className="mx-auto mb-2 mt-28 hidden scroll-mt-48 grid-cols-1 gap-4 px-4 md:grid md:scroll-mt-28 md:grid-cols-1 lg:max-w-2xl lg:grid-cols-1 lg:px-0">
+          <div className="flex justify-between px-2">
+            <Text as="p" labelToken="After" size="sm" />
+            <Text as="p" labelToken="Before" size="sm" />
+          </div>
+          {features.map((feature) => (
+            <FeatureBox key={feature.titleToken} {...{ feature }} />
+          ))}
+        </div>
+        <div className="mx-auto mb-2 mt-28 block md:hidden">
+          <Image
+            width={950}
+            height={2000}
+            src="/images/after-before.jpg"
+            alt="me"
+          />
+        </div>
       </section>
     </>
   )
@@ -84,13 +73,13 @@ const FeatureBox: FC<FeatureBoxProps> = ({
   return (
     <Link
       href={link}
-      className="group relative h-96 rounded-xl border border-gray-300 bg-white p-6 dark:border-none dark:bg-gray-900"
+      className="group relative h-[520px] rounded-xl border border-gray-300 bg-white p-6 dark:border-none dark:bg-gray-900"
     >
       {isSlider && imgUrls && (
         <ImageSlider {...{ imgUrls }} altTextToken={titleToken} />
       )}
       <FakeButton labelToken={titleToken} />
-      <article className="absolute top-64 pr-3">
+      <article className="absolute top-[420px] pr-3">
         <Text as="h1" size="xl" labelToken={titleToken} className="mb-2" bold />
         <Text as="p" size="sm" labelToken={descriptionToken} medium />
       </article>
@@ -140,7 +129,7 @@ const ImageSlider: FC<ImageSliderProps> = ({
     <div
       {...{ onMouseMove, onMouseLeave }}
       className={`
-          absolute left-0 top-0 z-20 h-60 w-full overflow-hidden rounded-t-xl
+          absolute left-0 top-0 z-20 h-[400px] w-full overflow-hidden rounded-t-xl
           duration-500 hover:rounded-b-xl group-hover:h-full
         `}
     >
@@ -148,13 +137,13 @@ const ImageSlider: FC<ImageSliderProps> = ({
         ref={imgRef}
         src={before}
         alt={altTextToken}
-        className="absolute z-20 h-full w-full object-cover"
+        className="absolute z-20 h-full w-full object-cover object-top"
         style={{ clipPath: 'polygon(0px 0px, 50% 0px, 50% 100%, 0px 100%)' }}
       />
       <Img
         src={after}
         alt={altTextToken}
-        className="transparent-image-background absolute h-full w-full bg-white object-cover"
+        className="transparent-image-background absolute h-full w-full bg-white object-cover object-top"
       />
       <div
         ref={sliderRef}
