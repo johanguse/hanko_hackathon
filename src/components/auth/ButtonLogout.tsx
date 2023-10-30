@@ -55,12 +55,12 @@ export function LogoutBtn() {
             variant="tertiary"
             className="mb-4 mr-0 block justify-center lg:mb-0 lg:mr-4"
           >
-            <Link href="/login" className="px-8 py-4">
+            <Link href="/login" className="btn-login px-8 py-4">
               Login
             </Link>
           </Button>
           <Button variant="primary" className="justify-center text-center">
-            <Link href="/register" className="px-8 py-4">
+            <Link href="/register" className="btn-register px-8 py-4">
               Sign-up
             </Link>
           </Button>
