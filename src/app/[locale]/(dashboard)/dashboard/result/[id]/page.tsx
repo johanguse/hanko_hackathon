@@ -10,6 +10,7 @@ import { Button } from '@/components/common/Button'
 
 export default function Result() {
   const t = useScopedI18n('commons.dashboard.resultPage')
+  const c = useScopedI18n('commons')
   const params = useParams()
   let uid: string | undefined = ''
   if (Array.isArray(params?.id)) {
@@ -26,7 +27,7 @@ export default function Result() {
 
       <div className="flex flex-col gap-1">
         {fetchStatus === 'loading' ? (
-          <p>Loading...</p>
+          <p>{c('loading')}</p>
         ) : fetchStatus === 'error' ? (
           <p>{error.message}</p>
         ) : (

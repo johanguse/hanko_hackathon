@@ -46,6 +46,7 @@ export default {
       dark: 'Oscuro',
       system: 'Sistema',
     },
+    loading: 'Cargando...',
     dashboard: {
       collection: 'Coleccion',
       overview: 'Resumen',

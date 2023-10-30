@@ -74,6 +74,7 @@ type StringsMap = {
     'save-image-success': string
     'sending-email-success': string
     'email-subject': string
+    'email-body-hi': string
     'email-body': string
   }
 }
@@ -124,7 +125,8 @@ client.defineJob({
         'save-image-success': 'Image saved',
         'sending-email-success': 'Email sent',
         'email-subject': 'Your avatar is ready!',
-        'email-body': 'Your placeholder image is ready.',
+        'email-body-hi': 'Hi!',
+        'email-body': 'View and download your avatar here',
       },
 
       es: {
@@ -145,7 +147,8 @@ client.defineJob({
         'save-image-success': 'Imagen guardada',
         'sending-email-success': 'Correo enviado',
         'email-subject': 'Tu avatar está listo!',
-        'email-body': 'Tu placeholder image está listo.',
+        'email-body-hi': 'Hola!',
+        'email-body': 'Ver y descargar tu avatar aquí',
       },
     }
 
@@ -359,8 +362,8 @@ client.defineJob({
     await io.resend.sendEmail('send-email', {
       from: 'AI Magic <welcome@nextsaas.app>',
       to: [email],
-      subject: 'Your avatar is ready!',
-      text: `Hi!\n\nView and download your avatar here:\n\n${swappedImage.output}`,
+      subject: textCurrentLanguage['email-subject'],
+      text: `${textCurrentLanguage['email-body-hi']}\n\n${textCurrentLanguage['email-body']}\n\n${swappedImage.output}`,
     })
     await sendingEmailStatus.update('sending-email-success', {
       label: textCurrentLanguage['sending-email-success'],
