@@ -153,7 +153,7 @@ const DashboardPage: React.FC = () => {
           as="h3"
           medium
         />
-        <FilePlus2 className="mx-auto my-4 h-24 w-24 text-black" />
+        <FilePlus2 className="mx-auto my-4 h-24 w-24 text-black dark:text-white" />
         <ButtonUI
           href="/dashboard/generate"
           className="mt-4 inline-flex px-8 py-4 font-bold"
