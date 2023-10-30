@@ -4,7 +4,7 @@ This project is built on [Next.js](https://nextjs.org/), kickstarted using creat
 
 The project is live and running on Vercel at [https://hanko-hackathon.vercel.app](https://hanko-hackathon.vercel.app/)
 
-Take a peek at the bottom of this page for a brief video showcasing the project in action!
+Take a peek at the [bottom](video) of this page for a brief video showcasing the project in action!
 
 ## Technologies
 
