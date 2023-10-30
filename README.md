@@ -4,12 +4,15 @@ This project is built on [Next.js](https://nextjs.org/), kickstarted using creat
 
 The project is live and running on Vercel at [https://hanko-hackathon.vercel.app](https://hanko-hackathon.vercel.app/)
 
+Take a peek at the bottom of this page for a brief video showcasing the project in action!
+
 ## Technologies
 
 - [NextJS](https://nextjs.org/) the React Framework for the Web
 - [Hanko](https://www.hanko.io/) the open source authentication
 - [Replicate](https://replicate.com/) AI generate
 - [Supabase](https://supabase.com/) database and real time database
+- [Resend](https://resend.com/) email for developers
 - [Tailwind](https://tailwindcss.com/) as CSS framework
 
 ## Getting Started
@@ -57,6 +60,10 @@ If you're interested in diving deeper into the technologies used in this project
 
 [Supabase Documentation](https://supabase.com/docs) - A comprehensive guide to understanding Supabase, your go-to for databases and real-time functionalities.
 
+### Resend
+
+[Resend Documentation](https://resend.com/docs/) - Explore the developer-friendly way of managing emails with Resend.
+
 ### TailwindCSS
 
 [TailwindCSS Documentation](https://tailwindcss.com/docs/) - Get started with this utility-first CSS framework and make your web designs stand out.
@@ -67,3 +74,5 @@ Feel free to explore, experiment, and elevate your projects with the knowledge f
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Video
