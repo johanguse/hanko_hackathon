@@ -4,6 +4,7 @@ import { eventTrigger } from '@trigger.dev/sdk'
 import { Supabase } from '@trigger.dev/supabase'
 import { z } from 'zod'
 
+import { BUCKET_NAME } from '@/lib/supabase'
 import { client } from '@/lib/trigger'
 
 if (!process.env.RESEND_API_KEY) {
@@ -54,6 +55,29 @@ const urlToBase64 = async (image: string) => {
   return dataURI
 }
 
+type Language = 'en' | 'es'
+type StringsMap = {
+  [key in Language]: {
+    'generating-character': string
+    'swapping-face': string
+    'save-image': string
+    'sending-email': string
+    'email-sent': string
+    'email-failed': string
+    'out-of-credits': string
+    'generating-character-error': string
+    'swapping-face-error': string
+    'save-image-error': string
+    'sending-email-error': string
+    'generating-character-success': string
+    'swapping-face-success': string
+    'save-image-success': string
+    'sending-email-success': string
+    'email-subject': string
+    'email-body': string
+  }
+}
+
 client.defineJob({
   id: 'generate-avatar',
   name: 'Generate Avatar',
@@ -67,27 +91,82 @@ client.defineJob({
       gender: z.string(),
       userPrompt: z.string().nullable(),
       userID: z.string(),
+      currentLanguage: z.string().length(2),
     }),
   }),
   run: async (payload, io, ctx) => {
-    const { email, image, gender, userPrompt, userID } = payload
+    const { email, image, gender, userPrompt, userID, currentLanguage } =
+      payload
+
+    function isLanguage(lang: string): lang is Language {
+      return lang === 'en' || lang === 'es'
+    }
+
+    if (!isLanguage(currentLanguage)) {
+      throw new Error(`Invalid language: ${currentLanguage}`)
+    }
+
+    const strings: StringsMap = {
+      en: {
+        'generating-character': 'Generating placeholder to swap your face into',
+        'swapping-face': 'Swapping face',
+        'save-image': 'Saving image',
+        'sending-email': 'Sending email',
+        'email-sent': 'Email sent',
+        'email-failed': 'Email failed',
+        'out-of-credits': 'Out of credits. Please purchase more credits',
+        'generating-character-error': 'Placeholder generation failed',
+        'swapping-face-error': 'Face swapping failed',
+        'save-image-error': 'Image saving failed',
+        'sending-email-error': 'Email sending failed',
+        'generating-character-success': 'Placeholder character generated',
+        'swapping-face-success': 'Face swapped',
+        'save-image-success': 'Image saved',
+        'sending-email-success': 'Email sent',
+        'email-subject': 'Your avatar is ready!',
+        'email-body': 'Your placeholder image is ready.',
+      },
+
+      es: {
+        'generating-character': 'Generando placeholder para cambiar tu cara',
+        'swapping-face': 'Cambiando cara',
+        'save-image': 'Guardando imagen',
+        'sending-email': 'Enviando correo',
+        'email-sent': 'Correo enviado',
+        'email-failed': 'Correo fallido',
+        'out-of-credits':
+          'Sin créditos. Por favor, compre créditos adicionales',
+        'generating-character-error': 'Fallo al generar placeholder',
+        'swapping-face-error': 'Fallo al cambiar cara',
+        'save-image-error': 'Fallo al guardar imagen',
+        'sending-email-error': 'Fallo al enviar correo',
+        'generating-character-success': 'Personaje placeholder generado',
+        'swapping-face-success': 'Cara cambiada',
+        'save-image-success': 'Imagen guardada',
+        'sending-email-success': 'Correo enviado',
+        'email-subject': 'Tu avatar está listo!',
+        'email-body': 'Tu placeholder image está listo.',
+      },
+    }
+
+    const textCurrentLanguage = strings[currentLanguage]
 
     //a status allows you to easily show the Job's progress in your UI
     const generatingCharacterStatus = await io.createStatus(
       'generating-character',
       {
-        label: 'Generating placeholder to swap your face into',
+        label: textCurrentLanguage['generating-character'],
         state: 'loading',
       }
     )
     const swappingFaceStatus = await io.createStatus('swapping-face', {
-      label: 'Swapping face',
+      label: textCurrentLanguage['swapping-face'],
     })
     const supabaseSaveImageStatus = await io.createStatus('save-image', {
-      label: 'Saving image',
+      label: textCurrentLanguage['save-image'],
     })
     const sendingEmailStatus = await io.createStatus('sending-email', {
-      label: 'Sending email',
+      label: textCurrentLanguage['sending-email'],
     })
 
     const imageGenerated = await io.replicate.run('create-model', {
@@ -104,7 +183,7 @@ client.defineJob({
 
     if (imageGenerated.output === undefined || imageGenerated.error !== null) {
       await generatingCharacterStatus.update('generating-character-error', {
-        label: 'Placeholder generation failed',
+        label: textCurrentLanguage['generating-character-error'],
         state: 'failure',
       })
 
@@ -116,7 +195,7 @@ client.defineJob({
     }
 
     await generatingCharacterStatus.update('generating-character-success', {
-      label: 'Placeholder character generated',
+      label: textCurrentLanguage['generating-character-success'],
       state: 'success',
       data: {
         url: Array.isArray(imageGenerated.output)
@@ -139,7 +218,7 @@ client.defineJob({
 
     if (swappedImage.output === undefined || swappedImage.error !== null) {
       await generatingCharacterStatus.update('faceswap-error', {
-        label: 'Face swap failed',
+        label: textCurrentLanguage['swapping-face-error'],
         state: 'failure',
       })
 
@@ -151,7 +230,7 @@ client.defineJob({
     }
 
     await swappingFaceStatus.update('swapping-face-success', {
-      label: 'Face swapped',
+      label: textCurrentLanguage['swapping-face-success'],
       state: 'success',
       data: {
         url: swappedImage.output,
@@ -161,8 +240,6 @@ client.defineJob({
     await supabaseSaveImageStatus.update('save-image-loading', {
       state: 'loading',
     })
-
-    const BUCKET_NAME = 'hanko_hackathon'
 
     interface ImageSaveResponse {
       responseSaveAiImage: string
@@ -272,7 +349,7 @@ client.defineJob({
     }
 
     await supabaseSaveImageStatus.update('save-image-success', {
-      label: 'Image Saved!',
+      label: textCurrentLanguage['save-image-success'],
       state: 'success',
     })
 
@@ -286,7 +363,7 @@ client.defineJob({
       text: `Hi!\n\nView and download your avatar here:\n\n${swappedImage.output}`,
     })
     await sendingEmailStatus.update('sending-email-success', {
-      label: 'Email sent',
+      label: textCurrentLanguage['sending-email-success'],
       state: 'success',
     })
 

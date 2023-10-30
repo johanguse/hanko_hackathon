@@ -32,11 +32,17 @@ export async function POST(request: NextRequest) {
 
   const image = Buffer.from(buffer).toString('base64')
 
+  let currentLanguage = data.get('currentLanguage') as string
+  if (!currentLanguage) {
+    currentLanguage = 'en'
+  }
+
   const new_data = {
     image,
     gender: data.get('gender') as string,
     email: data.get('email') as string,
     userPrompt: data.get('userPrompt') as string,
+    currentLanguage,
     userID: userID,
   }
 

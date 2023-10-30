@@ -3,11 +3,12 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useScopedI18n } from '@/locale/client'
+import { useCurrentLocale, useScopedI18n } from '@/locale/client'
 
 import { Button, Text } from '@/components/common'
 
 export default function GeneratePage() {
+  const currentLanguage = useCurrentLocale()
   const t = useScopedI18n('commons.dashboard.generatePage')
   const [selectedFile, setSelectedFile] = useState<File>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -28,6 +29,7 @@ export default function GeneratePage() {
     data.set('gender', gender)
     data.set('email', email)
     data.set('userPrompt', userPrompt)
+    data.set('currentLanguage', currentLanguage)
 
     try {
       const res = await fetch('/api/generate', {

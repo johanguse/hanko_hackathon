@@ -56,7 +56,7 @@ export default function Result() {
           run.output &&
           typeof run.output.message === 'string' && (
             <>
-              <div className="flex w-1/2 flex-col items-center justify-center rounded border border-red-300 p-2 py-4 text-black">
+              <div className="mx-auto flex w-1/2 flex-col items-center justify-center rounded border border-red-300 p-2 py-4 text-black">
                 <XCircle className="mb-4 h-8 w-8 text-red-500" />
                 <Text
                   className="text-red"
