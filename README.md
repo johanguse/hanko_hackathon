@@ -2,6 +2,8 @@
 
 This project is built on [Next.js](https://nextjs.org/), kickstarted using create-next-app.
 
+The project is live and running on Vercel at [https://hanko-hackathon.vercel.app](https://hanko-hackathon.vercel.app/)
+
 ## Technologies
 
 - [NextJS](https://nextjs.org/) the React Framework for the Web
