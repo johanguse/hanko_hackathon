@@ -22,7 +22,7 @@ export default function Result() {
 
   return (
     <div className="container mx-auto flex flex-col justify-center text-center">
-      <h2 className="mb-2 text-3xl font-bold">{t('thanks')}</h2>
+      <h1 className="mb-10 text-3xl font-bold">{t('thanks')}</h1>
 
       <div className="flex flex-col gap-1">
         {fetchStatus === 'loading' ? (

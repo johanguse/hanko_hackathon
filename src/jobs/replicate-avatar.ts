@@ -260,7 +260,7 @@ client.defineJob({
         const { data, error } = await io.supabase.client.rpc(
           'decrease_credit',
           {
-            user_id: userID,
+            id_user: userID,
           }
         )
 
