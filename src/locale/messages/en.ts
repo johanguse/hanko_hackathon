@@ -48,6 +48,8 @@ export default {
     },
     loading: 'Loading...',
     dashboard: {
+      createFirstAvatar: 'Create your first avatar',
+      buttonGenerate: 'Generate avatar',
       collection: 'Collection',
       overview: 'Overview',
       generate: 'Generate Avatar',

@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from 'react'
 import { useScopedI18n } from '@/locale/client'
-import { Download } from 'lucide-react'
+import { Download, FilePlus2 } from 'lucide-react'
 
 import { supabase } from '@/lib/supabase'
 import getTransformedImages from '@/lib/utils/getTransformedImages'
 import { Button } from '@/components/ui/Button'
-import { Text } from '@/components/common'
+import { Button as ButtonUI, Text } from '@/components/common'
 
 interface ImageData {
   id: number
@@ -115,43 +115,74 @@ const DashboardPage: React.FC = () => {
 
   if (error) return <div>Error: {error}</div>
 
+  function renderSkeletonLoader() {
+    return (
+      <div className="mt-10">
+        <div className="grid grid-cols-3 gap-2 rounded-2xl bg-white/5 p-4">
+          {Array(3)
+            .fill(0)
+            .map((_, idx) => (
+              <div
+                key={idx}
+                className="skeleton-loader h-[400px] w-full animate-pulse bg-gray-200"
+              ></div>
+            ))}
+        </div>
+      </div>
+    )
+  }
+
+  function renderContent() {
+    return data.length === 0 ? (
+      <div className="mt-10">
+        <Text
+          className="my-8"
+          labelToken={t('createFirstAvatar')}
+          as="h3"
+          medium
+        />
+        <FilePlus2 className="mx-auto my-4 h-24 w-24 text-black" />
+        <ButtonUI
+          href="/dashboard/generate"
+          className="mt-4 inline-flex px-8 py-4 font-bold"
+          variant="primary"
+        >
+          {t('buttonGenerate')}
+        </ButtonUI>
+      </div>
+    ) : (
+      <ul className="mt-10 grid grid-cols-3 gap-2">
+        {data.map((image) => (
+          <li key={image.id}>
+            <div className="relative">
+              <div className="absolute right-4 top-4">
+                <Button
+                  variant={'outline'}
+                  className="px-2 py-2"
+                  size={'icon'}
+                  onClick={() => {
+                    downloadFile(image.imageSwapped).catch((err) =>
+                      console.error('Error handling the click event:', err)
+                    )
+                  }}
+                >
+                  <Download className="h-5 w-5 bg-opacity-75" />
+                </Button>
+              </div>
+              <img className="w-full" src={image.imageUrl.publicUrl} />
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
   return (
     <div className="container mx-auto flex flex-col justify-center text-center">
       <Text labelToken={t('overviewTitle')} as="h1" medium />
       <Text labelToken={t('overviewSubtitle')} as="p" />
-      {loading ? (
-        <div className="mt-10">
-          <div className="grid grid-cols-3 gap-2 rounded-2xl bg-white/5 p-4">
-            <div className="skeleton-loader h-[400px] w-full animate-pulse bg-gray-200"></div>
-            <div className="skeleton-loader h-[400px] w-full animate-pulse bg-gray-200"></div>
-            <div className="skeleton-loader h-[400px] w-full animate-pulse bg-gray-200"></div>
-          </div>
-        </div>
-      ) : (
-        <ul className="mt-10 grid grid-cols-3 gap-2">
-          {data.map((image) => (
-            <li key={image.id}>
-              <div className="relative">
-                <div className="absolute right-4 top-4">
-                  <Button
-                    variant={'outline'}
-                    className="px-2 py-2"
-                    size={'icon'}
-                    onClick={() => {
-                      downloadFile(image.imageSwapped).catch((err) =>
-                        console.error('Error handling the click event:', err)
-                      )
-                    }}
-                  >
-                    <Download className="h-5 w-5 bg-opacity-75" />
-                  </Button>
-                </div>
-                <img className="w-full" src={image.imageUrl.publicUrl} />
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+
+      {loading ? renderSkeletonLoader() : renderContent()}
     </div>
   )
 }
