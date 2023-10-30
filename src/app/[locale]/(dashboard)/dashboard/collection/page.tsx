@@ -2,8 +2,11 @@
 
 import React, { useEffect, useState } from 'react'
 import { useScopedI18n } from '@/locale/client'
+import { Download } from 'lucide-react'
 
+import { supabase } from '@/lib/supabase'
 import getTransformedImages from '@/lib/utils/getTransformedImages'
+import { Button } from '@/components/ui/Button'
 import { Text } from '@/components/common'
 
 interface ImageData {
@@ -11,6 +14,44 @@ interface ImageData {
   modelId: string
   imageSwapped: string
   imageUrl: { publicUrl: string }
+  userID: string
+}
+
+if (!process.env.NEXT_PUBLIC_SUPABASE_BUCKET) {
+  throw new Error('NEXT_PUBLIC_SUPABASE_BUCKET is not defined')
+}
+
+const SupabaseBucket: string = process.env.NEXT_PUBLIC_SUPABASE_BUCKET
+
+function downloadBlob(blob: Blob, name = 'file') {
+  const blobUrl = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = blobUrl
+  link.download = name
+
+  document.body.appendChild(link)
+  link.dispatchEvent(
+    new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    })
+  )
+
+  // Remove link from body
+  document.body.removeChild(link)
+}
+
+async function downloadFile(file: string) {
+  try {
+    const { data, error } = await supabase.storage
+      .from(SupabaseBucket)
+      .download(file)
+    downloadBlob(data, file)
+  } catch (error) {
+    console.error('Error downloading image: ', error.message)
+    throw new Error(error.message)
+  }
 }
 
 async function getDataImages(
@@ -48,7 +89,6 @@ const DashboardPage: React.FC = () => {
         if (isCancelled) return
 
         const transformedData = await getTransformedImages(data_images)
-        console.log('transformedData', transformedData)
         setData(transformedData)
       } catch (err) {
         if (err instanceof Error && err.name === 'AbortError') {
@@ -81,13 +121,33 @@ const DashboardPage: React.FC = () => {
       <Text labelToken={t('overviewSubtitle')} as="p" />
       {loading ? (
         <div className="mt-10">
-          <p>Loading...</p>
+          <div className="grid grid-cols-3 gap-2 rounded-2xl bg-white/5 p-4">
+            <div className="skeleton-loader h-[400px] w-full animate-pulse bg-gray-200"></div>
+            <div className="skeleton-loader h-[400px] w-full animate-pulse bg-gray-200"></div>
+            <div className="skeleton-loader h-[400px] w-full animate-pulse bg-gray-200"></div>
+          </div>
         </div>
       ) : (
         <ul className="mt-10 grid grid-cols-3 gap-2">
           {data.map((image) => (
             <li key={image.id}>
-              <img className="w-full" src={image.imageUrl.publicUrl} />
+              <div className="relative">
+                <div className="absolute right-4 top-4">
+                  <Button
+                    variant={'outline'}
+                    className="px-2 py-2"
+                    size={'icon'}
+                    onClick={() => {
+                      downloadFile(image.imageSwapped).catch((err) =>
+                        console.error('Error handling the click event:', err)
+                      )
+                    }}
+                  >
+                    <Download className="h-5 w-5 bg-opacity-75" />
+                  </Button>
+                </div>
+                <img className="w-full" src={image.imageUrl.publicUrl} />
+              </div>
             </li>
           ))}
         </ul>
