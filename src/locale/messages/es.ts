@@ -14,9 +14,9 @@ export default {
     content: 'Diseñado y construido por {fullName}',
   },
   siteConfig: {
-    title: 'Johan Guse | Desarrollador Frontend',
+    title: 'AI Magic',
     description:
-      'Portafolio web personal, donde puedes encontrar información sobre mí, mis habilidades, mi experiencia laboral y mis proyectos.',
+      'Descubre el poder de la IA y lleva tus imágenes al siguiente nivel con solo un clic',
     menuNav: {
       aboutMe: 'Sobre mi',
       projects: 'Proyectos',

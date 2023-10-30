@@ -4,9 +4,9 @@ import type { featureOne, MenuNavItem } from '@/types'
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://127.0.0.1:3000'
 
 export const siteConfig = {
-  name: 'Johan Guse | Frontend Developer',
+  name: 'AI Magic',
   description:
-    'Personal web portfolio, where you can find information about me, my skills, my work experience, and my projects.',
+    'Discover the power of AI and take your images to the next level with just one click',
   url: BASE_URL,
   ogImage: `${BASE_URL}/images/og.png`,
   links: {
