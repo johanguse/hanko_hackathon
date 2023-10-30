@@ -3,7 +3,7 @@
 import { FC, MouseEventHandler, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useScopedI18n } from '@/locale/client'
+import { useCurrentLocale, useScopedI18n } from '@/locale/client'
 
 import { Img, Text } from '@/components/common'
 import { IconMoveDown } from '@/components/icons/MoveDown'
@@ -18,7 +18,7 @@ type Feature = {
   link: string
 }
 
-const features: Feature[] = [
+const featuresEN: Feature[] = [
   {
     titleToken: 'AI Avatar Generator',
     descriptionToken:
@@ -31,20 +31,38 @@ const features: Feature[] = [
     link: '/register',
   },
 ]
+const featuresES: Feature[] = [
+  {
+    titleToken: 'Generador de Avatar IA',
+    descriptionToken:
+      'Crear tu propio avatar con IA y compartirlo con tus amigos.',
+    isSlider: true,
+    imgUrls: {
+      before: '/images/me_before.jpg',
+      after: '/images/me_after.jpg',
+    },
+    link: '/register',
+  },
+]
 
 export const FeaturesSection = () => {
   const t = useScopedI18n('home')
+  const currentLocale = useCurrentLocale()
   return (
     <>
       <section id="features" className="mx-auto mb-2">
         <div className="mx-auto mb-2 mt-28 hidden scroll-mt-48 grid-cols-1 gap-4 px-4 md:grid md:scroll-mt-28 md:grid-cols-1 lg:max-w-2xl lg:grid-cols-1 lg:px-0">
           <div className="flex justify-between px-2">
-            <Text as="p" labelToken="After" size="sm" />
-            <Text as="p" labelToken="Before" size="sm" />
+            <Text as="p" labelToken={t('featureAfter')} size="sm" />
+            <Text as="p" labelToken={t('featureBefore')} size="sm" />
           </div>
-          {features.map((feature) => (
-            <FeatureBox key={feature.titleToken} {...{ feature }} />
-          ))}
+          {currentLocale === 'es'
+            ? featuresES.map((feature) => (
+                <FeatureBox key={feature.titleToken} {...{ feature }} />
+              ))
+            : featuresEN.map((feature) => (
+                <FeatureBox key={feature.titleToken} {...{ feature }} />
+              ))}
         </div>
         <div className="mx-auto mb-2 mt-28 block md:hidden">
           <Image

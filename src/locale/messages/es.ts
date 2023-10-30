@@ -7,6 +7,8 @@ export default {
     featureTitle: 'Avatar IA',
     featureSubtitle: 'Lleva tus fotos al siguiente nivel con la magia de AI.',
     featureButton: 'Crea uno ahora',
+    featureAfter: 'Después',
+    featureBefore: 'Antes',
   },
   footer: {
     content: 'Diseñado y construido por {fullName}',
@@ -51,8 +53,9 @@ export default {
       settings: 'Configuración',
       account: 'Cuenta',
       logout: 'Cerrar sesión',
-      remain: 'Restante',
-      credits: 'créditos',
+      'remainCredits#zero': 'No hay créditos',
+      'remainCredits#one': '1 crédito',
+      'remainCredits#other': '{count} créditos',
       overviewTitle: 'Avatares generados',
       overviewSubtitle: 'Lista de avatares generados.',
       generatePage: {

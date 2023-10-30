@@ -59,9 +59,7 @@ export function UserCreditsDisplay(): JSX.Element {
           <div className="skeleton-loader h-5 w-32 animate-pulse bg-gray-200"></div>
         </>
       ) : (
-        <>
-          {t('remain')} {userCredits} {t('credits')}
-        </>
+        <>{t('remainCredits', { count: userCredits })}</>
       )}
     </div>
   )

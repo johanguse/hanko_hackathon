@@ -143,6 +143,7 @@ export default function GeneratePage() {
             type="submit"
             className="w-full justify-center"
             variant="primary"
+            disabled={loading}
           >
             {t('button')}
           </Button>

@@ -7,6 +7,8 @@ export default {
     featureTitle: 'AI Avatar',
     featureSubtitle: 'Take your photos to the next level with AI magic.',
     featureButton: 'Create one now',
+    featureAfter: 'After',
+    featureBefore: 'Before',
   },
   footer: {
     content: 'Designed & Built by {fullName}',
@@ -51,8 +53,9 @@ export default {
       settings: 'Settings',
       account: 'Account',
       logout: 'Logout',
-      remain: 'Remain',
-      credits: 'credits',
+      'remainCredits#zero': 'No credits remain',
+      'remainCredits#one': '1 credit',
+      'remainCredits#other': '{count} credits',
       overviewTitle: 'Generated Avatars',
       overviewSubtitle: 'A list of generated avatars.',
       generatePage: {
@@ -68,6 +71,7 @@ export default {
         userPromptOptional: '(Optional)',
         userPromptHelper: 'Copy image prompts from ',
         userPromptPlaceholder: 'Copy image prompts from https://lexica.art',
+        button: 'Generate Avatar',
       },
       resultPage: {
         thanks: 'Thank you!',
