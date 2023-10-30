@@ -68,7 +68,13 @@ export default {
         userPromptOptional: '(Optional)',
         userPromptHelper: 'Copy image prompts from ',
         userPromptPlaceholder: 'Copy image prompts from https://lexica.art',
-        button: 'Generate Avatar',
+      },
+      resultPage: {
+        thanks: 'Thank you!',
+        generationFail: 'Feneration failed',
+        whenImageIsReady:
+          'Your image will be delivered to your email, once it is ready!',
+        buttonAnother: 'Generate another',
       },
       outOfCredits: {
         title: 'Out of credits',

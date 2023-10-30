@@ -71,6 +71,13 @@ export default {
           'Copia las pautas de imagen de https://lexica.art',
         button: 'Generar avatar',
       },
+      resultPage: {
+        thanks: '¡Gracias!',
+        generationFail: 'Fallo de generación',
+        whenImageIsReady:
+          '¡Su imagen será enviada a su correo electrónico una vez que esté lista!',
+        buttonAnother: 'Generar otro',
+      },
       outOfCredits: {
         title: 'Fuera de créditos',
         subtitle: 'Por favor comprueba tu crédito.',

@@ -1,6 +1,7 @@
 'use client'
 
 import { useParams } from 'next/navigation'
+import { useScopedI18n } from '@/locale/client'
 import { useEventRunStatuses } from '@trigger.dev/react'
 import { CheckCheck, ClockIcon, ReplaceIcon, XCircle } from 'lucide-react'
 
@@ -8,6 +9,7 @@ import { Text } from '@/components/common'
 import { Button } from '@/components/common/Button'
 
 export default function Result() {
+  const t = useScopedI18n('commons.dashboard.resultPage')
   const params = useParams()
   let uid: string | undefined = ''
   if (Array.isArray(params?.id)) {
@@ -19,8 +21,8 @@ export default function Result() {
   const { fetchStatus, error, statuses, run } = useEventRunStatuses(uid)
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center">
-      <h2 className="mb-2 text-3xl font-bold">Thank you! 🌟</h2>
+    <div className="container mx-auto flex flex-col justify-center text-center">
+      <h2 className="mb-2 text-3xl font-bold">{t('thanks')}</h2>
 
       <div className="flex flex-col gap-1">
         {fetchStatus === 'loading' ? (
@@ -30,7 +32,7 @@ export default function Result() {
         ) : (
           statuses.map((status) => (
             <div key={status.key} className="flex flex-col items-center gap-1">
-              <div className="flex items-center gap-2">
+              <div className="mb-4 flex flex-col items-center gap-2">
                 {status.state === 'failure' ? (
                   <XCircle className="h-8 w-8 text-red-500" />
                 ) : status.state === 'success' ? (
@@ -45,7 +47,7 @@ export default function Result() {
                 </div>
               </div>
               {status.data && typeof status.data.url === 'string' && (
-                <img className="w-full lg:w-1/2" src={status.data.url} />
+                <img className="mb-10 w-full lg:w-1/2" src={status.data.url} />
               )}
             </div>
           ))
@@ -54,16 +56,16 @@ export default function Result() {
           run.output &&
           typeof run.output.message === 'string' && (
             <>
-              <div className="flex w-1/2 flex-row items-center justify-center rounded border border-red-300 p-2 py-4 text-black">
-                <XCircle className="mr-2 h-8 w-8 text-red-500" />
+              <div className="flex w-1/2 flex-col items-center justify-center rounded border border-red-300 p-2 py-4 text-black">
+                <XCircle className="mb-4 h-8 w-8 text-red-500" />
                 <Text
-                  className="text-red my-8"
-                  labelToken="Generation failed:"
+                  className="text-red"
+                  labelToken={t('generationFail')}
                   as="p"
                   medium
                 />
                 <Text
-                  className="text-red my-8"
+                  className="text-red"
                   labelToken={run.output.message}
                   as="p"
                 />
@@ -72,18 +74,13 @@ export default function Result() {
           )}
       </div>
 
-      <Text
-        className="my-8"
-        labelToken="Your image will be delivered to your email, once it is ready!"
-        as="p"
-        medium
-      />
+      <Text className="my-8" labelToken={t('whenImageIsReady')} as="p" medium />
       <Button
         href="/dashboard/generate"
-        className="px-8 py-4 font-bold"
+        className="mx-auto px-8 py-4 font-bold"
         variant="secondary"
       >
-        Generate another
+        {t('buttonAnother')}
       </Button>
     </div>
   )
