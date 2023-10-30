@@ -104,7 +104,7 @@ const DashboardPage: React.FC = () => {
         setData(transformedData)
       } catch (err) {
         if (err instanceof Error && err.name === 'AbortError') {
-          console.log('Fetch aborted')
+          console.error('Fetch aborted')
         } else {
           if (err instanceof Error) {
             setError(err.message)

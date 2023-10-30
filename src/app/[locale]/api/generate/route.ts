@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   const totalCredits = await getUserCredits()
 
   if (totalCredits !== undefined && totalCredits <= 0) {
-    console.log('totalCredits: ', totalCredits)
+    console.error('Out of credits. Please purchase more credits.')
     return NextResponse.json('Out of credits. Please purchase more credits.', {
       status: 403,
     })
