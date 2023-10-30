@@ -47,10 +47,22 @@ async function downloadFile(file: string) {
     const { data, error } = await supabase.storage
       .from(SupabaseBucket)
       .download(file)
-    downloadBlob(data, file)
+
+    if (error) {
+      throw error
+    }
+
+    if (data) {
+      downloadBlob(data, file)
+    } else {
+      console.error('No data available to download')
+    }
   } catch (error) {
-    console.error('Error downloading image: ', error.message)
-    throw new Error(error.message)
+    if (error instanceof Error) {
+      console.error('Error downloading image: ', error.message)
+    } else {
+      console.error('Error downloading image: ', error)
+    }
   }
 }
 
