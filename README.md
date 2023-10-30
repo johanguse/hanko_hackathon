@@ -1,33 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Next.js Project with Advanced Integrations
 
-## 🧪 Technologies
+This project is built on [Next.js](https://nextjs.org/), kickstarted using create-next-app.
+
+## Technologies
+
+- [NextJS](https://nextjs.org/) the React Framework for the Web
+- [Hanko](https://www.hanko.io/) the open source authentication
+- [Replicate](https://replicate.com/) AI generate
+- [Supabase](https://supabase.com/) database and real time database
+- [Tailwind](https://tailwindcss.com/) as CSS framework
 
 ## Getting Started
 
-First, run the development server:
+Running this project locally requires a bit of setup, especially when it comes to environment variables. Let's walk through it:
+
+1. Setup Environment Variables
+Copy the example `.env.sample` file to a new file named `.env.local`. Then, replace the placeholders with your actual values.
+
+2. Install Dependencies & Run
+Once your environment variables are all set up:
+
+Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the development server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Now, head over to <http://localhost:3000> to see the project in action!
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+If you're interested in diving deeper into the technologies used in this project, here's a handy collection of resources to get you started:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Next.js
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[Next.js Documentation](https://nextjs.org/docs) - Everything you need to know about Next.js features and API.
+[Learn Next.js](https://nextjs.org/learn) - An interactive tutorial to get hands-on with Next.js.
+
+#### Hanko
+
+[Hanko Documentation](https://docs.hanko.io/introduction) - Dive deeper into the world of open-source authentication with Hanko.
+
+### Replicate
+
+[Replicate Docs](https://replicate.com/docs) - Learn how to leverage AI generation with Replicate.
+
+### Supabase
+
+[Supabase Documentation](https://supabase.com/docs) - A comprehensive guide to understanding Supabase, your go-to for databases and real-time functionalities.
+
+### TailwindCSS
+
+[TailwindCSS Documentation](https://tailwindcss.com/docs/) - Get started with this utility-first CSS framework and make your web designs stand out.
+Feel free to explore, experiment, and elevate your projects with the knowledge from these resources. Happy learning!
 
 ## Deploy on Vercel
 
