@@ -23,6 +23,9 @@ export async function GET() {
           modelId: true,
           imageSwapped: true,
         },
+        orderBy: {
+          id: 'desc',
+        },
       })
     } catch (error) {
       console.error(error)
