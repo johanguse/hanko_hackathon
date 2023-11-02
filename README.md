@@ -19,10 +19,43 @@ Take a peek at the [bottom](#video) of this page for a brief video showcasing th
 
 Running this project locally requires a bit of setup, especially when it comes to environment variables. Let's walk through it:
 
-1. Setup Environment Variables
+### Setup Environment Variables
+
 Copy the example `.env.sample` file to a new file named `.env.local`. Then, replace the placeholders with your actual values.
 
-2. Install Dependencies & Run
+You'll require the following environment variables:
+
+- **Supabase**: Check out the documentation on how to obtain your keys: [Supabase Documentation](https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs?database-method=sql#get-the-api-keys)
+  
+- **Hanko API URL**: You can find the API URL in the Hanko console. Once retrieved, add it to your `.env` file.
+
+- **Replicate API Token**: Visit the Replicate Console to obtain your API token: [Replicate Console](https://replicate.com/account/api-tokens)
+
+- **Trigger.dev API**: Follow the official tutorial to find out how to get the API token from the Trigger panel: [Trigger.dev Tutorial](https://trigger.dev/docs/documentation/quickstarts/nextjs)
+
+- **Resend API**: Acquire your API key from the Resend console: [Resend Console](https://resend.com/api-keys)
+
+### Run Migrations
+
+Once you've set up all the environment variables, proceed to run the migration with the command `npm run migrate-dev`. Provide a name (e.g., "init") for the purpose of creating tables in Supabase and setting up your triggers. Following this, head over to Supabase to verify the creation of the tables and function.
+
+#### Database and tables
+
+![Screenshot 2023-11-01 at 23 40 57](https://github.com/johanguse/hanko_hackathon/assets/6184866/319d1d79-9a6b-4d8a-ba37-911bf9710d3f)
+
+#### Functions
+
+![Screenshot 2023-11-01 at 23 41 23](https://github.com/johanguse/hanko_hackathon/assets/6184866/e0c4239b-8ebe-47df-a077-d01f957b52e8)
+
+### Enable Database Realtime
+
+To automatically update credits when a new AI Avatar is generated, set up the real-time feature in Supabase for the `credits` table. Ensure that real-time is activated for this table.
+Here are the steps to do so: <https://supabase.com/docs/guides/realtime>
+
+![Screenshot 2023-11-01 at 23 46 21](https://github.com/johanguse/hanko_hackathon/assets/6184866/5179e093-f93e-437a-89fe-34edb227cea0)
+
+### Install Dependencies & Run
+
 Once your environment variables are all set up:
 
 Install dependencies
@@ -77,5 +110,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Video
 
-https://github.com/johanguse/hanko_hackathon/assets/6184866/c3b5b9bc-5db7-4630-9cc1-6079a8163468
-
+<https://github.com/johanguse/hanko_hackathon/assets/6184866/c3b5b9bc-5db7-4630-9cc1-6079a8163468>

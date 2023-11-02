@@ -145,6 +145,9 @@ devDependencies:
   postcss:
     specifier: 8.4.31
     version: 8.4.31
+  postgres:
+    specifier: ^3.4.2
+    version: 3.4.2
   prettier:
     specifier: 3.0.3
     version: 3.0.3
@@ -3884,6 +3887,11 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /postgres@3.4.2:
+    resolution: {integrity: sha512-0UcCGvDBSaAzLeWwiq+QVmiGfOPTosFb+sxJUUtd+7Pi/ByFPuz6Gq05LbS0sM1ghMWC5atuks3pfl34g0qmFw==}
+    engines: {node: '>=12'}
+    dev: true
 
   /preact@10.18.1:
     resolution: {integrity: sha512-mKUD7RRkQQM6s7Rkmi7IFkoEHjuFqRQUaXamO61E6Nn7vqF/bo7EZCmSyrUnp2UWHw0O7XjZ2eeXis+m7tf4lg==}
