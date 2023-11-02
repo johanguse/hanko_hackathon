@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+// @ts-nocheck
+
 import postgres from 'postgres'
 
 import 'dotenv/config'

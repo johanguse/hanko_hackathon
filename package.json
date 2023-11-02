@@ -20,7 +20,7 @@
     "prisma:format": "prisma format",
     "prisma:format:check": "prisma format --check",
     "prisma:push": "prisma push",
-    "prisma:generate-init": "npx prisma migrate dev --name init && npx tsx lib/seedSupabase.ts"
+    "prisma:generate-init": "npx prisma migrate dev --name init && npx tsx ./prisma/seedSupabase.ts"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -79,6 +79,7 @@
     "prettier-plugin-tailwindcss": "^0.5.6",
     "prisma": "^5.5.2",
     "tailwindcss": "3.3.3",
+    "tsx": "^3.14.0",
     "typescript": "5.2.2"
   },
   "trigger.dev": {
