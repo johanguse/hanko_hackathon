@@ -5,10 +5,15 @@ import { validateJwtAndFetchUserId } from '@/lib/utils/validateJwtAndFetchUserId
 
 export async function GET() {
   try {
-    const userId = await validateJwtAndFetchUserId()
+    const userID = await validateJwtAndFetchUserId()
+
+    if (!userID) {
+      return new NextResponse('Unauthorized', { status: 401 })
+    }
+
     const credits = await prisma.user.findUnique({
       where: {
-        userId: userId,
+        userId: userID,
       },
       select: {
         credits: true,

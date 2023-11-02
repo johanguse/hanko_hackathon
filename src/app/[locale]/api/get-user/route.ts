@@ -7,7 +7,7 @@ export function GET(request: NextApiRequest, response: NextApiResponse) {
   const token = cookies().get('hanko')?.value
 
   if (!token) {
-    return NextResponse.json({ user_id: null }, { status: 200 })
+    return new NextResponse('No user token found', { status: 401 })
   }
 
   const payload = jose.decodeJwt(token ?? '')

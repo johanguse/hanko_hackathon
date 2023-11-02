@@ -11,11 +11,11 @@ export async function POST(request: NextRequest) {
   const file: File | null = data.get('file') as unknown as File
 
   if (!userID) {
-    return NextResponse.json({ success: false })
+    return new NextResponse('Unauthorized', { status: 401 })
   }
 
   if (!file) {
-    return NextResponse.json({ success: false })
+    return new NextResponse('No file found', { status: 401 })
   }
 
   const totalCredits = await getUserCredits()

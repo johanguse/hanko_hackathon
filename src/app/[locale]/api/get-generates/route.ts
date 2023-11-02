@@ -7,7 +7,7 @@ export async function POST() {
   const userID = await validateJwtAndFetchUserId()
 
   if (!userID) {
-    return NextResponse.json({ success: false })
+    return new NextResponse('Unauthorized', { status: 401 })
   }
 
   try {
