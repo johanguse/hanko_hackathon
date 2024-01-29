@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
+    "turbo": "next dev --turbo",
     "lint:fix": "eslint --ext \"src/**/*.{js,jsx,ts,tsx}\" --fix --quiet",
     "lint:format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" --plugin-search-dir --ignore-path .gitignore",
     "lint:format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" --plugin-search-dir --ignore-path .gitignore",
